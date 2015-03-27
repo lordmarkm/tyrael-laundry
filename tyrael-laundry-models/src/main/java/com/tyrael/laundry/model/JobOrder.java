@@ -32,7 +32,7 @@ public class JobOrder extends BaseEntity {
     @Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
     private DateTime dateDue;
 
-    @Column(name = "TRACKING_NO", nullable = false)
+    @Column(name = "TRACKING_NO", nullable = false, unique = true)
     private String trackingNo;
 
     @OneToMany(mappedBy = "jobOrder", cascade = CascadeType.ALL)

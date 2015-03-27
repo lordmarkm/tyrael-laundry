@@ -14,13 +14,16 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupp
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.joda.JodaModule;
+import com.tyrael.laundry.app.config.TyraelLaundryAppConfigMarker;
+import com.tyrael.laundry.web.TyraelLaundryWebMarker;
 
 @Configuration
 @ComponentScan(basePackages = {
     "com.baldy.commons.web.config",
-    "com.baldy.commons.resourcedoc.config",
-    "com.tyrael.laundry.app.config",
-    "com.tyrael.laundry.web"
+    "com.baldy.commons.resourcedoc.config"
+}, basePackageClasses = {
+    TyraelLaundryAppConfigMarker.class,
+    TyraelLaundryWebMarker.class
 })
 @PropertySource({"classpath:app.properties"})
 @EnableAspectJAutoProxy

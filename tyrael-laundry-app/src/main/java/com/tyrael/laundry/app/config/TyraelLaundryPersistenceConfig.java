@@ -1,11 +1,14 @@
-package com.tyrael.landry.app.config;
+package com.tyrael.laundry.app.config;
 
 import java.util.Properties;
 
+import javax.annotation.PostConstruct;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
 import org.hibernate.ejb.HibernatePersistence;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,19 +19,27 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 import com.tyrael.commons.data.config.PersistenceConfig;
+import com.tyrael.laundry.service.TyraelLaundryServicesMarker;
 
 /**
  * @author Mark
  */
 @Configuration
-@EnableJpaRepositories(basePackages = {
-    "com.tyrael.laundry.service"
+@EnableJpaRepositories(basePackageClasses = {
+        TyraelLaundryServicesMarker.class
 }, repositoryImplementationPostfix = "CustomImpl")
 @PropertySource({"classpath:db.properties"})
 public class TyraelLaundryPersistenceConfig extends PersistenceConfig {
 
+    private static final Logger LOG = LoggerFactory.getLogger(TyraelLaundryPersistenceConfig.class);
+
     @Autowired
     private Environment env;
+
+    @PostConstruct
+    public void init() {
+        LOG.debug("Persistence Configuration loaded.");
+    }
 
     @Bean
     public Properties hibernateProperties() {

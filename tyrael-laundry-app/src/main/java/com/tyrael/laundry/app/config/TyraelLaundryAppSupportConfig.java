@@ -1,4 +1,4 @@
-package com.tyrael.landry.app.config;
+package com.tyrael.laundry.app.config;
 
 import javax.annotation.PostConstruct;
 

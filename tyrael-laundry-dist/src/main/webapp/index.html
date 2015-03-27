@@ -1,1 +1,22 @@
 Hello world
+
+<form method="post" action="/joborder">
+  <div>
+    <label for="lastName">Customer Last Name</label>
+    <input type="text" name="lastName" />
+  </div>
+  <div>
+    <label for="serviceType">Service Type</label>
+    <select name="serviceType">
+      <option value="WASH_DRY_FOLD">Wash, Dry, Fold</option>
+      <option value="HANDWASH_PRESS">Handwash, press</option>
+    </select>
+  </div>
+  <div>
+    <label for="trackingNo">Tracking No</label>
+    <input type="text" name="trackingNo" />
+  </div>
+  <div>
+    <input type="submit" />
+  </div>
+</form>

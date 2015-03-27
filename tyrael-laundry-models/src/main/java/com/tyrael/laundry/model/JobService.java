@@ -9,13 +9,14 @@ import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.baldy.commons.models.BaseEntity;
 import com.tyrael.laundry.reference.ServiceType;
 
 /**
  * @author mbmartinez
  */
 @Entity(name = "JOB_SERVICE")
-public class JobService {
+public class JobService extends BaseEntity {
 
     @Column(name = "SERVICE_TYPE", nullable = false)
     @Enumerated(EnumType.STRING)
