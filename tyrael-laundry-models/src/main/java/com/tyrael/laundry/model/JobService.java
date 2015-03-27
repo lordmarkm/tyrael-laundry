@@ -6,6 +6,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import com.tyrael.laundry.reference.ServiceType;
 
@@ -15,18 +17,22 @@ import com.tyrael.laundry.reference.ServiceType;
 @Entity(name = "JOB_SERVICE")
 public class JobService {
 
-    @Column(name = "SERVICE_TYPE")
+    @Column(name = "SERVICE_TYPE", nullable = false)
     @Enumerated(EnumType.STRING)
     private ServiceType serviceType;
 
-    @Column(name = "WT_KG")
+    @Column(name = "WT_KG", nullable = false)
     private BigDecimal weightInKilos;
 
-    @Column(name = "PRICE_KG")
+    @Column(name = "PRICE_KG", nullable = false)
     private BigDecimal pricePerKilo;
 
-    @Column(name = "AMOUNT")
+    @Column(name = "AMOUNT", nullable = false)
     private BigDecimal amount;
+
+    @ManyToOne
+    @JoinColumn(name = "JOB_ID", nullable = false)
+    private JobOrder jobOrder;
 
     public ServiceType getServiceType() {
         return serviceType;
@@ -58,6 +64,14 @@ public class JobService {
 
     public void setAmount(BigDecimal amount) {
         this.amount = amount;
+    }
+
+    public JobOrder getJobOrder() {
+        return jobOrder;
+    }
+
+    public void setJobOrder(JobOrder jobOrder) {
+        this.jobOrder = jobOrder;
     }
 
 }
