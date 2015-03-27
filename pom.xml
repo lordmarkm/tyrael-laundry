@@ -10,6 +10,7 @@
   <modules>
     <module>tyrael-laundry-models</module>
     <module>tyrael-laundry-services</module>
+    <module>tyrael-laundry-app</module>
   </modules>
 
   <properties>
@@ -29,6 +30,11 @@
       <dependency>
         <groupId>tyrael-commons</groupId>
         <artifactId>tyrael-commons-models</artifactId>
+        <version>${tyrael.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>tyrael-commons</groupId>
+        <artifactId>tyrael-commons-data</artifactId>
         <version>${tyrael.version}</version>
       </dependency>
 
@@ -62,4 +68,17 @@
     </dependencies>
   </dependencyManagement>
 
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.3</version>
+        <configuration>
+          <source>1.7</source>
+          <target>1.7</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
 </project>

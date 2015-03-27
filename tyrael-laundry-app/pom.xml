@@ -1,0 +1,44 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.tyrael.laundry</groupId>
+    <artifactId>tyrael-laundry</artifactId>
+    <version>1.0</version>
+  </parent>
+  <artifactId>tyrael-laundry-app</artifactId>
+  <name>Tyrael Laundry :: App</name>
+
+  <properties>
+    <db.username>root</db.username>
+    <db.password>root</db.password>
+    <db.dialect>org.hibernate.dialect.MySQL5Dialect</db.dialect>
+    <db.url>jdbc:mysql://localhost:3306/tyrael_laundry</db.url>
+    <db.driverClass>com.mysql.jdbc.Driver</db.driverClass>
+    <hibernate.hbm2ddl.auto>update</hibernate.hbm2ddl.auto>
+    <hibernate.hbm2ddl.import_files></hibernate.hbm2ddl.import_files>
+    <reload.csv>false</reload.csv>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.tyrael.laundry</groupId>
+      <artifactId>tyrael-laundry-services</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>tyrael-commons</groupId>
+      <artifactId>tyrael-commons-data</artifactId>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+        <filtering>true</filtering>
+      </resource>
+    </resources>
+  </build>
+
+</project>
