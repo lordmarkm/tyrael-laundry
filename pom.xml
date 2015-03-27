@@ -11,6 +11,7 @@
     <module>tyrael-laundry-models</module>
     <module>tyrael-laundry-services</module>
     <module>tyrael-laundry-app</module>
+    <module>tyrael-laundry-web</module>
   </modules>
 
   <properties>
