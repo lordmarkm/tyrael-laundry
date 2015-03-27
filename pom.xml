@@ -1,0 +1,63 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.tyrael.laundry</groupId>
+  <artifactId>tyrael-laundry</artifactId>
+  <version>1.0</version>
+  <packaging>pom</packaging>
+  <name>Tyrael Laundry :: Parent</name>
+
+  <modules>
+    <module>tyrael-laundry-models</module>
+  </modules>
+
+  <properties>
+    <project.version>1.0</project.version>
+    <commons-io.version>2.4</commons-io.version>
+    <spring.version>4.1.5.RELEASE</spring.version>
+    <guava.version>18.0</guava.version>
+    <logback.version>1.1.2</logback.version>
+    <jetty.version>9.0.5.v20130815</jetty.version>
+    <tyrael.version>1.1</tyrael.version>
+  </properties>
+
+  <dependencyManagement>
+    <dependencies>
+      <!-- Tyrael Commons -->
+      <dependency>
+        <groupId>tyrael-commons</groupId>
+        <artifactId>tyrael-commons-models</artifactId>
+        <version>${tyrael.version}</version>
+      </dependency>
+
+      <!-- Spring Framework -->
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-context</artifactId>
+        <version>${spring.version}</version>
+      </dependency>
+
+      <!-- Apache Commons -->
+      <dependency>
+        <groupId>commons-io</groupId>
+        <artifactId>commons-io</artifactId>
+        <version>${commons-io.version}</version>
+      </dependency>
+
+      <!-- Google Libs -->
+      <dependency>
+        <groupId>com.google.guava</groupId>
+        <artifactId>guava</artifactId>
+        <version>${guava.version}</version>
+      </dependency>
+
+      <!-- Logging -->
+      <dependency>
+        <groupId>ch.qos.logback</groupId>
+        <artifactId>logback-classic</artifactId>
+        <version>${logback.version}</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+</project>
