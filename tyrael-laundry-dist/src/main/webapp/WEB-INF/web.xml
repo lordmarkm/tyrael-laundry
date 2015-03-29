@@ -49,6 +49,7 @@
     <!-- Override init parameter to avoid nasty -->
     <!-- file locking issue on windows. -->
     <servlet-name>default</servlet-name>
+    <servlet-class></servlet-class>
     <init-param>
       <param-name>useFileMappedBuffer</param-name>
       <param-value>false</param-value>
