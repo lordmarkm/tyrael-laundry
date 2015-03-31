@@ -15,6 +15,10 @@
       <groupId>tyrael-commons</groupId>
       <artifactId>tyrael-commons-models</artifactId>
     </dependency>
+    <dependency>
+      <groupId>tyrael-commons</groupId>
+      <artifactId>tyrael-commons-dto</artifactId>
+    </dependency>
   </dependencies>
 
   <build>

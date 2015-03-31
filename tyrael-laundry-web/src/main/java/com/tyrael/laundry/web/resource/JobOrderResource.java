@@ -1,11 +1,15 @@
 package com.tyrael.laundry.web.resource;
 
+import static org.dozer.loader.api.TypeMappingOptions.wildcard;
+import static org.springframework.http.HttpStatus.OK;
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
+import static org.springframework.web.bind.annotation.RequestMethod.POST;
+
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 
 import org.dozer.DozerBeanMapper;
-import org.dozer.Mapper;
 import org.dozer.loader.api.BeanMappingBuilder;
 import org.joda.time.DateTime;
 import org.slf4j.Logger;
@@ -13,7 +17,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.baldy.commons.models.proper.Name;
@@ -23,12 +26,6 @@ import com.tyrael.laundry.model.JobOrder;
 import com.tyrael.laundry.service.CustomerService;
 import com.tyrael.laundry.service.JobOrderService;
 import com.tyrael.web.dto.JobOrderInfo;
-
-import static org.dozer.loader.api.FieldsMappingOptions.copyByReference;
-import static org.dozer.loader.api.FieldsMappingOptions.oneWay;
-import static org.springframework.web.bind.annotation.RequestMethod.*;
-import static org.springframework.http.HttpStatus.OK;
-import static org.dozer.loader.api.TypeMappingOptions.*;
 
 /**
  * @author mbmartinez
