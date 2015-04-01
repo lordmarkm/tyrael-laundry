@@ -19,9 +19,9 @@
     <project.version>1.0</project.version>
     <commons-io.version>2.4</commons-io.version>
     <spring.version>4.1.5.RELEASE</spring.version>
-    <spring.data.version>1.7.0.RELEASE</spring.data.version>
     <guava.version>18.0</guava.version>
     <logback.version>1.1.2</logback.version>
+    <slf4j.version>1.7.6</slf4j.version>
     <jetty.version>9.0.5.v20130815</jetty.version>
     <tyrael.version>1.1</tyrael.version>
     <baldy.version>3.1</baldy.version>
@@ -45,17 +45,17 @@
         <artifactId>tyrael-commons-dto</artifactId>
         <version>${tyrael.version}</version>
       </dependency>
+      <dependency>
+        <groupId>tyrael-commons</groupId>
+        <artifactId>tyrael-commons-mapper</artifactId>
+        <version>${tyrael.version}</version>
+      </dependency>
 
       <!-- Spring Framework -->
       <dependency>
         <groupId>org.springframework</groupId>
         <artifactId>spring-context</artifactId>
         <version>${spring.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.springframework.data</groupId>
-        <artifactId>spring-data-jpa</artifactId>
-        <version>${spring.data.version}</version>
       </dependency>
 
       <!-- Apache Commons -->
@@ -77,6 +77,16 @@
         <groupId>ch.qos.logback</groupId>
         <artifactId>logback-classic</artifactId>
         <version>${logback.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-api</artifactId>
+        <version>${slf4j.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>jcl-over-slf4j</artifactId>
+        <version>${slf4j.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>

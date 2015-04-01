@@ -33,11 +33,8 @@ public class CustomerResource extends GenericController {
             @RequestParam int page,
             @RequestParam int count,
             @RequestParam String term) {
-
-        LOG.debug("User query. Principal={}, page={}, count={}, term={}", principal, page, count, term);
-
+        LOG.debug("Customer query. Principal={}, page={}, count={}, term={}", principal, page, count, term);
         PageRequest pageRequest = new PageRequest(page - 1, count);
-
         return new ResponseEntity<>(service.pageInfo(term, pageRequest), OK);
     }
 

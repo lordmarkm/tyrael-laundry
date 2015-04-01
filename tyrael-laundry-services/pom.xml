@@ -18,11 +18,15 @@
     </dependency>
     <dependency>
       <groupId>tyrael-commons</groupId>
+      <artifactId>tyrael-commons-data</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>tyrael-commons</groupId>
       <artifactId>tyrael-commons-dto</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.springframework.data</groupId>
-      <artifactId>spring-data-jpa</artifactId>
+      <groupId>tyrael-commons</groupId>
+      <artifactId>tyrael-commons-mapper</artifactId>
     </dependency>
     <dependency>
       <groupId>org.aspectj</groupId>

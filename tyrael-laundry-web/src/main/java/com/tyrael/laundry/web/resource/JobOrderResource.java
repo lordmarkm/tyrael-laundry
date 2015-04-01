@@ -1,29 +1,21 @@
 package com.tyrael.laundry.web.resource;
 
-import static org.dozer.loader.api.TypeMappingOptions.wildcard;
 import static org.springframework.http.HttpStatus.OK;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
-import java.util.List;
+import java.security.Principal;
 
-import javax.annotation.PostConstruct;
-
-import org.dozer.DozerBeanMapper;
-import org.dozer.loader.api.BeanMappingBuilder;
-import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import com.baldy.commons.models.proper.Name;
-import com.google.common.collect.Lists;
-import com.tyrael.laundry.model.Customer;
-import com.tyrael.laundry.model.JobOrder;
-import com.tyrael.laundry.service.CustomerService;
+import com.tyrael.commons.dto.PageInfo;
 import com.tyrael.laundry.service.JobOrderService;
 import com.tyrael.web.dto.JobOrderInfo;
 
@@ -39,50 +31,20 @@ public class JobOrderResource {
     @Autowired
     private JobOrderService service;
 
-    @Autowired
-    private DozerBeanMapper mapper;
-
-    @Autowired
-    private CustomerService customerService;
-
-    @PostConstruct
-    public void init() {
-        mapper.addMapping(new BeanMappingBuilder() {
-            @Override
-            protected void configure() {
-                mapping(JobOrder.class, JobOrderInfo.class, wildcard(true))
-                    .fields("customer.name.surname", "lastName");
-            }
-        });
-    }
-
     @RequestMapping(method = GET)
-    public ResponseEntity<List<JobOrderInfo>> findAll() {
-        List<JobOrder> jobOrders = service.findAll();
-        List<JobOrderInfo> jobOrderInfos = Lists.newArrayList();
-        for (JobOrder jobOrder : jobOrders) {
-            jobOrderInfos.add(mapper.map(jobOrder, JobOrderInfo.class));
-        }
-        return new ResponseEntity<>(jobOrderInfos, OK);
+    public ResponseEntity<PageInfo<JobOrderInfo>> page(Principal principal,
+            @RequestParam int page,
+            @RequestParam int count,
+            @RequestParam String term) {
+        LOG.debug("JobOrder query. Principal={}, page={}, count={}, term={}", principal, page, count, term);
+        PageRequest pageRequest = new PageRequest(page - 1, count);
+        return new ResponseEntity<>(service.pageInfo(term, pageRequest), OK);
     }
 
     @RequestMapping(method = POST)
-    public ResponseEntity<JobOrder> save(JobOrderInfo jobOrderForm) {
-        LOG.debug("Save request received. Job order form={}", jobOrderForm);
-
-        JobOrder jobOrder = jobOrderForm.toJobOrder();
-
-        Customer customer = new Customer();
-        customer.setName(new Name());
-        customer.getName().setSurname(jobOrderForm.getLastName());
-        customer = customerService.save(customer);
-
-        jobOrder.setCustomer(customer);
-        jobOrder.setDateReceived(DateTime.now());
-
-        jobOrder = service.save(jobOrder);
-
-        return new ResponseEntity<>(jobOrder, OK);
+    public ResponseEntity<JobOrderInfo> save(Principal principal, JobOrderInfo jobOrderInfo) {
+        LOG.debug("Save request received. Job order form={}", jobOrderInfo);
+        return new ResponseEntity<>(service.saveInfo(jobOrderInfo), OK);
     }
 
 }
