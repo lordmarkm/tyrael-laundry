@@ -1,22 +1,35 @@
-Hello world
+<!DOCTYPE html>
+<html>
 
-<form method="post" action="/joborder">
-  <div>
-    <label for="lastName">Customer Last Name</label>
-    <input type="text" name="lastName" />
+<head>
+<title>Tyrael Laundry</title>
+<link rel="icon" type="image/x-icon" href="images/teachers_day_24_hot.ico" />
+<link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css" />
+<link rel="stylesheet" href="lib/bootstrap-flat-css/bootstrap-flat.css" />
+<link rel="stylesheet" href="lib/font-awesome/css/font-awesome.min.css" />
+<link rel="stylesheet" href="lib/angularjs-toaster/toaster.css" />
+<link rel="stylesheet" href="lib/app.css" />
+
+<link rel="stylesheet" href="lib/metisMenu/dist/metisMenu.css" />
+<link rel="stylesheet" href="lib/startbootstrap-sb-admin-2/dist/css/sb-admin-2.css" />
+
+<script src="lib/jquery/dist/jquery.min.js"></script>
+<script data-main="main.js" src="lib/requirejs/require.js"></script>
+
+</head>
+
+<body>
+  <!-- Main Content -->
+  <div class="container">
+    <toaster-container toaster-options="{'time-out': 4000, 'limit' : 3}"></toaster-container>
+    <div class="row">
+      <div class="main">
+        <div ui-view>Loading resources...</div>
+      </div>
+    </div>
   </div>
-  <div>
-    <label for="serviceType">Service Type</label>
-    <select name="serviceType">
-      <option value="WASH_DRY_FOLD">Wash, Dry, Fold</option>
-      <option value="HANDWASH_PRESS">Handwash, press</option>
-    </select>
-  </div>
-  <div>
-    <label for="trackingNo">Tracking No</label>
-    <input type="text" name="trackingNo" />
-  </div>
-  <div>
-    <input type="submit" />
-  </div>
-</form>
+
+  <div style="margin-bottom: 30px;"></div>
+</body>
+
+</html>

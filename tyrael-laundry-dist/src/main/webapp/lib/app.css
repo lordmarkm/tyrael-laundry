@@ -1,0 +1,22 @@
+html {
+  overflow-y: scroll;
+}
+
+body {
+    background-color: #000000;
+}
+
+.pointer {
+  cursor: pointer;
+  cursor: hand;
+}
+
+.mt5  { margin-top: 5px; }
+.mt10 { margin-top: 10px; }
+
+.img-thumbnail {
+  max-height: 64px;
+  max-width: 64px;
+  width: 64px;
+  height: 64px;
+}

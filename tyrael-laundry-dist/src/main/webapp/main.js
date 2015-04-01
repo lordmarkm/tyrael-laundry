@@ -7,7 +7,7 @@ require.config({
     'angular-ngtable': 'lib/ng-table/dist/ng-table.min',
     'toaster': 'lib/angularjs-toaster/toaster',
     'bootstrap': 'lib/bootstrap/dist/js/bootstrap',
-    'jquery': 'lib/jquery/jquery'
+    'jquery': 'lib/jquery/dist/jquery.min'
   },
   shim: {
     'angular': {
@@ -49,8 +49,7 @@ require([
       'ngAnimate',
       'ngTable',
       'toaster',
-      'core.module',
-      'taxis.module'
+      'core.module'
     ]);
   });
 });
