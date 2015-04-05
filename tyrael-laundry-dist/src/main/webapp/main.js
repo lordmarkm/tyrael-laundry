@@ -40,7 +40,8 @@ require([
     'toaster',
     'angular-ui-router',
     'bootstrap',
-    'core/core.module.js'
+    'core/core.module.js',
+    'splash/splash.module.js'
   ], function (angular) {
   angular.element().ready(function () {
     angular.bootstrap(document, [
@@ -49,7 +50,8 @@ require([
       'ngAnimate',
       'ngTable',
       'toaster',
-      'core.module'
+      'core.module',
+      'splash.module'
     ]);
   });
 });

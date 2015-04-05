@@ -20,4 +20,9 @@ public class JobOrderServiceCustomImpl extends TyraelJpaServiceCustomImpl<JobOrd
         return super.pageInfo(pageRequest);
     }
 
+    @Override
+    public JobOrderInfo findByTrackinNoInfo(String trackingNo) {
+        return toDto(repo.findByTrackingNo(trackingNo));
+    }
+
 }

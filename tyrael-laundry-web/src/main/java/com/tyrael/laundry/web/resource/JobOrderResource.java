@@ -41,6 +41,12 @@ public class JobOrderResource {
         return new ResponseEntity<>(service.pageInfo(term, pageRequest), OK);
     }
 
+    @RequestMapping(method = GET, params = "trackingNo")
+    public ResponseEntity<JobOrderInfo> findByTrackingNo(Principal principal, @RequestParam String trackingNo) {
+        LOG.debug("Find by tracking number request. trackingNo={}", trackingNo);
+        return new ResponseEntity<>(service.findByTrackinNoInfo(trackingNo), OK);
+    }
+
     @RequestMapping(method = POST)
     public ResponseEntity<JobOrderInfo> save(Principal principal, JobOrderInfo jobOrderInfo) {
         LOG.debug("Save request received. Job order form={}", jobOrderInfo);

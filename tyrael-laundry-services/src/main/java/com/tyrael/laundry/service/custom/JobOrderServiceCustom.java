@@ -13,5 +13,6 @@ import com.tyrael.web.dto.JobOrderInfo;
 public interface JobOrderServiceCustom extends TyraelJpaService<JobOrder, JobOrderInfo> {
 
     PageInfo<JobOrderInfo> pageInfo(String term, PageRequest pageRequest);
+    JobOrderInfo findByTrackinNoInfo(String trackingNo);
 
 }

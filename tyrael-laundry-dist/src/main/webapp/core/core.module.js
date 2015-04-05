@@ -1,8 +1,13 @@
 define([
-   'angular'
-], function (angular) {
+   'angular',
+   'core/controller/AuthenticationController',
+   'core/service/AuthenticationService',
+   'core/service/JobOrderService'
+], function (angular, AuthenticationController, AuthenticationService, JobOrderService) {
   console.debug('Configuring core.module');
   angular.module('core.module', [])
+    .service('auth', AuthenticationService)
+    .service('JobOrderService', JobOrderService)
     .config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
 
       $urlRouterProvider
@@ -13,9 +18,10 @@ define([
         template: '<ui-view></ui-view>',
         abstract: true
       })
-      $stateProvider.state('default.splash', {
-        url: '',
-        templateUrl: 'core/view/core.html'
+      .state('default.login', {
+        url: 'login?msg',
+        templateUrl: 'core/view/login.html',
+        controller: AuthenticationController
       });
 
     }]);

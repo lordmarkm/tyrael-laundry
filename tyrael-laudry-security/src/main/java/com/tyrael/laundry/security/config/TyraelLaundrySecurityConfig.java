@@ -72,8 +72,7 @@ public class TyraelLaundrySecurityConfig extends WebSecurityConfigurerAdapter {
             .formLogin()
                 .loginPage("/auth/login")
                 .loginProcessingUrl("/login/authenticate")
-                .defaultSuccessUrl("/auth/redirect", true)
-                .failureUrl("/auth/login?msg=bad_credentials")
+                .failureUrl("/#/login?msg=bad_credentials")
                 .permitAll();
 //                .and()
 //            .rememberMe()
