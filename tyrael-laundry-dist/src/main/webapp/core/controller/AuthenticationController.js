@@ -1,5 +1,5 @@
 define(function () {
   return ['$scope', function ($scope) {
-    $scope.controllerName = "POS Root Controller";
+    $scope.controllerName = "Authentication Root Controller";
   }];
 });

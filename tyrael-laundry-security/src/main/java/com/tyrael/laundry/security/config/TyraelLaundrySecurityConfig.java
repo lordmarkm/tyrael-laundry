@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.env.Environment;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -35,9 +34,6 @@ public class TyraelLaundrySecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private BaseBaldyUserDetailsService userDetailsService;
 
-    @Autowired
-    private Environment env;
-
     @Bean
     public PasswordEncoder passwordEncoder() {
         return NoOpPasswordEncoder.getInstance();
@@ -66,7 +62,7 @@ public class TyraelLaundrySecurityConfig extends WebSecurityConfigurerAdapter {
             .logout()
                 .deleteCookies("JSESSIONID")
                 .logoutUrl("/logout")
-                .logoutSuccessUrl("/auth/login?msg=signout_success")
+                .logoutSuccessUrl("/")
                 .permitAll()
                 .and()
             .formLogin()

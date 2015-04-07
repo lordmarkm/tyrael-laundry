@@ -4,6 +4,10 @@ define(function () {
     //Check user authorities and redirect where appropriate
     auth.then(function(authentication) {
       var principal = authentication.principal;
+      if (!principal) {
+        $state.go('default.splash.anon');
+        return;
+      }
       for (var i in principal.authorities) {
         var authority = principal.authorities[i].authority;
         console.debug('found authority:' + authority);

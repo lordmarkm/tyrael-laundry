@@ -1,0 +1,12 @@
+<h3>Welcome to Tyrael Laundry</h3>
+<div>
+  <p>Looks like you are not logged in. You may log in <a ui-sref="default.login">here</a> or
+     enter a receipt number below to check its status.
+  <form>
+    <div class="form-group">
+      <label>Tracking Number</label>
+      <input type="text" ng-model="trackingNo" />
+    </div>
+    <button class="btn" ng-click="checkJobOrder(trackingNo)" ng-disabled="!trackingNo">Check receipt</button>
+  </form>
+</div>

@@ -1,0 +1,6 @@
+<div class="text-right">
+  <span ng-if="principal.username">Logged in as {{principal.username}} <a href="/logout">Logout</a></span>
+  <span ng-if="!principal.username"><a ui-sref="default.login">Login</a></span>
+</div>
+
+<ui-view></ui-view>

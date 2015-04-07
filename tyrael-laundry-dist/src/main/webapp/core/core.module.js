@@ -1,9 +1,10 @@
 define([
    'angular',
+   'core/controller/RootController',
    'core/controller/AuthenticationController',
    'core/service/AuthenticationService',
    'core/service/JobOrderService'
-], function (angular, AuthenticationController, AuthenticationService, JobOrderService) {
+], function (angular, RootController, AuthenticationController, AuthenticationService, JobOrderService) {
   console.debug('Configuring core.module');
   angular.module('core.module', [])
     .service('auth', AuthenticationService)
@@ -15,7 +16,8 @@ define([
 
       $stateProvider.state('default', {
         url: '/',
-        template: '<ui-view></ui-view>',
+        templateUrl: 'core/view/default.html',
+        controller: RootController,
         abstract: true
       })
       .state('default.login', {
