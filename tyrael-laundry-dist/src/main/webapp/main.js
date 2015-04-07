@@ -41,7 +41,8 @@ require([
     'angular-ui-router',
     'bootstrap',
     'core/core.module.js',
-    'splash/splash.module.js'
+    'splash/splash.module.js',
+    'pos/pos.module.js'
   ], function (angular) {
   angular.element().ready(function () {
     angular.bootstrap(document, [
@@ -51,7 +52,8 @@ require([
       'ngTable',
       'toaster',
       'core.module',
-      'splash.module'
+      'splash.module',
+      'pos.module'
     ]);
   });
 });
