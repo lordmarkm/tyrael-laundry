@@ -2,10 +2,11 @@ define([
    'angular',
    'core/service/AuthenticationService',
    'core/service/JobOrderService',
-   'pos/controller/PosRootController'
-], function (angular, AuthenticationService, JobOrderService, PosRootController) {
+   'pos/controller/PosRootController',
+   'pos/controller/JobOrderCreateController'
+], function (angular, AuthenticationService, JobOrderService, PosRootController, JobOrderCreateController) {
   console.debug('Configuring pos.module');
-  angular.module('pos.module', [])
+  angular.module('pos.module', ['ui.select', 'ngSanitize'])
     .service('auth', AuthenticationService)
     .service('JobOrderService', JobOrderService)
     .config(['$stateProvider', function ($stateProvider) {
@@ -18,6 +19,11 @@ define([
       .state('default.pos.splash', {
         url: '/splash',
         templateUrl: 'pos/view/splash.html'
+      })
+      .state('default.pos.joborder_create', {
+        url: '/joborder/new',
+        templateUrl: 'pos/view/joborder_create.html',
+        controller: JobOrderCreateController
       });
 
     }]);

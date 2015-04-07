@@ -13,7 +13,7 @@
     <module>tyrael-laundry-app</module>
     <module>tyrael-laundry-web</module>
     <module>tyrael-laundry-dist</module>
-    <module>tyrael-laudry-security</module>
+    <module>tyrael-laundry-security</module>
   </modules>
 
   <properties>
