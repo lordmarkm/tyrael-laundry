@@ -1,5 +1,6 @@
 package com.tyrael.laundry.model;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -40,6 +41,9 @@ public class JobOrder extends BaseEntity {
 
     @OneToMany(mappedBy = "jobOrder", cascade = CascadeType.ALL)
     private List<JobItem> jobItems;
+
+    @Column(name = "TOTAL_AMT", nullable = false)
+    private BigDecimal totalAmount;
 
     public Customer getCustomer() {
         return customer;
@@ -87,6 +91,14 @@ public class JobOrder extends BaseEntity {
 
     public void setJobItems(List<JobItem> jobItems) {
         this.jobItems = jobItems;
+    }
+
+    public BigDecimal getTotalAmount() {
+        return totalAmount;
+    }
+
+    public void setTotalAmount(BigDecimal totalAmount) {
+        this.totalAmount = totalAmount;
     }
 
 }

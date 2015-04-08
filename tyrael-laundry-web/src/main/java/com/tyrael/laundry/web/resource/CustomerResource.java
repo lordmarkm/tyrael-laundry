@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -38,4 +39,9 @@ public class CustomerResource extends GenericController {
         return new ResponseEntity<>(service.pageInfo(term, pageRequest), OK);
     }
 
+    @RequestMapping(method = POST)
+    public ResponseEntity<CustomerInfo> save(Principal principal, @RequestBody CustomerInfo customer) {
+        LOG.debug("Customer save request. user={}, customer={}", name(principal), customer);
+        return new ResponseEntity<>(service.saveInfo(customer), OK);
+    }
 }

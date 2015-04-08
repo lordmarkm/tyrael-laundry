@@ -1,5 +1,6 @@
 package com.tyrael.web.dto;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.joda.time.DateTime;
@@ -18,6 +19,7 @@ public class JobOrderInfo extends BaseTyraelDto {
     private String trackingNo;
     private List<JobServiceInfo> jobServices;
     private List<JobItemInfo> jobItems;
+    private BigDecimal totalAmount;
 
     @Override
     protected ToStringCreator toStringCreator() {
@@ -27,7 +29,8 @@ public class JobOrderInfo extends BaseTyraelDto {
             .append("date rcvd", dateReceived)
             .append("date due", dateDue)
             .append("job service", jobServices)
-            .append("job items", jobItems);
+            .append("job items", jobItems)
+            .append("total amt", totalAmount);
     }
 
     public CustomerInfo getCustomer() {
@@ -76,6 +79,14 @@ public class JobOrderInfo extends BaseTyraelDto {
 
     public void setJobItems(List<JobItemInfo> jobItems) {
         this.jobItems = jobItems;
+    }
+
+    public BigDecimal getTotalAmount() {
+        return totalAmount;
+    }
+
+    public void setTotalAmount(BigDecimal totalAmount) {
+        this.totalAmount = totalAmount;
     }
 
 }

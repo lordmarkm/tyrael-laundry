@@ -7,6 +7,7 @@ require.config({
     'angular-ngtable': 'lib/ng-table/dist/ng-table.min',
     'angular-ui-select': 'lib/angular-ui-select/dist/select',
     'angular-sanitize': 'lib/angular-sanitize/angular-sanitize.min',
+    'angular-bootstrap': 'lib/angular-bootstrap/ui-bootstrap-tpls.min',
     'toaster': 'lib/angularjs-toaster/toaster',
     'bootstrap': 'lib/bootstrap/dist/js/bootstrap',
     'jquery': 'lib/jquery/dist/jquery.min'
@@ -34,6 +35,9 @@ require.config({
     'angular-sanitize': {
       deps: ['angular']
     },
+    'angular-bootstrap': {
+      deps: ['angular']
+    },
     'toaster': {
       deps: ['angular']
     },
@@ -47,6 +51,7 @@ require([
     'angular-ngtable',
     'angular-ui-select',
     'angular-sanitize',
+    'angular-bootstrap',
     'toaster',
     'angular-ui-router',
     'bootstrap',
@@ -62,6 +67,7 @@ require([
       'ngTable',
       'ui.select',
       'ngSanitize',
+      'ui.bootstrap',
       'toaster',
       'core.module',
       'splash.module',

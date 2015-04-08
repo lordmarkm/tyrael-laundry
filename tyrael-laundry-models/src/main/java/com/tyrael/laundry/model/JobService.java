@@ -4,13 +4,10 @@ import java.math.BigDecimal;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import com.baldy.commons.models.BaseEntity;
-import com.tyrael.laundry.reference.ServiceType;
 
 /**
  * @author mbmartinez
@@ -18,8 +15,8 @@ import com.tyrael.laundry.reference.ServiceType;
 @Entity(name = "JOB_SERVICE")
 public class JobService extends BaseEntity {
 
-    @Column(name = "SERVICE_TYPE", nullable = false)
-    @Enumerated(EnumType.STRING)
+    @ManyToOne
+    @JoinColumn(name = "SERVICE_TYPE", nullable = false)
     private ServiceType serviceType;
 
     @Column(name = "WT_KG", nullable = false)

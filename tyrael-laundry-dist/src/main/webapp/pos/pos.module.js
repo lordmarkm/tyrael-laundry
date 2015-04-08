@@ -3,8 +3,9 @@ define([
    'core/service/AuthenticationService',
    'core/service/JobOrderService',
    'pos/controller/PosRootController',
-   'pos/controller/JobOrderCreateController'
-], function (angular, AuthenticationService, JobOrderService, PosRootController, JobOrderCreateController) {
+   'pos/controller/JobOrderCreateController',
+   'pos/resolve/JobOrderCreateResolve'
+], function (angular, AuthenticationService, JobOrderService, PosRootController, JobOrderCreateController, JobOrderCreateResolve) {
   console.debug('Configuring pos.module');
   angular.module('pos.module', ['ui.select', 'ngSanitize'])
     .service('auth', AuthenticationService)
@@ -23,7 +24,8 @@ define([
       .state('default.pos.joborder_create', {
         url: '/joborder/new',
         templateUrl: 'pos/view/joborder_create.html',
-        controller: JobOrderCreateController
+        controller: JobOrderCreateController,
+        resolve: JobOrderCreateResolve
       });
 
     }]);

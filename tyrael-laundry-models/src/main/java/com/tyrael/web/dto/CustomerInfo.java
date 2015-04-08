@@ -21,6 +21,20 @@ public class CustomerInfo extends BaseTyraelDto {
             .append("address", address);
     }
 
+    public String getFormattedName() {
+        StringBuilder sb = new StringBuilder();
+        if (null != name.getSurname()) {
+            sb.append(name.getSurname()).append(", ");
+        }
+        if (null != name.getGivenName()) {
+            sb.append(name.getGivenName()).append(" ");
+        }
+        if (null != name.getMiddleName()) {
+            sb.append(name.getMiddleName());
+        }
+        return sb.toString();
+    }
+
     public NameInfo getName() {
         return name;
     }
