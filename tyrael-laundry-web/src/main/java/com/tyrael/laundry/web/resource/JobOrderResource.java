@@ -36,10 +36,11 @@ public class JobOrderResource {
     public ResponseEntity<PageInfo<JobOrderInfo>> page(Principal principal,
             @RequestParam int page,
             @RequestParam int count,
-            @RequestParam String term) {
-        LOG.debug("JobOrder query. Principal={}, page={}, count={}, term={}", principal, page, count, term);
+            @RequestParam String term,
+            @RequestParam String status) {
+        LOG.debug("JobOrder query. Principal={}, page={}, count={}, term={}, status={}", principal, page, count, term, status);
         PageRequest pageRequest = new PageRequest(page - 1, count);
-        return new ResponseEntity<>(service.pageInfo(term, pageRequest), OK);
+        return new ResponseEntity<>(service.pageInfo(term, status, pageRequest), OK);
     }
 
     @RequestMapping(method = GET, params = "trackingNo")

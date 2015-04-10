@@ -4,7 +4,7 @@ define(function () {
 
       //Filter
       $scope.filter = {
-        status: 'NEW'
+        status: ''
       };
 
       //List
@@ -17,7 +17,8 @@ define(function () {
         getData: function($defer, params) {
 
           //filter
-          params.$params.term = $scope.term || '';
+          params.$params.term = $scope.filter.term || '';
+          params.$params.status = $scope.filter.status;
 
           JobOrderService.get(params.$params, function(response) {
             params.total(response.total);
@@ -26,6 +27,15 @@ define(function () {
         }
       });
 
+      $scope.reloadTable = function () {
+        if ($scope.tableParams.page() == 1) {
+          $scope.tableParams.reload();
+        } else {
+          $scope.tableParams.page(1);
+        }
+      };
+
+      //Change status
       $scope.onStatusChange = function (jobOrder) {
         var proceed = $q.defer();
 

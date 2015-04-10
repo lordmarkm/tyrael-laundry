@@ -1,8 +1,9 @@
 <h3 class="page-header">Job Orders</h3>
 
-<form class="form form-inline" ng-submit="javascript:;">
+<form class="form form-inline" ng-submit="reloadTable()">
   <input type="text" ng-model="filter.term" placeholder="Customer name or tracking number" class="form-control" />
   <select ng-model="filter.status" class="form-control">
+    <option value="">Any</option>
     <option value="NEW">New</option>
     <option value="CLEANED">Cleaned</option>
     <option value="PAID_CLAIMED">Paid & Claimed</option>
