@@ -3,6 +3,7 @@ package com.tyrael.laundry.service.custom.impl;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.tyrael.commons.data.service.TyraelJpaServiceCustomImpl;
 import com.tyrael.commons.dto.PageInfo;
@@ -17,6 +18,7 @@ import com.tyrael.web.dto.JobOrderInfo;
 /**
  * @author mbmartinez
  */
+@Transactional
 public class JobOrderServiceCustomImpl extends TyraelJpaServiceCustomImpl<JobOrder, JobOrderInfo, JobOrderService>
     implements JobOrderServiceCustom  {
 

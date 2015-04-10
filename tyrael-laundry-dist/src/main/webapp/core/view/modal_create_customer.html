@@ -1,0 +1,34 @@
+<div class="modal-header modal-primary">
+  <button type="button" class="close" ng-click="cancel()">&times;</button>
+  <h3 class="modal-title">Add new customer</h3>
+</div>
+<div class="modal-body">
+  <div class="row">
+  <div class="col-sm-12">
+  <form name="customerForm" class="form-horizontal">
+    <div class="form-group col-sm-12">
+      <label class="col-sm-4 control-label req">Surname</label>
+      <div class="col-sm-8">
+        <input type="text" ng-model="customer.name.surname" class="form-control" required>
+      </div>
+    </div>
+    <div class="form-group col-sm-12">
+      <label class="col-sm-4 control-label req">Given name</label>
+      <div class="col-sm-8">
+        <input type="text" ng-model="customer.name.givenName" class="form-control" required>
+      </div>
+    </div>
+    <div class="form-group col-sm-12">
+      <label class="col-sm-4 control-label">Middle name</label>
+      <div class="col-sm-8">
+        <input type="text" ng-model="customer.name.middleName" class="form-control">
+      </div>
+    </div>
+  </form>
+  </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-primary btn-s-xs" ng-click="proceed()" ng-disabled="customerForm.$invalid">OK</button>
+  <button class="btn btn-default btn-s-xs" ng-click="cancel()">Cancel</button>
+</div>

@@ -14,7 +14,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 
-import com.baldy.commons.models.proper.Name;
 import com.tyrael.commons.data.service.TyraelJpaServiceCustomImpl;
 import com.tyrael.laundry.model.ServiceType;
 import com.tyrael.laundry.service.ServiceTypeService;

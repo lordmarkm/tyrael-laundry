@@ -1,16 +1,8 @@
 define(function () {
-  return ['$scope', '$modal', 'toaster', 'serviceTypes', 'CustomerService', 'ServiceTypeService', 'JobOrderService',
-    function ($scope, $modal, toaster, serviceTypes, CustomerService, ServiceTypeService, JobOrderService) {
+  return ['$scope', '$modal', 'toaster', 'serviceTypes', 'jobOrder', 'CustomerService', 'ServiceTypeService', 'JobOrderService',
+    function ($scope, $modal, toaster, serviceTypes, jobOrder, CustomerService, ServiceTypeService, JobOrderService) {
 
-    function resetPage() {
-      $scope.customerHolder = {};
-      ServiceTypeService.query().$promise.then(function (serviceTypes) {
-        $scope.serviceTypes = serviceTypes;
-        $scope.serviceTypeHolder = {
-            serviceType: $scope.serviceTypes[0]
-        };
-      });
-    }
+    $scope.jobOrder = jobOrder;
 
     //Search for existing customer
     $scope.customerHolder = {};
@@ -24,9 +16,32 @@ define(function () {
 
     //Create new customer
     $scope.createNewCustomer = function () {
-      CustomerService.createCustomer().then(function (customer) {
-        $scope.customerHolder.customer = customer;
+      showCreateCustomerDialog().result.then(function (customer) {
+        if (customer) {
+          CustomerService.save(customer, function (savedCustomer) {
+            $scope.customerHolder.customer = savedCustomer;
+            toaster.pop('success', 'Customer created', savedCustomer.formattedName + '\'s customer record has been created.');
+          }, function () {
+            toaster.pop('error', 'Error saving customer');
+          });
+        }
       });
+
+      function showCreateCustomerDialog() {
+        return $modal.open({
+          templateUrl: 'modal-create-customer',
+          controller: ['$scope', '$modalInstance',
+            function ($scope, $modalInstance) {
+              $scope.customer = {};
+              $scope.proceed = function () {
+                $modalInstance.close($scope.customer);
+              };
+              $scope.cancel = function () {
+                $modalInstance.close(false);
+              };
+          }]
+        });
+      }
     };
 
     //Initialize/process service types
@@ -50,7 +65,6 @@ define(function () {
           JobOrderService.save(jobOrder, function (savedJob) {
             toaster.pop('success', 'Job Order saved', 'Job order w/ tracking number ' + savedJob.trackingNo + ' saved.');
             resetPage();
-            showSaveCompleteDialog(savedJob);
           }, function () {
             toaster.pop('error', 'Error saving Job order');
           });
@@ -113,26 +127,6 @@ define(function () {
               return jobOrder;
             }
           }
-        });
-      }
-
-      function showSaveCompleteDialog(savedJob) {
-        $modal.open({
-          templateUrl: 'modal-create-success',
-          controller: ['$scope', '$state', '$modalInstance', function($scope, $state, $modalInstance) {
-            $scope.jobOrder = savedJob;
-            $scope.backToDashboard = function () {
-              $modalInstance.close();
-              $state.go('default.pos.splash');
-            };
-            $scope.viewJobOrder = function () {
-              $modalInstance.close();
-              $state.go('default.pos.joborder_view', {trackingNo: savedJob.trackingNo});
-            };
-            $scope.createNew = function () {
-              $modalInstance.close();
-            };
-          }]
         });
       }
     };

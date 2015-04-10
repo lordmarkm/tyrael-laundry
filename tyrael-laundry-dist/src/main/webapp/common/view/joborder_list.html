@@ -1,0 +1,24 @@
+<h3 class="page-header">Job Orders</h3>
+
+<table ng-table="tableParams" show-filter="true" class="table table-striped">
+  <thead>
+    <tr>
+      <th>Tracking No.
+      <th>Customer
+      <th>Date Received
+      <th>Date Due
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="jobOrder in $data"
+      ui-sref="default.pos.joborder_view({trackingNo: jobOrder.trackingNo})" class="pointer">
+      <td>{{jobOrder.trackingNo}}
+      <td>{{jobOrder.customer.formattedName}}
+      <td>{{jobOrder.dateReceived | date}}
+      <td>{{jobOrder.dateDue | date}}
+    </tr>
+    <tr ng-if="!$data.length">
+      <td colspan="4">No items available</td>
+    </tr>
+  </tbody>
+</table>

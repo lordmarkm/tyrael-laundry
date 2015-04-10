@@ -1,0 +1,40 @@
+<h3 class="page-header">Job Order {{jobOrder.trackingNo}}</h3>
+
+<dl class="dl-horizontal">
+  <dt>Customer
+  <dd>{{jobOrder.customer.formattedName}}
+  <dt>Date Received
+  <dd>{{jobOrder.dateReceived | date}}
+  <dt>Date Due
+  <dd>{{jobOrder.dateDue | date}}
+  <dt>Services
+  <dd>
+    <div class="row">
+    <div ng-repeat="service in jobOrder.jobServices" class="col-sm-4 mt5 servicepanel-small">
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <div class="row">
+            <div class="col-sm-3">
+              <img src="images/icons/{{service.serviceType.icon}}" class="img-thirtytwo" />
+            </div>
+            <div class="col-sm-9 text-right">
+              <div class="large">{{service.serviceType.label}}</div>
+              <div><strong>{{service.weightInKilos}}</strong> Kg @ Php {{service.pricePerKilo}}/Kg</div>
+            </div>
+          </div>
+        </div>
+        <div class="panel-footer">
+          <span class="pull-left">{{service.weightInKilos * service.pricePerKilo | currency: 'Php '}}</span> 
+          <div class="clearfix"></div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </dd>
+  <dt>Total Amount
+  <dd>{{jobOrder.totalAmount | currency: 'Php '}}
+</dl>
+
+<div class="row text-right">
+  <button class="btn btn-primary btn-s-xs">Print</button>
+</div>

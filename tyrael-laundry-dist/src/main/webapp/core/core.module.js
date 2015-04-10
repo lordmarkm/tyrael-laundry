@@ -2,17 +2,11 @@ define([
    'angular',
    'core/controller/RootController',
    'core/controller/AuthenticationController',
-   'core/service/AuthenticationService',
-   'core/service/JobOrderService',
-   'core/service/CustomerService',
-   'core/service/ServiceTypeService'
-], function (angular, RootController, AuthenticationController, AuthenticationService, JobOrderService, CustomerService, ServiceTypeService) {
+   'core/service/AuthenticationService'
+], function (angular, RootController, AuthenticationController, AuthenticationService) {
   console.debug('Configuring core.module');
   angular.module('core.module', [])
     .service('auth', AuthenticationService)
-    .service('JobOrderService', JobOrderService)
-    .service('CustomerService', CustomerService)
-    .service('ServiceTypeService', ServiceTypeService)
     .config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
 
       $urlRouterProvider

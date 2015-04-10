@@ -1,9 +1,11 @@
 package com.tyrael.laundry.service.custom.impl;
 
+import static com.tyrael.laundry.model.QCustomer.customer;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.mysema.query.types.Predicate;
 import com.tyrael.commons.data.service.TyraelJpaServiceCustomImpl;
@@ -12,11 +14,11 @@ import com.tyrael.laundry.model.Customer;
 import com.tyrael.laundry.service.CustomerService;
 import com.tyrael.laundry.service.custom.CustomerServiceCustom;
 import com.tyrael.web.dto.CustomerInfo;
-import static com.tyrael.laundry.model.QCustomer.customer;
 
 /**
  * @author mbmartinez
  */
+@Transactional
 public class CustomerServiceCustomImpl extends TyraelJpaServiceCustomImpl<Customer, CustomerInfo, CustomerService>
     implements CustomerServiceCustom {
 
@@ -24,7 +26,7 @@ public class CustomerServiceCustomImpl extends TyraelJpaServiceCustomImpl<Custom
 
     @Override
     public PageInfo<CustomerInfo> pageInfo(String term, PageRequest pageRequest) {
-        LOG.debug("Searching patients. term={}", term);
+        LOG.debug("Searching customers. term={}", term);
 
         Predicate nameSearch = customer.name.surname.startsWithIgnoreCase(term)
             .or(customer.name.surname.startsWithIgnoreCase(term))

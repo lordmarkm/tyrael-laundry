@@ -21,9 +21,20 @@ body {
   width: 64px;
   height: 64px;
 }
+.img-thirtytwo {
+  max-height: 32px;
+  max-width: 32px;
+  width: 32px;
+  height: 32px;
+}
 
 .req:after {
     color: red;
     content: ' *';
     display:inline;
+}
+
+.servicepanel-small {
+  font-size: 0.8em;
+  max-height: 116px;
 }

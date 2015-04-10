@@ -56,6 +56,7 @@ require([
     'angular-ui-router',
     'bootstrap',
     'core/core.module.js',
+    'common/common.module.js',
     'splash/splash.module.js',
     'pos/pos.module.js'
   ], function (angular) {
@@ -70,6 +71,7 @@ require([
       'ui.bootstrap',
       'toaster',
       'core.module',
+      'common.module',
       'splash.module',
       'pos.module'
     ]);
