@@ -32,9 +32,14 @@ public class JobOrderServiceCustomImpl extends TyraelJpaServiceCustomImpl<JobOrd
 
     @Override
     public PageInfo<JobOrderInfo> pageInfo(String term, String status, PageRequest pageRequest) {
+        //Name filter
         BooleanExpression predicate = jobOrder.customer.name.surname.containsIgnoreCase(term)
                 .or(jobOrder.customer.name.givenName.containsIgnoreCase(term));
 
+        //trackingNo filter
+        predicate = predicate.or(jobOrder.trackingNo.eq(term));
+
+        //Status filter
         if (null != status && status.length() > 0) {
             predicate = predicate.and(jobOrder.status.eq(JobOrderStatus.valueOf(status)));
         }
