@@ -7,6 +7,7 @@ import org.joda.time.DateTime;
 import org.springframework.core.style.ToStringCreator;
 
 import com.tyrael.commons.dto.BaseTyraelDto;
+import com.tyrael.laundry.reference.JobOrderStatus;
 
 /**
  * @author mbmartinez
@@ -16,10 +17,14 @@ public class JobOrderInfo extends BaseTyraelDto {
     private CustomerInfo customer;
     private DateTime dateReceived;
     private DateTime dateDue;
+    private DateTime dateCompleted;
+    private DateTime dateClaimed;
     private String trackingNo;
     private List<JobServiceInfo> jobServices;
     private List<JobItemInfo> jobItems;
     private BigDecimal totalAmount;
+    private BigDecimal totalAmountPaid;
+    private JobOrderStatus status;
 
     @Override
     protected ToStringCreator toStringCreator() {
@@ -28,9 +33,13 @@ public class JobOrderInfo extends BaseTyraelDto {
             .append("customer", customer)
             .append("date rcvd", dateReceived)
             .append("date due", dateDue)
+            .append("date completed", dateCompleted)
+            .append("date claimed", dateClaimed)
             .append("job service", jobServices)
             .append("job items", jobItems)
-            .append("total amt", totalAmount);
+            .append("total amt", totalAmount)
+            .append("total amt paid", totalAmountPaid)
+            .append("status", status);
     }
 
     public CustomerInfo getCustomer() {
@@ -87,6 +96,38 @@ public class JobOrderInfo extends BaseTyraelDto {
 
     public void setTotalAmount(BigDecimal totalAmount) {
         this.totalAmount = totalAmount;
+    }
+
+    public DateTime getDateCompleted() {
+        return dateCompleted;
+    }
+
+    public void setDateCompleted(DateTime dateCompleted) {
+        this.dateCompleted = dateCompleted;
+    }
+
+    public DateTime getDateClaimed() {
+        return dateClaimed;
+    }
+
+    public void setDateClaimed(DateTime dateClaimed) {
+        this.dateClaimed = dateClaimed;
+    }
+
+    public BigDecimal getTotalAmountPaid() {
+        return totalAmountPaid;
+    }
+
+    public void setTotalAmountPaid(BigDecimal totalAmountPaid) {
+        this.totalAmountPaid = totalAmountPaid;
+    }
+
+    public JobOrderStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(JobOrderStatus status) {
+        this.status = status;
     }
 
 }

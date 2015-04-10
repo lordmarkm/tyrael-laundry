@@ -1,5 +1,15 @@
 <h3 class="page-header">Job Orders</h3>
 
+<form class="form form-inline" ng-submit="javascript:;">
+  <input type="text" ng-model="filter.term" placeholder="Customer name or tracking number" class="form-control" />
+  <select ng-model="filter.status" class="form-control">
+    <option value="NEW">New</option>
+    <option value="CLEANED">Cleaned</option>
+    <option value="PAID_CLAIMED">Paid & Claimed</option>
+  </select>
+  <input type="submit" value="Filter" class="form-control"/>
+</form>
+
 <table ng-table="tableParams" show-filter="true" class="table table-striped">
   <thead>
     <tr>
@@ -7,15 +17,26 @@
       <th>Customer
       <th>Date Received
       <th>Date Due
+      <th>Amount Due
+      <th>Amount Paid
+      <th>Status
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="jobOrder in $data"
-      ui-sref="default.pos.joborder_view({trackingNo: jobOrder.trackingNo})" class="pointer">
-      <td>{{jobOrder.trackingNo}}
+    <tr ng-repeat="jobOrder in $data">
+      <td><a ui-sref="default.pos.joborder_view({trackingNo: jobOrder.trackingNo})">{{jobOrder.trackingNo}}</a>
       <td>{{jobOrder.customer.formattedName}}
       <td>{{jobOrder.dateReceived | date}}
       <td>{{jobOrder.dateDue | date}}
+      <td>{{jobOrder.totalAmount | currency: 'Php '}}
+      <td>{{jobOrder.totalAmountPaid | currency: 'Php '}}
+      <td>
+        <select ng-model="jobOrder.status" ng-change="onStatusChange(jobOrder)" class="form-control input-sm">
+          <option value="NEW">New</option>
+          <option value="CLEANED">Cleaned</option>
+          <option value="PAID_CLAIMED">Paid & Claimed</option>
+        </select>
+      </td>
     </tr>
     <tr ng-if="!$data.length">
       <td colspan="4">No items available</td>

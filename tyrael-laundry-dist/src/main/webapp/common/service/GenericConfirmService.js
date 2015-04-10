@@ -1,0 +1,20 @@
+define(function () {
+  return ['$modal', function ($modal) {
+    this.confirm = function (title, msg) {
+      return $modal.open({
+        templateUrl: 'common/view/modal_generic_confirm.html',
+        controller: ['$scope', '$modalInstance', function ($scope, $modalInstance) {
+          $scope.title = title;
+          $scope.msg = msg;
+          $scope.ok = function () {
+            $modalInstance.close(true);
+          };
+          $scope.cancel = function () {
+            $modalInstance.close(false);
+          };
+        }]
+      });
+    };
+    return this;
+  }];
+});

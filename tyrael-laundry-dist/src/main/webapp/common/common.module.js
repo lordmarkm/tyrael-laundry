@@ -1,13 +1,15 @@
 define([
    'angular',
+   'common/service/GenericConfirmService',
    'core/service/JobOrderService',
    'core/service/CustomerService',
    'core/service/ServiceTypeService',
    'common/controller/JobOrderListController'
-], function (angular, JobOrderService, CustomerService, ServiceTypeService,
+], function (angular, GenericConfirmService, JobOrderService, CustomerService, ServiceTypeService,
     JobOrderListController) {
   console.debug('Configuring common.module');
   angular.module('common.module', [])
+    .service('confirm', GenericConfirmService)
     .service('JobOrderService', JobOrderService)
     .service('CustomerService', CustomerService)
     .service('ServiceTypeService', ServiceTypeService)

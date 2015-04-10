@@ -32,7 +32,9 @@ public class TyraelLaundryAppSupportConfig {
             protected void configure() {
                 mapping(JobOrderInfo.class, JobOrder.class)
                     .fields("dateReceived", "dateReceived", copyByReference())
-                    .fields("dateDue", "dateDue", copyByReference());
+                    .fields("dateDue", "dateDue", copyByReference())
+                    .fields("dateCompleted", "dateCompleted", copyByReference())
+                    .fields("dateClaimed", "dateClaimed", copyByReference());
             }
         });
     }

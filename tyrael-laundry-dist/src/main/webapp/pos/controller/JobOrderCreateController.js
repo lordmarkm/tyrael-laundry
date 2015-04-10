@@ -93,7 +93,9 @@ define(function () {
                   customer: $scope.customerHolder.customer,
                   jobServices: [],
                   jobItems: [],
-                  totalAmount: 0
+                  totalAmount: 0,
+                  totalAmountPaid: 0,
+                  status: 'NEW'
               };
               for (var i in $scope.serviceTypes) {
                 var serviceType = $scope.serviceTypes[i];

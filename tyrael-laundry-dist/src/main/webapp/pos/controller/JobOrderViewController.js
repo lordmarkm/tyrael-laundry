@@ -1,7 +1,8 @@
 define(function () {
-  return ['$scope', '$modal', 'toaster', 'serviceTypes', 'jobOrder', 'CustomerService', 'ServiceTypeService', 'JobOrderService',
-    function ($scope, $modal, toaster, serviceTypes, jobOrder, CustomerService, ServiceTypeService, JobOrderService) {
+  return ['$scope', '$modal', '$q', '$filter', 'toaster', 'confirm', 'serviceTypes', 'jobOrder', 'CustomerService', 'ServiceTypeService', 'JobOrderService',
+    function ($scope, $modal, $q, $filter, toaster, confirm, serviceTypes, jobOrder, CustomerService, ServiceTypeService, JobOrderService) {
 
+    // + '' is to force creation of a new object instead of a reference. There must be a better way to do this.
     $scope.jobOrder = jobOrder;
 
     //Search for existing customer
@@ -131,9 +132,35 @@ define(function () {
       }
     };
 
+    $scope.onStatusChange = function (jobOrder, oldStatus) {
+      var proceed = $q.defer();
 
+      if (jobOrder.status === 'PAID_CLAIMED' && jobOrder.totalAmountPaid == 0) {
+        confirm.confirm('Confirm paid and claimed', 'This will create a payment record of ' + $filter('currency')(jobOrder.totalAmount, 'Php '))
+        .result.then(function (ok) {
+          if (ok) {
+            jobOrder.totalAmountPaid = jobOrder.totalAmount;
+          }
+          proceed.resolve(ok);
+        });
+      } else {
+        proceed.resolve(true);
+      }
 
-
+      proceed.promise.then(function (p) {
+        if (p) {
+          JobOrderService.save(jobOrder, function (savedJobOrder) {
+            toaster.pop('success', 'Save success', 'Successfully saved Job Order with tracking no. ' + savedJobOrder.trackingNo);
+            $scope.jobOrder = savedJobOrder;
+            originalStatus = savedJobOrder.status;
+          }, function () {
+            toaster.pop('error', 'Error saving Job Order');
+          });
+        } else {
+          $scope.jobOrder.status = oldStatus;
+        }
+      });
+    };
 
   }];
 });

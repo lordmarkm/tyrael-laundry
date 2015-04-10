@@ -37,9 +37,11 @@ public class JobOrderServiceCustomImpl extends TyraelJpaServiceCustomImpl<JobOrd
 
     @Override
     public JobOrderInfo saveInfo(JobOrderInfo jobOrderInfo) {
-        jobOrderInfo.setDateReceived(DateTime.now());
-        jobOrderInfo.setDateDue(jobOrderInfo.getDateReceived().plusDays(3));
-        jobOrderInfo.setTrackingNo(sequenceService.next());
+        if (null == jobOrderInfo.getTrackingNo()) {
+            jobOrderInfo.setDateReceived(DateTime.now());
+            jobOrderInfo.setDateDue(jobOrderInfo.getDateReceived().plusDays(3));
+            jobOrderInfo.setTrackingNo(sequenceService.next());
+        }
 
         JobOrder jobOrder = toEntity(jobOrderInfo);
         for (JobService service : jobOrder.getJobServices()) {

@@ -6,6 +6,8 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -14,6 +16,7 @@ import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 
 import com.baldy.commons.models.BaseEntity;
+import com.tyrael.laundry.reference.JobOrderStatus;
 
 /**
  * @author mbmartinez
@@ -33,6 +36,14 @@ public class JobOrder extends BaseEntity {
     @Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
     private DateTime dateDue;
 
+    @Column(name = "DATE_COMPLETED")
+    @Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+    private DateTime dateCompleted;
+
+    @Column(name = "DATE_CLAIMED")
+    @Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+    private DateTime dateClaimed;
+
     @Column(name = "TRACKING_NO", nullable = false, unique = true)
     private String trackingNo;
 
@@ -44,6 +55,13 @@ public class JobOrder extends BaseEntity {
 
     @Column(name = "TOTAL_AMT", nullable = false)
     private BigDecimal totalAmount;
+
+    @Column(name = "TOTAL_AMT_PAID", nullable = false)
+    private BigDecimal totalAmountPaid;
+
+    @Column(name = "STATUS", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private JobOrderStatus status;
 
     public Customer getCustomer() {
         return customer;
@@ -99,6 +117,38 @@ public class JobOrder extends BaseEntity {
 
     public void setTotalAmount(BigDecimal totalAmount) {
         this.totalAmount = totalAmount;
+    }
+
+    public DateTime getDateCompleted() {
+        return dateCompleted;
+    }
+
+    public void setDateCompleted(DateTime dateCompleted) {
+        this.dateCompleted = dateCompleted;
+    }
+
+    public DateTime getDateClaimed() {
+        return dateClaimed;
+    }
+
+    public void setDateClaimed(DateTime dateClaimed) {
+        this.dateClaimed = dateClaimed;
+    }
+
+    public BigDecimal getTotalAmountPaid() {
+        return totalAmountPaid;
+    }
+
+    public void setTotalAmountPaid(BigDecimal totalAmountPaid) {
+        this.totalAmountPaid = totalAmountPaid;
+    }
+
+    public JobOrderStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(JobOrderStatus status) {
+        this.status = status;
     }
 
 }

@@ -1,3 +1,4 @@
+<div ng-if="jobOrder.trackingNo">
 <h3 class="page-header">Job Order {{jobOrder.trackingNo}}</h3>
 
 <dl class="dl-horizontal">
@@ -33,8 +34,27 @@
   </dd>
   <dt>Total Amount
   <dd>{{jobOrder.totalAmount | currency: 'Php '}}
+  <dt>Total Amount Paid
+  <dd>{{jobOrder.totalAmountPaid | currency: 'Php '}}
+  <dt>Status
+  <dd>
+    <div class="row">
+    <div class="col-sm-4">
+    <select ng-model="jobOrder.status" ng-change="onStatusChange(jobOrder, '{{jobOrder.status}}')" class="form-control input-sm">
+      <option value="NEW">New</option>
+      <option value="CLEANED">Cleaned</option>
+      <option value="PAID_CLAIMED">Paid & Claimed</option>
+    </select>
+    </div>
+    </div>
+  </dd>
 </dl>
 
 <div class="row text-right">
   <button class="btn btn-primary btn-s-xs">Print</button>
+</div>
+</div>
+
+<div ng-if="!jobOrder.trackingNo" class="error">
+  <h3>Job Order not found!
 </div>
