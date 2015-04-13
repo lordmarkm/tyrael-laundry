@@ -1,10 +1,13 @@
-<div id="wrapper">
-<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-  <div class="navbar-header">
-    <a class="navbar-brand" ui-sref="default.pos.splash" titl="POS Dashboard">POS</a>
-  </div>
-  <!-- /.navbar-header -->
-  
+<link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css" />
+<link rel="stylesheet" href="lib/bootstrap-flat-css/bootstrap-flat.css" />
+<link rel="stylesheet" href="lib/font-awesome/css/font-awesome.min.css" />
+<link rel="stylesheet" href="lib/angularjs-toaster/toaster.css" />
+<link rel="stylesheet" href="lib/app.css" />
+
+<link rel="stylesheet" href="lib/metisMenu/dist/metisMenu.css" />
+<link rel="stylesheet" href="lib/startbootstrap-sb-admin-2/dist/css/sb-admin-2.css" />
+<link rel="stylesheet" href="lib/angular-ui-select/dist/select.min.css">
+
   <div class="navbar-default sidebar" role="navigation">
     <div class="sidebar-nav navbar-collapse">
       <ul class="nav" id="side-menu">
@@ -28,26 +31,26 @@
             <small style="margin-left: 20px;">{{recentData.jobOrder.trackingNo}}</small>
           </a>
         </li>
-        <li ng-class="{hide: !recentData.customer.id}">
-          <a href="javascript:;">
+        <li ng-if="recentData.customer">
+          <a ui-sref="default.pos.customer_view({id: recentData.customer.id})">
             <i class="fa fa-user fa-fw"></i> Last Viewed <br>
             <small style="margin-left: 20px;">{{recentData.customer.formattedName}}</small>
-            <span class="fa arrow"></span>
           </a>
-          <ul class="nav nav-second-level collapse in">
+          <ul class="nav nav-second-level collapse in" aria-expanded="true">
             <li>
-              <a ui-sref="default.pos.customer_view({id: recentData.customer.id})"
-                ui-sref-active="active">
-                Name and Address
-              </a>
+              <a href="panels-wells.html">Panels and Wells</a>
             </li>
           </ul>
         </li>
       </ul>
     </div>
   </div>
-</nav>
-<div id="page-wrapper" style="padding-top: 20px;">
-  <ui-view></ui-view>
-</div>
-</div>
+  
+  <script type="text/javascript" src="lib/jquery/dist/jquery.js"></script>
+  <script type="text/javascript" src="lib/metisMenu/dist/metisMenu.js"></script>
+  <script>
+  $(function() {
+    console.debug('hello world');
+    $('#side-menu').metisMenu();
+  });
+  </script>

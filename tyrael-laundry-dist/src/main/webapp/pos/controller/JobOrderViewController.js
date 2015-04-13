@@ -4,7 +4,7 @@ define(function () {
 
     // + '' is to force creation of a new object instead of a reference. There must be a better way to do this.
     $scope.jobOrder = jobOrder;
-    $scope.jobOrderHolder.jobOrder = jobOrder;
+    $scope.recentData.jobOrder = jobOrder;
 
     //Search for existing customer
     $scope.customerHolder = {};

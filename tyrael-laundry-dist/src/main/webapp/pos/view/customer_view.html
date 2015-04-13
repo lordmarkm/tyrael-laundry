@@ -15,16 +15,27 @@
 </div>
 
 <div ng-if="customer.address">
-<dl class="dl-horizontal">
-  <dt>Placeholder
-  <dd>Placeholder
-</dl>
+  <dl class="dl-horizontal">
+    <dt>Address Line 1
+    <dd>{{customer.address.addressLine1}}
+    <dt ng-if="customer.address.addressLine2">Address Line 2
+    <dd ng-if="customer.address.addressLine2">{{customer.address.addressLine2}}
+    <dt ng-if="customer.address.city">City
+    <dd ng-if="customer.address.city">{{customer.address.city}}
+    <dt ng-if="customer.address.province">Province
+    <dd ng-if="customer.address.province">{{customer.address.province}}
+    <dt ng-if="customer.address.zip">Zip Code
+    <dd ng-if="customer.address.zip">{{customer.address.zip}}
+  </dl>
+  <div class="text-right">
+    <button ng-click="editAddress()" class="btn btn-primary">Edit address</button>
+  </div>
 </div>
 
 <div ng-if="!customer.address">
   <div>Address not specified</div>
   <div class="text-right">
-    <button class="btn btn-primary">Add address</button>
+    <button ng-click="editAddress()" class="btn btn-primary">Add address</button>
   </div>
 </div>
 

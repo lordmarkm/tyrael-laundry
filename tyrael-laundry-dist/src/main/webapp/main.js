@@ -10,7 +10,8 @@ require.config({
     'angular-bootstrap': 'lib/angular-bootstrap/ui-bootstrap-tpls.min',
     'toaster': 'lib/angularjs-toaster/toaster',
     'bootstrap': 'lib/bootstrap/dist/js/bootstrap',
-    'jquery': 'lib/jquery/dist/jquery.min'
+    'jquery': 'lib/jquery/dist/jquery.min',
+    'metisMenu': 'lib/metisMenu/dist/metisMenu.min'
   },
   shim: {
     'angular': {
@@ -41,6 +42,12 @@ require.config({
     'toaster': {
       deps: ['angular']
     },
+    'metisMenu': {
+      deps: ['jquery']
+    },
+    'bootstrap': {
+      deps: ['jquery']
+    }
   }
 });
 
@@ -54,7 +61,9 @@ require([
     'angular-bootstrap',
     'toaster',
     'angular-ui-router',
+    'jquery',
     'bootstrap',
+    'metisMenu',
     'core/core.module.js',
     'common/common.module.js',
     'splash/splash.module.js',
