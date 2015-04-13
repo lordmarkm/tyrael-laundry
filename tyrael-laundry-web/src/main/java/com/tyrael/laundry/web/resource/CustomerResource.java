@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -37,6 +38,11 @@ public class CustomerResource extends GenericController {
         LOG.debug("Customer query. Principal={}, page={}, count={}, term={}", principal, page, count, term);
         PageRequest pageRequest = new PageRequest(page - 1, count);
         return new ResponseEntity<>(service.pageInfo(term, pageRequest), OK);
+    }
+
+    @RequestMapping(value = "/{id}", method = GET)
+    public ResponseEntity<CustomerInfo> findOne(Principal principal, @PathVariable Long id) {
+        return new ResponseEntity<>(service.findOneInfo(id), OK);
     }
 
     @RequestMapping(method = POST)

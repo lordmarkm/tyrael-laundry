@@ -1,6 +1,6 @@
 define(function () {
   return ['$resource', '$modal', '$q', 'toaster', function ($resource, $modal, $q, toaster) {
-    var CustomerService = $resource('customer');
+    var CustomerService = $resource('customer/:id');
 
     CustomerService.createCustomer = function () {
       var defer = $q.defer();
@@ -24,6 +24,7 @@ define(function () {
           controller: ['$scope', '$modalInstance',
             function ($scope, $modalInstance) {
               $scope.customer = {};
+              $scope.modalTitle = 'Add new customer';
               $scope.proceed = function () {
                 $modalInstance.close($scope.customer);
               };

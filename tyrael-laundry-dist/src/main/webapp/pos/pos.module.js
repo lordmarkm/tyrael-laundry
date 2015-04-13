@@ -6,12 +6,14 @@ define([
    'pos/controller/JobOrderViewController',
    'pos/controller/JobOrderListController',
    'pos/controller/JobOrderCreateController',
+   'pos/controller/CustomerViewController',
    'pos/resolve/JobOrderViewResolve',
-   'pos/resolve/JobOrderCreateResolve'
+   'pos/resolve/JobOrderCreateResolve',
+   'pos/resolve/CustomerViewResolve'
 ], function (angular,
     AuthenticationService, JobOrderService,
-    PosRootController, JobOrderViewController, JobOrderListController, JobOrderCreateController,
-    JobOrderViewResolve, JobOrderCreateResolve) {
+    PosRootController, JobOrderViewController, JobOrderListController, JobOrderCreateController, CustomerViewController,
+    JobOrderViewResolve, JobOrderCreateResolve, CustomerViewResolve) {
   console.debug('Configuring pos.module');
   angular.module('pos.module', ['ui.select', 'ngSanitize'])
     .service('auth', AuthenticationService)
@@ -42,6 +44,14 @@ define([
         templateUrl: 'pos/view/joborder_create.html',
         controller: JobOrderCreateController,
         resolve: JobOrderCreateResolve
+      })
+
+      //Customer management
+      .state('default.pos.customer_view', {
+        url: '/customer/{id}',
+        templateUrl: 'pos/view/customer_view.html',
+        controller: CustomerViewController,
+        resolve: CustomerViewResolve
       });
 
     }]);

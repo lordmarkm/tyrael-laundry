@@ -1,0 +1,38 @@
+<div ng-if="customer.id">
+<h3 class="page-header">{{customer.formattedName}}</h3>
+
+<dl class="dl-horizontal">
+  <dt>Surname
+  <dd>{{customer.name.surname}}
+  <dt>Give Name
+  <dd>{{customer.name.givenName}}
+  <dt>Middle Name
+  <dd>{{customer.name.middleName}}
+</dl>
+
+<div class="text-right">
+  <button ng-click="editName()" class="btn btn-primary">Edit name</button>
+</div>
+
+<div ng-if="customer.address">
+<dl class="dl-horizontal">
+  <dt>Placeholder
+  <dd>Placeholder
+</dl>
+</div>
+
+<div ng-if="!customer.address">
+  <div>Address not specified</div>
+  <div class="text-right">
+    <button class="btn btn-primary">Add address</button>
+  </div>
+</div>
+
+
+
+
+</div>
+
+<div ng-if="!customer.id">
+  <h3>Customer not found!</h3>
+</div>

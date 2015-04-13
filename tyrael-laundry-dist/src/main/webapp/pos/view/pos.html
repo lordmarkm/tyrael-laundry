@@ -22,6 +22,12 @@
         <li><a ui-sref="default.pos.splash" ui-sref-active="active"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a></li>
         <li><a ui-sref="default.pos.joborder_list" ui-sref-active="active"><i class="fa fa-list fa-fw"></i> View All Job Orders</a></li>
         <li><a ui-sref="default.pos.joborder_create" ui-sref-active="active"><i class="fa fa-edit fa-fw"></i> Create Job Order</a></li>
+        <li ng-if="jobOrderHolder.jobOrder">
+          <a ui-sref="default.pos.joborder_view({trackingNo: jobOrderHolder.jobOrder.trackingNo})">
+            <i class="fa fa-magnet fa-fw"></i> Last Viewed <br>
+            <small style="margin-left: 20px;">{{jobOrderHolder.jobOrder.trackingNo}}</small>
+          </a>
+        </li>
       </ul>
     </div>
   </div>
