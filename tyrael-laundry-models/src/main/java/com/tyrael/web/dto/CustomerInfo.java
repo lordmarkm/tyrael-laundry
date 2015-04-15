@@ -21,15 +21,45 @@ public class CustomerInfo extends BaseTyraelDto {
             .append("address", address);
     }
 
+    public String getFormattedAddress() {
+        if (null == address) {
+            return "Address not specified";
+        }
+
+        StringBuilder sb = new StringBuilder();
+        if (null != address.getAddressLine1()) {
+            sb.append(address.getAddressLine1());
+        }
+        if (null != address.getAddressLine2()) {
+            if (sb.length() > 0) {
+                sb.append(", ");
+            }
+            sb.append(address.getAddressLine2());
+        }
+        return sb.toString();
+    }
+
     public String getFormattedName() {
+        if (null == name) {
+            return "Name not specified";
+        }
+
         StringBuilder sb = new StringBuilder();
         if (null != name.getSurname()) {
-            sb.append(name.getSurname()).append(", ");
+            sb.append(name.getSurname());
         }
         if (null != name.getGivenName()) {
-            sb.append(name.getGivenName()).append(" ");
+            if (sb.length() > 0) {
+                sb.append(", ");
+            }
+            sb.append(name.getGivenName());
         }
         if (null != name.getMiddleName()) {
+            if (null == name.getGivenName() && sb.length() > 0) {
+                sb.append(", ");
+            } else if (sb.length() > 0){
+                sb.append(" ");
+            }
             sb.append(name.getMiddleName());
         }
         return sb.toString();

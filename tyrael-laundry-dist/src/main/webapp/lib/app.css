@@ -2,10 +2,6 @@ html {
   overflow-y: scroll;
 }
 
-body {
-    background-color: #000000;
-}
-
 .pointer {
   cursor: pointer;
   cursor: hand;

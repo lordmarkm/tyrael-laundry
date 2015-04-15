@@ -3,7 +3,10 @@ define(function () {
     $scope.controllerName = "POS Root Controller";
     $scope.params = $stateParams;
     $scope.recentData = {
-        customer: {}
+      customer: {}
+    };
+    $scope.search = {
+      term: ''
     };
 
     $('#side-menu').metisMenu();

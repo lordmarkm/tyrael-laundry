@@ -10,7 +10,7 @@
       <ul class="nav" id="side-menu">
         <li class="sidebar-search">
             <div class="input-group custom-search-form">
-                <input type="text" class="form-control" placeholder="Search open job orders">
+                <input ng-model="search.term" type="text" class="form-control" placeholder="Search open job orders">
                 <span class="input-group-btn">
                 <button class="btn btn-default" type="button">
                     <i class="fa fa-search"></i>
@@ -23,7 +23,7 @@
         <li><a ui-sref="default.pos.joborder_list" ui-sref-active="active"><i class="fa fa-list fa-fw"></i> View All Job Orders</a></li>
         <li><a ui-sref="default.pos.joborder_create" ui-sref-active="active"><i class="fa fa-edit fa-fw"></i> Create Job Order</a></li>
         <li ng-if="recentData.jobOrder">
-          <a ui-sref="default.pos.joborder_view({trackingNo: recentData.jobOrder.trackingNo})">
+          <a ui-sref="default.pos.joborder_view({trackingNo: recentData.jobOrder.trackingNo})" ui-sref-active="active">
             <i class="fa fa-file-text-o fa-fw"></i> Last Viewed <br>
             <small style="margin-left: 20px;">{{recentData.jobOrder.trackingNo}}</small>
           </a>

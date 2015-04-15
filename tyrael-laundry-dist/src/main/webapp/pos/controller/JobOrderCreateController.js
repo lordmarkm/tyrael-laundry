@@ -78,6 +78,7 @@ define(function () {
       function showConfirmJobOrderDialog() {
         return $modal.open({
           templateUrl: 'modal-confirm-joborder',
+          background: 'static',
           controller: ['$scope', '$modalInstance', 'jobOrder', function($scope, $modalInstance, jobOrder) {
             $scope.jobOrder = jobOrder;
             $scope.proceed = function () {
