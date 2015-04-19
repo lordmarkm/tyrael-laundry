@@ -10,12 +10,19 @@
       <ul class="nav" id="side-menu">
         <li class="sidebar-search">
             <div class="input-group custom-search-form">
-                <input ng-model="search.term" type="text" class="form-control" placeholder="Search open job orders">
-                <span class="input-group-btn">
-                <button class="btn btn-default" type="button">
+              <ui-select ng-model="search.jobOrder" on-select="onSelect($item)">
+                <ui-select-match placeholder="Search...">{{$select.selected.trackingNo}}</ui-select-match>
+                <ui-select-choices repeat="jobOrder in search.results track by $index"
+                     refresh="doSearch($select.search)"
+                     refresh-delay="0">
+                     <div ng-bind-html="jobOrder.trackingNo | highlight: $select.search"></div>
+                </ui-select-choices>
+              </ui-select>              
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="button" disabled="true">
                     <i class="fa fa-search"></i>
                 </button>
-            </span>
+              </span>
             </div>
             <!-- /input-group -->
         </li>
