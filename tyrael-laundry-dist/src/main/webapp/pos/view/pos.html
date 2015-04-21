@@ -15,7 +15,17 @@
                 <ui-select-choices repeat="jobOrder in search.results track by $index"
                      refresh="doSearch($select.search)"
                      refresh-delay="0">
-                     <div ng-bind-html="jobOrder.trackingNo | highlight: $select.search"></div>
+                     <div>
+                        <div ng-bind-html="jobOrder.trackingNo | highlight: $select.search"></div>
+                        <div class="row">
+                        <div class="col-sm-8" style="overflow: hidden; text-overflow: ellipsis;">
+                          <small ng-bind-html="jobOrder.customer.formattedName | highlight: $select.search"></small>
+                        </div>
+                        <div class="col-sm-4" style="padding: 0;">
+                          <small ng-bind-html="jobOrder.dateReceived | date: 'MMM-dd-yyyy'"></small>
+                        </div>
+                        </div>
+                     </div>
                 </ui-select-choices>
               </ui-select>              
               <span class="input-group-btn">
