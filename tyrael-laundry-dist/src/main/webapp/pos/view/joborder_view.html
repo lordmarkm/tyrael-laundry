@@ -50,7 +50,31 @@
   </dd>
 </dl>
 
+<div class="panel panel-default" ng-if="jobOrder.lostAndFoundItems.length">
+<div class="panel-heading"><i class="fa fa-key"></i> Lost And Found Items</div>
+<div class="panel-body">
+<div ng-repeat="item in jobOrder.lostAndFoundItems">
+  <dl class="dl-horizontal">
+    <dt>Description
+    <dd>{{item.description}}
+    <dt>Status
+    <dd>
+      <div class="row">
+        <div class="col-sm-4">
+          <select ng-model="item.status" class="form-control input-sm" ng-change="onLostAndfoundStatusChange()">
+            <option value="FOUND">Found</option>
+            <option value="NOT_FOUND">Not Found</option>
+          </select>
+        </div>
+      </div>
+    </dd>
+  </dl>
+</div>
+</div>
+</div>
+
 <div class="row text-right">
+  <button ng-click="lostAndFound()" class="btn btn-default">Report Lost & Found</button>
   <a href="/joborder/print/{{jobOrder.trackingNo}}" target="_blank" class="btn btn-primary btn-s-xs">Print</a>
 </div>
 </div>
@@ -58,3 +82,32 @@
 <div ng-if="!jobOrder.trackingNo" class="error">
   <h3>Job Order not found!
 </div>
+
+<script type="text/ng-template" id="modal-lostandfound">
+  <form name="lostAndFoundForm" ng-submit="proceed()" class="form form-horizontal">
+  <div class="modal-header modal-primary">
+    <button type="button" class="close" ng-click="cancel()">&times;</button>
+    <h3 class="modal-title">Lost And Found</h3>
+  </div>
+  <div class="modal-body">
+    <div class="form-group">
+      <label class="control-label col-sm-3 req">Description</label>
+      <div class="col-sm-5">
+        <input type="text" ng-model="lostAndFound.description" class="form-control" required />
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-3">Status</label>
+      <div class="col-sm-5">
+        <select ng-model="lostAndFound.status" class="form-control">
+          <option value="FOUND">Found</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button ng-disabled="lostAndFoundForm.$invalid" class="btn btn-primary btn-s-xs">Save</button>
+    <span class="btn btn-default btn-s-xs" ng-click="cancel()">Cancel</span>
+  </div>
+  </form>
+</script>

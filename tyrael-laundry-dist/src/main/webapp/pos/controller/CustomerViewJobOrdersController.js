@@ -1,11 +1,9 @@
 define(function () {
-  return ['$scope', '$modal', '$q', '$filter', 'toaster', 'ngTableParams', 'confirm', 'JobOrderService',
-    function ($scope, $modal, $q, $filter, toaster, ngTableParams, confirm, JobOrderService) {
+  return ['$scope', '$modal', '$q', '$filter', 'confirm', 'toaster', 'ngTableParams', 'customer', 'CustomerService', 'JobOrderService',
+    function ($scope, $modal, $q, $filter, confirm, toaster, ngTableParams, customer, CustomerService, JobOrderService) {
 
-      //Filter
-      $scope.filter = {
-        status: ''
-      };
+      $scope.customer = customer;
+      $scope.recentData.customer = customer;
 
       //List
       $scope.tableParams = new ngTableParams({
@@ -16,24 +14,16 @@ define(function () {
         counts: [2, 5,10,25,50,100], //determines pager
         getData: function($defer, params) {
 
-          //filter
-          params.$params.term = $scope.filter.term || '';
-          params.$params.status = $scope.filter.status;
-
+          //search
+          params.$params.term = '';
+          params.$params.status = '';
+          params.$params.customer = customer.id;
           JobOrderService.get(params.$params, function(response) {
             params.total(response.total);
             $defer.resolve(response.data);
           });
         }
       });
-
-      $scope.reloadTable = function () {
-        if ($scope.tableParams.page() == 1) {
-          $scope.tableParams.reload();
-        } else {
-          $scope.tableParams.page(1);
-        }
-      };
 
       //Change status
       $scope.onStatusChange = function (jobOrder) {
@@ -63,5 +53,6 @@ define(function () {
           }
         });
       };
+
   }];
 });

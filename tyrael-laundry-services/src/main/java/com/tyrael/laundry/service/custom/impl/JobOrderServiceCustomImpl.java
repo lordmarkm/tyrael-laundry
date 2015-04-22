@@ -4,6 +4,8 @@ import static com.tyrael.laundry.model.QJobOrder.jobOrder;
 import static com.tyrael.laundry.reference.JobOrderStatus.CLEANED;
 import static com.tyrael.laundry.reference.JobOrderStatus.NEW;
 
+import java.util.Map;
+
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -15,6 +17,7 @@ import com.tyrael.commons.dto.PageInfo;
 import com.tyrael.laundry.model.JobItem;
 import com.tyrael.laundry.model.JobOrder;
 import com.tyrael.laundry.model.JobService;
+import com.tyrael.laundry.model.LostAndFoundItem;
 import com.tyrael.laundry.reference.JobOrderStatus;
 import com.tyrael.laundry.service.JobOrderService;
 import com.tyrael.laundry.service.TyraelLaundryJobOrderSequenceService;
@@ -34,7 +37,7 @@ public class JobOrderServiceCustomImpl extends TyraelJpaServiceCustomImpl<JobOrd
     private TyraelLaundryJobOrderSequenceService sequenceService;
 
     @Override
-    public PageInfo<JobOrderInfo> pageInfo(String term, String status, PageRequest pageRequest) {
+    public PageInfo<JobOrderInfo> pageInfo(String term,  Map<String, Object> params, String status, PageRequest pageRequest) {
         //Name filter
         BooleanExpression predicate = jobOrder.customer.name.surname.containsIgnoreCase(term)
                 .or(jobOrder.customer.name.givenName.containsIgnoreCase(term));
@@ -48,6 +51,13 @@ public class JobOrderServiceCustomImpl extends TyraelJpaServiceCustomImpl<JobOrd
                 .or(jobOrder.status.eq(CLEANED)));
         } else if (null != status && status.length() > 0) {
             predicate = predicate.and(jobOrder.status.eq(JobOrderStatus.valueOf(status)));
+        }
+
+        //Additional params
+        //Customer
+        Long customerId = (Long) params.get("customer");
+        if (null != customerId) {
+            predicate = predicate.and(jobOrder.customer.id.eq(customerId));
         }
 
         return super.pageInfo(predicate, pageRequest);
@@ -73,8 +83,11 @@ public class JobOrderServiceCustomImpl extends TyraelJpaServiceCustomImpl<JobOrd
         for (JobItem item : jobOrder.getJobItems()) {
             item.setJobOrder(jobOrder);
         }
+        for (LostAndFoundItem lostAndFound : jobOrder.getLostAndFoundItems()) {
+            lostAndFound.setJobOrder(jobOrder);
+        }
 
-        return toDto(repo.saveAndFlush(jobOrder));
+        return toDto(repo.save(jobOrder));
     }
 
 }

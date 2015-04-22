@@ -22,6 +22,7 @@ public class JobOrderInfo extends BaseTyraelDto {
     private String trackingNo;
     private List<JobServiceInfo> jobServices;
     private List<JobItemInfo> jobItems;
+    private List<LostAndFoundItemInfo> lostAndFoundItems;
     private BigDecimal totalAmount;
     private BigDecimal totalAmountPaid;
     private JobOrderStatus status;
@@ -37,6 +38,7 @@ public class JobOrderInfo extends BaseTyraelDto {
             .append("date claimed", dateClaimed)
             .append("job service", jobServices)
             .append("job items", jobItems)
+            .append("lost n found", lostAndFoundItems)
             .append("total amt", totalAmount)
             .append("total amt paid", totalAmountPaid)
             .append("status", status);
@@ -128,6 +130,14 @@ public class JobOrderInfo extends BaseTyraelDto {
 
     public void setStatus(JobOrderStatus status) {
         this.status = status;
+    }
+
+    public List<LostAndFoundItemInfo> getLostAndFoundItems() {
+        return lostAndFoundItems;
+    }
+
+    public void setLostAndFoundItems(List<LostAndFoundItemInfo> lostAndFoundItems) {
+        this.lostAndFoundItems = lostAndFoundItems;
     }
 
 }

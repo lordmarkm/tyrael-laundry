@@ -1,0 +1,40 @@
+<div ng-if="customer.id">
+<h3 class="page-header">{{customer.formattedName}}</h3>
+
+<table ng-table="tableParams" show-filter="true" class="table table-striped">
+  <thead>
+    <tr>
+      <th>Tracking No.
+      <th>Date Received
+      <th>Date Due
+      <th>Amount Due
+      <th>Amount Paid
+      <th>Status
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="jobOrder in $data">
+      <td><a ui-sref="default.pos.joborder_view({trackingNo: jobOrder.trackingNo})">{{jobOrder.trackingNo}}</a>
+      <td>{{jobOrder.dateReceived | date:'MMM dd, yyyy h:mma'}}
+      <td>{{jobOrder.dateDue | date}}
+      <td>{{jobOrder.totalAmount | currency: 'Php '}}
+      <td>{{jobOrder.totalAmountPaid | currency: 'Php '}}
+      <td>
+        <select ng-model="jobOrder.status" ng-change="onStatusChange(jobOrder)" class="form-control input-sm">
+          <option value="NEW">New</option>
+          <option value="CLEANED">Cleaned</option>
+          <option value="PAID_CLAIMED">Paid & Claimed</option>
+        </select>
+      </td>
+    </tr>
+    <tr ng-if="!$data.length">
+      <td colspan="4">No items available</td>
+    </tr>
+  </tbody>
+</table>
+
+</div>
+
+<div ng-if="!customer.id">
+  <h3>Customer not found!</h3>
+</div>

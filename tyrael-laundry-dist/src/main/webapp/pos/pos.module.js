@@ -7,12 +7,13 @@ define([
    'pos/controller/JobOrderListController',
    'pos/controller/JobOrderCreateController',
    'pos/controller/CustomerViewController',
+   'pos/controller/CustomerViewJobOrdersController',
    'pos/resolve/JobOrderViewResolve',
    'pos/resolve/JobOrderCreateResolve',
    'pos/resolve/CustomerViewResolve'
 ], function (angular,
     AuthenticationService, JobOrderService,
-    PosRootController, JobOrderViewController, JobOrderListController, JobOrderCreateController, CustomerViewController,
+    PosRootController, JobOrderViewController, JobOrderListController, JobOrderCreateController, CustomerViewController, CustomerViewJobOrdersController,
     JobOrderViewResolve, JobOrderCreateResolve, CustomerViewResolve) {
   console.debug('Configuring pos.module');
   angular.module('pos.module', ['ui.select', 'ngSanitize'])
@@ -51,6 +52,12 @@ define([
         url: '/customer/{id}',
         templateUrl: 'pos/view/customer_view.html',
         controller: CustomerViewController,
+        resolve: CustomerViewResolve
+      })
+      .state('default.pos.customer_view_joborders', {
+        url: '/customer/{id}/joborders',
+        templateUrl: 'pos/view/customer_view_joborders.html',
+        controller: CustomerViewJobOrdersController,
         resolve: CustomerViewResolve
       });
 

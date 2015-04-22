@@ -53,6 +53,9 @@ public class JobOrder extends BaseEntity {
     @OneToMany(mappedBy = "jobOrder", cascade = CascadeType.ALL)
     private List<JobItem> jobItems;
 
+    @OneToMany(mappedBy = "jobOrder", cascade = CascadeType.ALL)
+    private List<LostAndFoundItem> lostAndFoundItems;
+
     @Column(name = "TOTAL_AMT", nullable = false)
     private BigDecimal totalAmount;
 
@@ -149,6 +152,14 @@ public class JobOrder extends BaseEntity {
 
     public void setStatus(JobOrderStatus status) {
         this.status = status;
+    }
+
+    public List<LostAndFoundItem> getLostAndFoundItems() {
+        return lostAndFoundItems;
+    }
+
+    public void setLostAndFoundItems(List<LostAndFoundItem> lostAndFoundItems) {
+        this.lostAndFoundItems = lostAndFoundItems;
     }
 
 }

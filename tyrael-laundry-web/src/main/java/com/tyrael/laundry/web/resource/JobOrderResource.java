@@ -5,17 +5,22 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 import java.security.Principal;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.google.common.collect.Maps;
+import com.mysema.query.types.Order;
 import com.tyrael.commons.dto.PageInfo;
 import com.tyrael.laundry.service.JobOrderService;
 import com.tyrael.web.dto.JobOrderInfo;
@@ -37,10 +42,18 @@ public class JobOrderResource {
             @RequestParam int page,
             @RequestParam int count,
             @RequestParam String term,
-            @RequestParam String status) {
+            @RequestParam String status,
+            @RequestParam(required = false) Long customer) {
         LOG.debug("JobOrder query. Principal={}, page={}, count={}, term={}, status={}", principal, page, count, term, status);
-        PageRequest pageRequest = new PageRequest(page - 1, count);
-        return new ResponseEntity<>(service.pageInfo(term, status, pageRequest), OK);
+        Sort sort = new Sort(Direction.DESC, "dateReceived");
+        PageRequest pageRequest = new PageRequest(page - 1, count, sort);
+
+        Map<String, Object> params = Maps.newHashMap();
+        if (null != customer) {
+            params.put("customer", customer);
+        }
+
+        return new ResponseEntity<>(service.pageInfo(term, params, status, pageRequest), OK);
     }
 
     @RequestMapping(method = GET, params = "trackingNo")

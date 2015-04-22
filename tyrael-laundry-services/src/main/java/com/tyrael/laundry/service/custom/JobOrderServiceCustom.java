@@ -1,5 +1,7 @@
 package com.tyrael.laundry.service.custom;
 
+import java.util.Map;
+
 import org.springframework.data.domain.PageRequest;
 
 import com.tyrael.commons.data.service.TyraelJpaServiceCustom;
@@ -12,7 +14,7 @@ import com.tyrael.web.dto.JobOrderInfo;
  */
 public interface JobOrderServiceCustom extends TyraelJpaServiceCustom<JobOrder, JobOrderInfo> {
 
-    PageInfo<JobOrderInfo> pageInfo(String term, String status, PageRequest pageRequest);
+    PageInfo<JobOrderInfo> pageInfo(String term, Map<String, Object> params, String status, PageRequest pageRequest);
     JobOrderInfo findByTrackinNoInfo(String trackingNo);
 
 }

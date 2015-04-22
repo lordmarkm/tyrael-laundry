@@ -94,6 +94,7 @@ define(function () {
                   customer: $scope.customerHolder.customer,
                   jobServices: [],
                   jobItems: [],
+                  lostAndFoundItems: [],
                   totalAmount: 0,
                   totalAmountPaid: 0,
                   status: 'NEW'

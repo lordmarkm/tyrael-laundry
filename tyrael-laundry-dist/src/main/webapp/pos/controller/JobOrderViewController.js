@@ -165,5 +165,42 @@ define(function () {
       });
     };
 
+    $scope.lostAndFound = function () {
+      $modal.open({
+        templateUrl: 'modal-lostandfound',
+        controller: ['$scope', '$modalInstance', 'lostAndFound', function($modalScope, $modalInstance, lostAndFound) {
+          $modalScope.lostAndFound = lostAndFound;
+          $modalScope.proceed = function () {
+            $modalInstance.dismiss();
+            $scope.jobOrder.lostAndFoundItems.push($modalScope.lostAndFound);
+            JobOrderService.save($scope.jobOrder, function (savedJobOrder) {
+              toaster.pop('success', 'Lost And Found item added', 'Successfully saved Job Order with tracking no. ' + savedJobOrder.trackingNo);
+              $scope.jobOrder = savedJobOrder;
+            }, function () {
+              toaster.pop('error', 'Error saving Job Order');
+            });
+          };
+          $modalScope.cancel = function () {
+            $modalInstance.dismiss();
+          };
+        }],
+        resolve: {
+          lostAndFound: function () {
+            return {
+              status: 'FOUND'
+            };
+          }
+        }
+      });
+    };
+
+    $scope.onLostAndfoundStatusChange = function () {
+      JobOrderService.save($scope.jobOrder, function (savedJobOrder) {
+        toaster.pop('success', 'Save success', 'Successfully updated Lost and found item for Job Order with tracking no. ' + savedJobOrder.trackingNo);
+      }, function () {
+        toaster.pop('error', 'Error saving Job Order');
+      });
+    };
+
   }];
 });
