@@ -14,6 +14,7 @@
     <module>tyrael-laundry-web</module>
     <module>tyrael-laundry-dist</module>
     <module>tyrael-laundry-security</module>
+    <module>tyrael-laundry-audit</module>
   </modules>
 
   <properties>
@@ -31,6 +32,18 @@
 
   <dependencyManagement>
     <dependencies>
+      <!-- Project -->
+      <dependency>
+        <groupId>com.tyrael.laundry</groupId>
+        <artifactId>tyrael-laundry-models</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.tyrael.laundry</groupId>
+        <artifactId>tyrael-laundry-services</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+
       <!-- Tyrael Commons -->
       <dependency>
         <groupId>tyrael-commons</groupId>

@@ -5,7 +5,7 @@ define(function () {
     auth.then(function(authentication) {
       var principal = authentication.principal;
       if (!principal) {
-        $state.go('default.splash.anon');
+        $state.go('default.anon.splash');
         return;
       }
       for (var i in principal.authorities) {
@@ -17,19 +17,13 @@ define(function () {
           console.debug('Redirecting to POS splash.');
           $state.go('default.pos.splash');
           return;
+        case 'ROLE_MANAGER':
+          console.debug('Redirecting to Manager splash.');
+          $state.go('default.manager.splash');
+          return;
         }
       }
     });
 
-    $scope.controllerName = "Splash Controller";
-    $scope.checkJobOrder = function (trackingNo) {
-      $scope.jobOrder = JobOrderService.get({trackingNo: trackingNo}, function (jobOrder) {
-        if (!jobOrder.trackingNo) {
-          toaster.pop('error', 'Receipt not found', 'Receipt not found. Please check the tracking number and try again.');
-        } else {
-          toaster.pop('success', 'Receipt found', 'Receipt found.');
-        }
-      });
-    };
   }];
 });

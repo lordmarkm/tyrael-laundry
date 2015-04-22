@@ -30,7 +30,9 @@ body {
   </tr>
   <tr>
     <td class="text-right"><strong>Customer</strong></td>
-    <td style="padding-left: 10px;">${jobOrder.customer.formattedName}</td>
+    <#if jobOrder.customer??><td style="padding-left: 10px;">${jobOrder.customer.formattedName}</td>
+    <#else><td style="padding-left: 10px;">Name not shown</td>
+    </#if>
   </tr>
   <tr>
     <td class="text-right"><strong>Address</strong></td>

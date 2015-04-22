@@ -1,0 +1,66 @@
+<div class="mt20" style="background-color: #fff; padding: 25px;">
+<div ng-if="jobOrder.trackingNo">
+<h3 class="page-header">Job Order {{jobOrder.trackingNo}}</h3>
+
+<dl class="dl-horizontal">
+  <dt>Customer
+  <dd>Name not shown
+  <dt>Date Received
+  <dd>{{jobOrder.dateReceived | date}}
+  <dt>Date Due
+  <dd>{{jobOrder.dateDue | date}}
+  <dt>Services
+  <dd>
+    <div class="row">
+    <div ng-repeat="service in jobOrder.jobServices" class="col-sm-4 mt5 servicepanel-small">
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <div class="row">
+            <div class="col-sm-3">
+              <img src="images/icons/{{service.serviceType.icon}}" class="img-thirtytwo" />
+            </div>
+            <div class="col-sm-9 text-right">
+              <div class="large">{{service.serviceType.label}}</div>
+              <div><strong>{{service.weightInKilos}}</strong> Kg @ Php {{service.pricePerKilo}}/Kg</div>
+            </div>
+          </div>
+        </div>
+        <div class="panel-footer">
+          <span class="pull-left">{{service.weightInKilos * service.pricePerKilo | currency: 'Php '}}</span> 
+          <div class="clearfix"></div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </dd>
+  <dt>Total Amount
+  <dd>{{jobOrder.totalAmount | currency: 'Php '}}
+  <dt>Total Amount Paid
+  <dd>{{jobOrder.totalAmountPaid | currency: 'Php '}}
+  <dt>Status
+  <dd>{{jobOrder.status}}
+</dl>
+
+<div class="panel panel-default" ng-if="jobOrder.lostAndFoundItems.length">
+<div class="panel-heading"><i class="fa fa-key"></i> Lost And Found Items</div>
+<div class="panel-body">
+<div ng-repeat="item in jobOrder.lostAndFoundItems">
+  <dl class="dl-horizontal">
+    <dt>Description
+    <dd>{{item.description}}
+    <dt>Status
+    <dd>{{item.status}}
+  </dl>
+</div>
+</div>
+</div>
+
+<div class="row text-right">
+  <a href="/joborder/print/{{jobOrder.trackingNo}}" target="_blank" class="btn btn-primary btn-s-xs">Print</a>
+</div>
+</div>
+
+<div ng-if="!jobOrder.trackingNo" class="error">
+  <h3>Job Order not found!
+</div>
+</div>

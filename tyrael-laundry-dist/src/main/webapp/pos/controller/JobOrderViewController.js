@@ -202,5 +202,10 @@ define(function () {
       });
     };
 
+    //Some utility methods
+    $scope.isClosedOrCancelled = function (jobOrder) {
+      return jobOrder.status == 'CLOSED' || jobOrder.status == 'CANCELLED';
+    };
+
   }];
 });

@@ -7,6 +7,8 @@ public enum JobOrderStatus {
 
     NEW,
     CLEANED,
-    PAID_CLAIMED
+    PAID_CLAIMED,
+    CLOSED,
+    CANCELLED
 
 }

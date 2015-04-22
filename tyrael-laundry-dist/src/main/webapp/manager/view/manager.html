@@ -1,7 +1,7 @@
 <div id="wrapper">
 <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
   <div class="navbar-header">
-    <a class="navbar-brand" ui-sref="default.pos.splash" titl="POS Dashboard">Management</a>
+    <a class="navbar-brand" ui-sref="default.manager.splash" title="Management Dashboard">Management</a>
   </div>
   <!-- /.navbar-header -->
   
@@ -37,9 +37,9 @@
             <!-- /input-group -->
         </li>
         <li><a ui-sref="default.manager.splash" ui-sref-active="active"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a></li>
-        <li><a ui-sref="default.pos.joborder_list" ui-sref-active="active"><i class="fa fa-list fa-fw"></i> View All Job Orders</a></li>
+        <li><a ui-sref="default.manager.joborder_list" ui-sref-active="active"><i class="fa fa-list fa-fw"></i> View All Job Orders</a></li>
         <li ng-if="recentData.jobOrder">
-          <a ui-sref="default.pos.joborder_view({trackingNo: recentData.jobOrder.trackingNo})" ui-sref-active="active">
+          <a ui-sref="default.manager.joborder_view({trackingNo: recentData.jobOrder.trackingNo})" ui-sref-active="active">
             <i class="fa fa-file-text-o fa-fw"></i> Last Viewed <br>
             <small style="margin-left: 20px;">{{recentData.jobOrder.trackingNo}}</small>
           </a>
@@ -52,13 +52,13 @@
           </a>
           <ul class="nav nav-second-level collapse in">
             <li>
-              <a ui-sref="default.pos.customer_view({id: recentData.customer.id})"
+              <a ui-sref="default.manager.customer_view({id: recentData.customer.id})"
                 ui-sref-active="active">
                 Name and Address
               </a>
             </li>
             <li>
-              <a ui-sref="default.pos.customer_view_joborders({id: recentData.customer.id})"
+              <a ui-sref="default.manager.customer_view_joborders({id: recentData.customer.id})"
                 ui-sref-active="active">
                 Job Orders
               </a>

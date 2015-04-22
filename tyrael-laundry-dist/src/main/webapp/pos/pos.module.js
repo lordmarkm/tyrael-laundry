@@ -2,7 +2,7 @@ define([
    'angular',
    'pos/controller/PosRootController',
    'pos/controller/JobOrderViewController',
-   'pos/controller/JobOrderListController',
+   'common/controller/JobOrderListController',
    'pos/controller/JobOrderCreateController',
    'pos/controller/CustomerViewController',
    'pos/controller/CustomerViewJobOrdersController',
@@ -21,8 +21,8 @@ define([
         controller: PosRootController
       })
       .state('default.pos.splash', {
-        url: '/splash',
-        templateUrl: 'pos/view/splash.html'
+        url: '',
+        templateUrl: 'pos/view/dashboard.html'
       })
       .state('default.pos.joborder_view', {
         url: '/joborder/view/{trackingNo}',

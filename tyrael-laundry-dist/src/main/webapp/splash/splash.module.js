@@ -9,10 +9,6 @@ define([
         url: '',
         templateUrl: 'splash/view/splash.html',
         controller: SplashController
-      })
-      .state('default.splash.anon', {
-        url: 'anon',
-        templateUrl: 'splash/view/splash_anon.html'
       });
   }]);
 });

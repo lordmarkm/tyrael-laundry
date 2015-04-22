@@ -84,7 +84,8 @@ public class TyraelLaundryPersistenceConfig extends PersistenceConfig {
         entityManagerFactory.setPackagesToScan(new String[] {
             "com.baldy.commons.security.models",
             "com.tyrael.laundry.model",
-            "com.tyrael.laundry.sequence"
+            "com.tyrael.laundry.sequence",
+            "com.tyrael.laundry.audit.model"
         });
         entityManagerFactory.setPersistenceProvider(new HibernatePersistence());
         entityManagerFactory.setJpaProperties(hibernateProperties());

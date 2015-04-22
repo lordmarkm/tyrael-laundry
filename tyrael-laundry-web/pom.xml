@@ -21,6 +21,11 @@
       <version>${project.version}</version>
     </dependency>
     <dependency>
+      <groupId>com.tyrael.laundry</groupId>
+      <artifactId>tyrael-laundry-audit</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
       <groupId>baldy.commons</groupId>
       <artifactId>baldy-commons-web</artifactId>
     </dependency>

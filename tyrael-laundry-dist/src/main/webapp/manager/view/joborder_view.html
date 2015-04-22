@@ -37,19 +37,18 @@
   <dt>Total Amount Paid
   <dd>{{jobOrder.totalAmountPaid | currency: 'Php '}}
   <dt>Status
-  <dd ng-if="!isClosedOrCancelled(jobOrder)">
+  <dd>
     <div class="row">
     <div class="col-sm-4">
     <select ng-model="jobOrder.status" ng-change="onStatusChange(jobOrder, '{{jobOrder.status}}')" class="form-control input-sm">
       <option value="NEW">New</option>
       <option value="CLEANED">Cleaned</option>
       <option value="PAID_CLAIMED">Paid & Claimed</option>
+      <option value="CLOSED">Closed</option>
+      <option value="CANCELLED">Cancelled</option>
     </select>
     </div>
     </div>
-  </dd>
-  <dd ng-if="isClosedOrCancelled(jobOrder)">
-    {{jobOrder.status}}
   </dd>
 </dl>
 
@@ -76,8 +75,23 @@
 </div>
 </div>
 
+<div class="panel panel-default">
+<div class="panel-heading"><i class="fa fa-link"></i> Audit Records</div>
+<div class="panel-body">
+  <div ng-repeat="auditRecord in auditRecords">
+    <span class="label" 
+      ng-class="{
+        'label-primary': auditRecord.type == 'CREATE',
+        'label-info': auditRecord.type == 'UPDATE',
+        'label-success': auditRecord.type == 'FINALIZE'
+      }">{{auditRecord.time | date: 'MMM-dd-yyyy hh:mma'}}</span>
+    <small>{{auditRecord.message}}</small>
+  </div>
+</div>
+</div>
+
 <div class="row text-right">
-  <button ng-click="lostAndFound()" ng-disabled="isClosedOrCancelled(jobOrder)" class="btn btn-default">Report Lost & Found</button>
+  <button ng-click="lostAndFound()" class="btn btn-default">Report Lost & Found</button>
   <a href="/joborder/print/{{jobOrder.trackingNo}}" target="_blank" class="btn btn-primary btn-s-xs">Print</a>
 </div>
 </div>
