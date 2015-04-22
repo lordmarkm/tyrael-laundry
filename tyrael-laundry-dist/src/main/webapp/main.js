@@ -67,6 +67,7 @@ require([
     'core/core.module.js',
     'common/common.module.js',
     'splash/splash.module.js',
+    'manager/manager.module.js',
     'pos/pos.module.js'
   ], function (angular) {
   angular.element().ready(function () {
@@ -82,6 +83,7 @@ require([
       'core.module',
       'common.module',
       'splash.module',
+      'manager.module',
       'pos.module'
     ]);
   });

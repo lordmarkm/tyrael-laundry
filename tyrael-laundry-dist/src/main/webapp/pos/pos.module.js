@@ -1,7 +1,5 @@
 define([
    'angular',
-   'core/service/AuthenticationService',
-   'core/service/JobOrderService',
    'pos/controller/PosRootController',
    'pos/controller/JobOrderViewController',
    'pos/controller/JobOrderListController',
@@ -12,13 +10,10 @@ define([
    'pos/resolve/JobOrderCreateResolve',
    'pos/resolve/CustomerViewResolve'
 ], function (angular,
-    AuthenticationService, JobOrderService,
     PosRootController, JobOrderViewController, JobOrderListController, JobOrderCreateController, CustomerViewController, CustomerViewJobOrdersController,
     JobOrderViewResolve, JobOrderCreateResolve, CustomerViewResolve) {
   console.debug('Configuring pos.module');
   angular.module('pos.module', ['ui.select', 'ngSanitize'])
-    .service('auth', AuthenticationService)
-    .service('JobOrderService', JobOrderService)
     .config(['$stateProvider', function ($stateProvider) {
       $stateProvider.state('default.pos', {
         url: 'pos',
