@@ -18,9 +18,15 @@ define([
         templateUrl: 'anon/view/splash_anon.html',
       })
       .state('default.anon.joborder_view', {
-        url: '/joborder/{trackingNo}',
+        url: '/joborder/view/{trackingNo}',
         templateUrl: 'anon/view/joborder_view.html',
         controller: JobOrderViewController,
+        resolve: JobOrderViewResolve
+      })
+      .state('default.anon.joborder_claim', {
+        url: '/joborder/claim/{trackingNo}',
+        templateUrl: 'anon/view/joborder_claim_and_register.html',
+        controller: JobOrderClaimController,
         resolve: JobOrderViewResolve
       });
   }]);

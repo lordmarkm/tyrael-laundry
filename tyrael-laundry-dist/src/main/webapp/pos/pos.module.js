@@ -21,7 +21,7 @@ define([
         controller: PosRootController
       })
       .state('default.pos.splash', {
-        url: '',
+        url: '/dashboard',
         templateUrl: 'pos/view/dashboard.html'
       })
       .state('default.pos.joborder_view', {

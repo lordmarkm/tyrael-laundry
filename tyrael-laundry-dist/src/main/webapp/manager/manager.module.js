@@ -20,7 +20,7 @@ define([
         controller: ManagerRootController
       })
       .state('default.manager.splash', {
-        url: '',
+        url: '/dashboard',
         templateUrl: 'manager/view/dashboard.html'
       })
       .state('default.manager.joborder_view', {
