@@ -36,7 +36,9 @@ body {
   </tr>
   <tr>
     <td class="text-right"><strong>Address</strong></td>
-    <td style="padding-left: 10px;">${jobOrder.customer.formattedAddress }</td>
+    <#if jobOrder.customer??><td style="padding-left: 10px;">${jobOrder.customer.formattedAddress }</td>
+    <#else><td style="padding-left: 10px;">Address not shown</td>
+    </#if>
   </tr>
   <tr>
     <td class="text-right"><strong>Date Received</strong></td>

@@ -59,7 +59,11 @@ public class JobOrderResource {
     @RequestMapping(method = GET, params = "trackingNo")
     public ResponseEntity<JobOrderInfo> findByTrackingNo(Principal principal, @RequestParam String trackingNo) {
         LOG.debug("Find by tracking number request. trackingNo={}", trackingNo);
-        return new ResponseEntity<>(service.findByTrackinNoInfo(trackingNo), OK);
+        JobOrderInfo jobOrder = service.findByTrackinNoInfo(trackingNo);
+        if (null == principal) {
+            jobOrder.setCustomer(null);
+        }
+        return new ResponseEntity<>(jobOrder, OK);
     }
 
     @RequestMapping(method = POST)
