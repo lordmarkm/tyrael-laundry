@@ -6,10 +6,14 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.baldy.commons.security.services.BaldyCommonsSecurityServicesMarker;
+import com.tyrael.laundry.security.service.TyraelLaundrySecurityServicesMarker;
 
 @Configuration
 @PropertySource("classpath:db.properties")
-@EnableJpaRepositories(basePackageClasses = BaldyCommonsSecurityServicesMarker.class)
+@EnableJpaRepositories(basePackageClasses = {
+    BaldyCommonsSecurityServicesMarker.class,
+    TyraelLaundrySecurityServicesMarker.class
+})
 @EnableTransactionManagement
 public class TyraelLaundrySecurityPersistenceConfig {
 

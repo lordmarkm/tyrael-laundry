@@ -19,6 +19,10 @@
       <artifactId>tyrael-laundry-models</artifactId>
     </dependency>
     <dependency>
+      <groupId>com.tyrael.laundry</groupId>
+      <artifactId>tyrael-laundry-services</artifactId>
+    </dependency>
+    <dependency>
       <groupId>tyrael-commons</groupId>
       <artifactId>tyrael-commons-data</artifactId>
     </dependency>
@@ -35,4 +39,30 @@
       <artifactId>baldy-commons-web</artifactId>
     </dependency>
   </dependencies>
+
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>com.mysema.maven</groupId>
+        <artifactId>maven-apt-plugin</artifactId>
+        <version>1.0.2</version>
+        <executions>
+          <execution>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>process</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>target/generated-sources/java</outputDirectory>
+              <processor>com.mysema.query.apt.jpa.JPAAnnotationProcessor</processor>
+              <includes>
+                <include>com.tyrael.laundry.model</include>
+              </includes>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
 </project>

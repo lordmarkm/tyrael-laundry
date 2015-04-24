@@ -11,6 +11,10 @@ import org.springframework.core.style.ToStringCreator;
  */
 public class RegistrationForm {
 
+    @NotNull(message = "Job Order tracking number can't be empty")
+    @Size(min = 4, max = 30, message = "Job Order tracking number length invalid")
+    private String jobOrderTrackingNo;
+
     @NotNull(message = "Registration code can't be empty")
     @Size(min = 4, max = 30, message = "Registration code length invalid")
     private String registrationCode;
@@ -30,6 +34,7 @@ public class RegistrationForm {
     @Override
     public String toString() {
         return new ToStringCreator(this)
+            .append("job order", jobOrderTrackingNo)
             .append("reg code", registrationCode)
             .append("un", username)
             .append("pw", StringUtils.isNotBlank(password) ? "Provided" : "Not provided")
@@ -67,6 +72,14 @@ public class RegistrationForm {
 
     public void setConfirmPassword(String confirmPassword) {
         this.confirmPassword = confirmPassword;
+    }
+
+    public String getJobOrderTrackingNo() {
+        return jobOrderTrackingNo;
+    }
+
+    public void setJobOrderTrackingNo(String jobOrderTrackingNo) {
+        this.jobOrderTrackingNo = jobOrderTrackingNo;
     }
 
 }

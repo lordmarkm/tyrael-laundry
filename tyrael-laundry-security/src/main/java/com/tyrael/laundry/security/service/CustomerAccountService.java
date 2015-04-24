@@ -11,6 +11,7 @@ import com.tyrael.laundry.security.model.CustomerAccount;
 public interface CustomerAccountService extends TyraelJpaService<CustomerAccount> {
 
     CustomerAccount findByCustomer(Customer customer);
+    CustomerAccount findByCustomerId(Long id);
     CustomerAccount findByAccount(Account account);
 
 }

@@ -4,11 +4,12 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
+import com.baldy.commons.models.BaseEntity;
 import com.baldy.commons.security.models.Account;
 import com.tyrael.laundry.model.Customer;
 
 @Entity(name = "CUSTOMER_ACCT")
-public class CustomerAccount {
+public class CustomerAccount extends BaseEntity {
 
     @OneToOne
     @JoinColumn(name = "CUSTOMER_ID", nullable = false, unique = true)

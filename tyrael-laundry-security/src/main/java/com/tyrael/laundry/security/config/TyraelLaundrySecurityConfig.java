@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -24,11 +25,11 @@ import com.tyrael.laundry.security.TyraelLaundrySecurityRootMarker;
  */
 @Configuration
 @EnableWebSecurity
-@ComponentScan(basePackages = "com.ppla.security",
-    basePackageClasses = {
-        BaldyCommonsSecurityServicesMarker.class,
-        TyraelLaundrySecurityRootMarker.class
-    })
+@ComponentScan(basePackageClasses = {
+    BaldyCommonsSecurityServicesMarker.class,
+    TyraelLaundrySecurityRootMarker.class
+})
+@EnableAspectJAutoProxy
 public class TyraelLaundrySecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired

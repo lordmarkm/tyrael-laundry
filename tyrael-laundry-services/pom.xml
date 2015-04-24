@@ -14,7 +14,10 @@
     <dependency>
       <groupId>com.tyrael.laundry</groupId>
       <artifactId>tyrael-laundry-models</artifactId>
-      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.tyrael.laundry</groupId>
+      <artifactId>tyrael-laundry-messaging</artifactId>
     </dependency>
     <dependency>
       <groupId>tyrael-commons</groupId>
