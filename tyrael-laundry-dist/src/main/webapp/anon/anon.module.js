@@ -2,8 +2,9 @@ define([
   'angular',
   'anon/controller/AnonymousRootController',
   'anon/controller/JobOrderViewController',
+  'anon/controller/JobOrderClaimController',
   'common/resolve/JobOrderViewResolve'
-], function (angular, AnonymousRootController, JobOrderViewController,
+], function (angular, AnonymousRootController, JobOrderViewController, JobOrderClaimController,
     JobOrderViewResolve) {
   console.debug('Configuring anon.module');
   angular.module('anon.module', [])

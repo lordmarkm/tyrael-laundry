@@ -1,0 +1,38 @@
+<h3 class="page-header">Register and claim Job order</h3>
+You are trying to claim job order with tracking number {{jobOrder.trackingNo}}. To do this you must
+be registered in our system. Please input the required information below.
+
+<div class="mt20">
+<form name="customerRegistrationForm" class="form form-horizontal" ng-submit="submitForm()">
+  <div class="form-group">
+    <label class="control-label col-sm-2 req">Registration code</label>
+    <div class="col-sm-4">
+      <input type="text" ng-model="regForm.registrationCode" class="form-control" required />
+      <p class="help-block">This code can be found on your printed receipt
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2 req">Username</label>
+    <div class="col-sm-4">
+      <input type="text" ng-model="regForm.username" minlength="6" class="form-control" required />
+      <p class="help-block">Minimum length: 6 characters
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2 req">Password</label>
+    <div class="col-sm-4">
+      <input type="password" ng-model="regForm.password" class="form-control" required />
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2 req">Confirm password</label>
+    <div class="col-sm-4">
+      <input type="password" ng-model="regForm.confirmPassword" class="form-control" required />
+    </div>
+  </div>
+  <div class="text-right">
+    <button ng-disabled="customerRegistrationForm.$invalid" class="btn btn-primary">Register</button>
+    <span ui-sref="default.anon.joborder_view({trackingNo: jobOrder.trackingNo})" class="btn btn-default">Cancel</span>
+  </div>
+</form>
+</div>

@@ -55,7 +55,7 @@
 </div>
 
 <div class="row text-right">
-  <span ng-click="claimJobOrder()" class="btn btn-default">Claim this Job Order</span>
+  <a ui-sref="default.anon.joborder_claim({trackingNo: jobOrder.trackingNo})" class="btn btn-default">Claim this Job Order</a>
   <a href="/joborder/print/{{jobOrder.trackingNo}}" target="_blank" class="btn btn-primary btn-s-xs">Print</a>
 </div>
 </div>
