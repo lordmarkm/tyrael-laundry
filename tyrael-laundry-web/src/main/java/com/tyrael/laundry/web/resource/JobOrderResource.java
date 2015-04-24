@@ -60,7 +60,7 @@ public class JobOrderResource {
     public ResponseEntity<JobOrderInfo> findByTrackingNo(Principal principal, @RequestParam String trackingNo) {
         LOG.debug("Find by tracking number request. trackingNo={}", trackingNo);
         JobOrderInfo jobOrder = service.findByTrackinNoInfo(trackingNo);
-        if (null == principal) {
+        if (null == principal && null != jobOrder) {
             jobOrder.setCustomer(null);
         }
         return new ResponseEntity<>(jobOrder, OK);

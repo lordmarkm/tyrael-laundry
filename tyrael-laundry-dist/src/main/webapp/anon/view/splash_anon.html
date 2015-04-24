@@ -1,12 +1,16 @@
-<h3>Welcome to Tyrael Laundry</h3>
+<h3 class="page-header">Welcome to Tyrael Laundry</h3>
 <div>
   <p>Looks like you are not logged in. You may log in <a ui-sref="default.login">here</a> or
      enter a receipt number below to check its status.
+  <div class="row">
+  <div class="col-sm-4">
   <form>
     <div class="form-group">
-      <label>Tracking Number</label>
-      <input type="text" ng-model="trackingNo" />
+      <label class="control-label">Tracking Number</label>
+      <input type="text" ng-model="trackingNo" class="form-control" />
     </div>
     <button class="btn" ng-click="checkJobOrder(trackingNo)" ng-disabled="!trackingNo">Check receipt</button>
   </form>
+  </div>
+  </div>
 </div>
