@@ -12,6 +12,10 @@
   <dependencies>
     <dependency>
       <groupId>com.tyrael.laundry</groupId>
+      <artifactId>tyrael-laundry-commons</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.tyrael.laundry</groupId>
       <artifactId>tyrael-laundry-models</artifactId>
     </dependency>
     <dependency>

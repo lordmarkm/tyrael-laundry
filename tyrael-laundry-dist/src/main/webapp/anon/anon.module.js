@@ -3,11 +3,14 @@ define([
   'anon/controller/AnonymousRootController',
   'anon/controller/JobOrderViewController',
   'anon/controller/JobOrderClaimController',
+  'anon/service/RegistrationService',
   'common/resolve/JobOrderViewResolve'
 ], function (angular, AnonymousRootController, JobOrderViewController, JobOrderClaimController,
+    RegistrationService,
     JobOrderViewResolve) {
   console.debug('Configuring anon.module');
   angular.module('anon.module', [])
+    .service('RegistrationService', RegistrationService)
     .config(['$stateProvider', function ($stateProvider) {
       $stateProvider.state('default.anon', {
         url: 'anon',
