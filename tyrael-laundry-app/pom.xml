@@ -23,8 +23,7 @@
   <dependencies>
     <dependency>
       <groupId>com.tyrael.laundry</groupId>
-      <artifactId>tyrael-laundry-services</artifactId>
-      <version>${project.version}</version>
+      <artifactId>tyrael-laundry-core-service</artifactId>
     </dependency>
     <dependency>
       <groupId>tyrael-commons</groupId>

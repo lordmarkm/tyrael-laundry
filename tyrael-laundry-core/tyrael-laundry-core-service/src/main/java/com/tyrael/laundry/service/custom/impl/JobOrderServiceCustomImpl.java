@@ -27,7 +27,6 @@ import com.tyrael.web.dto.JobOrderInfo;
 /**
  * @author mbmartinez
  */
-@Transactional
 public class JobOrderServiceCustomImpl extends TyraelJpaServiceCustomImpl<JobOrder, JobOrderInfo, JobOrderService>
     implements JobOrderServiceCustom  {
 

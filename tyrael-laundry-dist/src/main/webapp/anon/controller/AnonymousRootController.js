@@ -9,6 +9,8 @@ define(function () {
           toaster.pop('success', 'Receipt found', 'Receipt found.');
           $state.go('default.anon.joborder_view', {trackingNo: trackingNo});
         }
+      }, function () {
+        toaster.pop('error', 'Could not retrieve job order', 'Job Order may be owned by a registered user. If you own this job order, please log in to see it.');
       });
     };
 

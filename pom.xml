@@ -8,8 +8,7 @@
   <name>Tyrael Laundry :: Parent</name>
 
   <modules>
-    <module>tyrael-laundry-models</module>
-    <module>tyrael-laundry-services</module>
+    <module>tyrael-laundry-core</module>
     <module>tyrael-laundry-app</module>
     <module>tyrael-laundry-web</module>
     <module>tyrael-laundry-dist</module>
@@ -42,12 +41,12 @@
       </dependency>
       <dependency>
         <groupId>com.tyrael.laundry</groupId>
-        <artifactId>tyrael-laundry-models</artifactId>
+        <artifactId>tyrael-laundry-core-model</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>com.tyrael.laundry</groupId>
-        <artifactId>tyrael-laundry-services</artifactId>
+        <artifactId>tyrael-laundry-core-service</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>

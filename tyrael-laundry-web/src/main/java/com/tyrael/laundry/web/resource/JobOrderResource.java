@@ -14,6 +14,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -56,6 +57,7 @@ public class JobOrderResource {
         return new ResponseEntity<>(service.pageInfo(term, params, status, pageRequest), OK);
     }
 
+    @PreAuthorize("hasRole('ROLE_POS') or hasRole('ROLE_MANAGER') or canAccess(#principal, #trackingNo)")
     @RequestMapping(method = GET, params = "trackingNo")
     public ResponseEntity<JobOrderInfo> findByTrackingNo(Principal principal, @RequestParam String trackingNo) {
         LOG.debug("Find by tracking number request. trackingNo={}", trackingNo);

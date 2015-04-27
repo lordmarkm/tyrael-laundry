@@ -1,19 +1,17 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>com.tyrael.laundry</groupId>
-    <artifactId>tyrael-laundry</artifactId>
+    <artifactId>tyrael-laundry-core</artifactId>
     <version>1.0</version>
   </parent>
-
-  <artifactId>tyrael-laundry-services</artifactId>
-  <name>Tyrael Laundry :: Services</name>
+  <artifactId>tyrael-laundry-core-service</artifactId>
+  <name>Tyrael Laundry :: Core :: Services</name>
 
   <dependencies>
     <dependency>
       <groupId>com.tyrael.laundry</groupId>
-      <artifactId>tyrael-laundry-models</artifactId>
+      <artifactId>tyrael-laundry-core-model</artifactId>
     </dependency>
     <dependency>
       <groupId>com.tyrael.laundry</groupId>

@@ -3,7 +3,9 @@ define(function () {
     function ($scope, toaster, jobOrder, RegistrationService) {
 
     $scope.jobOrder = jobOrder;
-    $scope.regForm = {};
+    $scope.regForm = {
+      jobOrderTrackingNo: jobOrder.trackingNo
+    };
 
     $scope.submitForm = function () {
       RegistrationService.save($scope.regForm, function () {

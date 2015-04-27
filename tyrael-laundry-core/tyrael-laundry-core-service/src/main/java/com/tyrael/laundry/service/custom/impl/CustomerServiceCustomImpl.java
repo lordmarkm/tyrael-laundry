@@ -18,7 +18,6 @@ import com.tyrael.web.dto.CustomerInfo;
 /**
  * @author mbmartinez
  */
-@Transactional
 public class CustomerServiceCustomImpl extends TyraelJpaServiceCustomImpl<Customer, CustomerInfo, CustomerService>
     implements CustomerServiceCustom {
 

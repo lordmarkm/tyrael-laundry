@@ -1,14 +1,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>com.tyrael.laundry</groupId>
-    <artifactId>tyrael-laundry</artifactId>
+    <artifactId>tyrael-laundry-core</artifactId>
     <version>1.0</version>
   </parent>
-  <artifactId>tyrael-laundry-models</artifactId>
-  <name>Tyrael Laundry :: Models</name>
+  <artifactId>tyrael-laundry-core-model</artifactId>
+  <name>Tyrael Laundry :: Core :: Models</name>
 
   <dependencies>
     <dependency>
@@ -46,7 +45,8 @@
     </plugins>
     <pluginManagement>
       <plugins>
-        <!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+        <!--This plugin's configuration is used to store Eclipse m2e settings 
+          only. It has no influence on the Maven build itself. -->
         <plugin>
           <groupId>org.eclipse.m2e</groupId>
           <artifactId>lifecycle-mapping</artifactId>

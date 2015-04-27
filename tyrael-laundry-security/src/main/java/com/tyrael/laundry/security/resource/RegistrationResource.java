@@ -40,7 +40,11 @@ public class RegistrationResource {
         } else if (!regForm.getPassword().equals(regForm.getConfirmPassword())) {
             return new ResponseEntity<>(new GenericHttpResponse(null,"Passwords don't match"), BAD_REQUEST);
         } else {
-            registrationService.register(regForm.getJobOrderTrackingNo(), regForm.getUsername(), regForm.getPassword());
+            try {
+                registrationService.register(regForm.getJobOrderTrackingNo(), regForm.getUsername(), regForm.getPassword());
+            } catch (Exception e) {
+                return new ResponseEntity<>(new GenericHttpResponse(null, e.getMessage()), BAD_REQUEST);
+            }
             return new ResponseEntity<>(new GenericHttpResponse(null, "OK"), ACCEPTED);
         }
     }

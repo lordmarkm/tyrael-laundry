@@ -13,11 +13,11 @@
   <dependencies>
     <dependency>
       <groupId>com.tyrael.laundry</groupId>
-      <artifactId>tyrael-laundry-models</artifactId>
+      <artifactId>tyrael-laundry-core-model</artifactId>
     </dependency>
     <dependency>
       <groupId>com.tyrael.laundry</groupId>
-      <artifactId>tyrael-laundry-services</artifactId>
+      <artifactId>tyrael-laundry-core-service</artifactId>
     </dependency>
     <dependency>
       <groupId>baldy.commons</groupId>
