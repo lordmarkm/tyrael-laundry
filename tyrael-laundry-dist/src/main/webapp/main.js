@@ -69,7 +69,8 @@ require([
     'splash/splash.module.js',
     'manager/manager.module.js',
     'pos/pos.module.js',
-    'anon/anon.module.js'
+    'anon/anon.module.js',
+    'customer_portal/customer.module.js'
   ], function (angular) {
   angular.element().ready(function () {
     angular.bootstrap(document, [
@@ -86,7 +87,8 @@ require([
       'splash.module',
       'manager.module',
       'pos.module',
-      'anon.module'
+      'anon.module',
+      'customer.module'
     ]);
   });
 });

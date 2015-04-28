@@ -3,11 +3,11 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>com.tyrael.laundry</groupId>
-    <artifactId>tyrael-laundry-core</artifactId>
+    <artifactId>tyrael-laundry</artifactId>
     <version>1.0</version>
   </parent>
-  <artifactId>tyrael-laundry-core-service</artifactId>
-  <name>Tyrael Laundry :: Core :: Services</name>
+  <artifactId>tyrael-laundry-data</artifactId>
+  <name>Tyrael Laundry :: Data</name>
 
   <dependencies>
     <dependency>
@@ -16,29 +16,11 @@
     </dependency>
     <dependency>
       <groupId>com.tyrael.laundry</groupId>
-      <artifactId>tyrael-laundry-messaging</artifactId>
+      <artifactId>tyrael-laundry-core-service</artifactId>
     </dependency>
     <dependency>
       <groupId>tyrael-commons</groupId>
       <artifactId>tyrael-commons-data</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>tyrael-commons</groupId>
-      <artifactId>tyrael-commons-dto</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>tyrael-commons</groupId>
-      <artifactId>tyrael-commons-mapper</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.aspectj</groupId>
-      <artifactId>aspectjweaver</artifactId>
-      <version>1.8.0</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.commons</groupId>
-      <artifactId>commons-csv</artifactId>
-      <version>1.0</version>
     </dependency>
     <dependency>
       <groupId>com.github.tennaito</groupId>

@@ -16,6 +16,7 @@
     <module>tyrael-laundry-audit</module>
     <module>tyrael-laundry-commons</module>
     <module>tyrael-laundry-messaging</module>
+    <module>tyrael-laundry-data</module>
   </modules>
 
   <properties>

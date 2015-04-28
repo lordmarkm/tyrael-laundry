@@ -14,12 +14,13 @@ define(function () {
         
         switch (authority) {
         case 'ROLE_POS':
-          console.debug('Redirecting to POS splash.');
           $state.go('default.pos.splash');
           return;
         case 'ROLE_MANAGER':
-          console.debug('Redirecting to Manager splash.');
           $state.go('default.manager.splash');
+          return;
+        case 'ROLE_CUSTOMER': 
+          $state.go('default.customer.joborder_list');
           return;
         }
       }

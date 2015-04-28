@@ -34,7 +34,7 @@
       <td>{{jobOrder.dateDue | date}}
       <td>{{jobOrder.totalAmount | currency: 'Php '}}
       <td>{{jobOrder.totalAmountPaid | currency: 'Php '}}
-      <td ng-if="!isClosedOrCancelled(jobOrder) || isAuthorized('ROLE_MANAGER')">
+      <td ng-if="isAuthorized('ROLE_MANAGER') || (!isClosedOrCancelled(jobOrder) && isAuthorized('ROLE_POS'))">
         <select ng-model="jobOrder.status" ng-change="onStatusChange(jobOrder)" class="form-control input-sm">
           <option value="NEW">New</option>
           <option value="CLEANED">Cleaned</option>
@@ -44,6 +44,9 @@
         </select>
       </td>
       <td ng-if="isClosedOrCancelled(jobOrder) && !isAuthorized('ROLE_MANAGER')">
+        {{jobOrder.status}}
+      </td>
+      <td ng-if="!isAuthorized('ROLE_POS') && !isAuthorized('ROLE_MANAGER')">
         {{jobOrder.status}}
       </td>
     </tr>

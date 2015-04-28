@@ -1,15 +1,16 @@
 define(function () {
-  return ['$scope', 'toaster', 'jobOrder', 'RegistrationService',
-    function ($scope, toaster, jobOrder, RegistrationService) {
+  return ['$scope', '$state', 'toaster', 'jobOrder', 'RegistrationService',
+    function ($scope, $state, toaster, jobOrder, RegistrationService) {
 
     $scope.jobOrder = jobOrder;
     $scope.regForm = {
-      jobOrderTrackingNo: jobOrder.trackingNo
+      jobOrderTrackingNo: $scope.jobOrder.trackingNo
     };
 
     $scope.submitForm = function () {
       RegistrationService.save($scope.regForm, function () {
         toaster.pop('success', 'Registration and claim successful');
+        $state.go('default.login', {msg: 'reg_success'});
       }, function (response) {
         toaster.pop('error', 'Registartion and claim error', response.data.message);
       });

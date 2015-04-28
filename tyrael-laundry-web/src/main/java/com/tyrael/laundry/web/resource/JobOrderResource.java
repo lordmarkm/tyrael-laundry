@@ -5,6 +5,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 import java.security.Principal;
+import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -21,7 +22,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.google.common.collect.Maps;
-import com.mysema.query.types.Order;
 import com.tyrael.commons.dto.PageInfo;
 import com.tyrael.laundry.service.JobOrderService;
 import com.tyrael.web.dto.JobOrderInfo;
@@ -37,6 +37,11 @@ public class JobOrderResource {
 
     @Autowired
     private JobOrderService service;
+
+    @RequestMapping(value = "/rql", method = GET)
+    public ResponseEntity<List<JobOrderInfo>> rql(@RequestParam String term) {
+        return new ResponseEntity<>(service.rqlSearch(term), OK);
+    }
 
     @RequestMapping(method = GET)
     public ResponseEntity<PageInfo<JobOrderInfo>> page(Principal principal,
