@@ -2,6 +2,8 @@ package com.tyrael.laundry.service.custom.impl;
 
 import org.slf4j.Logger;
 
+import com.google.common.collect.ImmutableMap;
+import com.mysema.query.types.Path;
 import com.mysema.query.types.expr.BooleanExpression;
 import com.mysema.query.types.path.EntityPathBase;
 
@@ -12,7 +14,7 @@ import cz.jirutka.rsql.parser.ast.Node;
 import cz.jirutka.rsql.parser.ast.OrNode;
 import cz.jirutka.rsql.parser.ast.RSQLVisitor;
 
-public class RsqlParserVisitor<B> implements RSQLVisitor<BooleanExpression, B> {
+public class RsqlParserVisitor implements RSQLVisitor<BooleanExpression, ImmutableMap<String, Path<?>>> {
 
     private Logger logger;
 
@@ -68,19 +70,22 @@ public class RsqlParserVisitor<B> implements RSQLVisitor<BooleanExpression, B> {
     }
 
     @Override
-    public BooleanExpression visit(AndNode node, B param) {
+    public BooleanExpression visit(AndNode node,
+            ImmutableMap<String, Path<?>> param) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public BooleanExpression visit(OrNode node, B param) {
+    public BooleanExpression visit(OrNode node,
+            ImmutableMap<String, Path<?>> param) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public BooleanExpression visit(ComparisonNode node, B param) {
+    public BooleanExpression visit(ComparisonNode node,
+            ImmutableMap<String, Path<?>> param) {
         // TODO Auto-generated method stub
         return null;
     }
