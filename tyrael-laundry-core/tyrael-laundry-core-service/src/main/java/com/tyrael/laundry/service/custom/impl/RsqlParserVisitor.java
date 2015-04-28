@@ -12,7 +12,7 @@ import cz.jirutka.rsql.parser.ast.Node;
 import cz.jirutka.rsql.parser.ast.OrNode;
 import cz.jirutka.rsql.parser.ast.RSQLVisitor;
 
-public class RsqlParserVisitor<BooleanExpression, A> implements RSQLVisitor<BooleanExpression, EntityPathBase<?>> {
+public class RsqlParserVisitor<B> implements RSQLVisitor<BooleanExpression, B> {
 
     private Logger logger;
 
@@ -24,7 +24,7 @@ public class RsqlParserVisitor<BooleanExpression, A> implements RSQLVisitor<Bool
     }
 
     @Override
-    public BooleanExpression visit(OrNode node, EntityPathBase param) {
+    public BooleanExpression visit(OrNode node, EntityPathBase<?> param) {
         String nombreTmp = "EqualNode";
         printLogicalNode(nombreTmp, node, param);
         return null;
@@ -39,7 +39,7 @@ public class RsqlParserVisitor<BooleanExpression, A> implements RSQLVisitor<Bool
     }
 
     public void printLogicalNode(String pNombreNodo, LogicalNode pNode,
-            EntityPathBase pParam) {
+            EntityPathBase<?> pParam) {
         logger.debug(pNombreNodo + ". node: " + pNode + ". param: " + pParam);
 
         logger.debug("operator: " + pNode.getOperator().name());
@@ -51,7 +51,7 @@ public class RsqlParserVisitor<BooleanExpression, A> implements RSQLVisitor<Bool
     }
 
     public void printComparisonNode(String pNombreNodo, ComparisonNode pNode,
-            EntityPathBase pParam) {
+            EntityPathBase<?> pParam) {
         logger.debug(pNombreNodo + ". node: " + pNode + ". param: " + pParam);
 
         logger.debug("Selector: " + pNode.getSelector());
@@ -65,5 +65,23 @@ public class RsqlParserVisitor<BooleanExpression, A> implements RSQLVisitor<Bool
 
     public void setLogger(Logger logger) {
         this.logger = logger;
+    }
+
+    @Override
+    public BooleanExpression visit(AndNode node, B param) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public BooleanExpression visit(OrNode node, B param) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public BooleanExpression visit(ComparisonNode node, B param) {
+        // TODO Auto-generated method stub
+        return null;
     }
 }

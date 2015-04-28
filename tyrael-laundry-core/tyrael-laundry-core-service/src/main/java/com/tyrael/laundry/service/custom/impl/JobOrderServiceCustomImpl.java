@@ -60,9 +60,9 @@ public class JobOrderServiceCustomImpl extends TyraelJpaServiceCustomImpl<JobOrd
         Node rootNode = new RSQLParser().parse(term);
 
         // Create the JPA Visitor
-        RsqlParserVisitor visitor = new RsqlParserVisitor<BooleanExpression, QJobOrder>();
+        RsqlParserVisitor visitor = new RsqlParserVisitor<BooleanExpression, ImmutableMap<String, Path<?>>>();
         visitor.setLogger(LOG);
-        rootNode.accept(visitor, QJobOrder.jobOrder);
+        rootNode.accept(visitor, FIELD_MAPPING);
         return null;
         // Visit the node to retrieve CriteriaQuery
 //        CriteriaQuery<JobOrder> query = rootNode.accept(visitor, manager);
