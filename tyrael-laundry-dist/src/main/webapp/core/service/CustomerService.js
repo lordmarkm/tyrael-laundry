@@ -1,12 +1,6 @@
 define(function () {
   return ['$resource', '$modal', '$q', 'toaster', function ($resource, $modal, $q, toaster) {
-    var CustomerService = $resource('customer/:id/:username', null, {
-      findByUsername: {
-        method: 'GET',
-        url: 'customer/username/:username',
-        isArray: false
-      }
-    });
+    var CustomerService = $resource('customer/:id/:username');
 
     CustomerService.createCustomer = function () {
       var defer = $q.defer();

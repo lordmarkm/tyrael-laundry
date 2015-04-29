@@ -1,5 +1,9 @@
 package com.tyrael.laundry.web.resource;
 
+import static org.springframework.http.HttpStatus.OK;
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
+import static org.springframework.web.bind.annotation.RequestMethod.POST;
+
 import java.security.Principal;
 
 import org.slf4j.Logger;
@@ -15,13 +19,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.baldy.commons.web.controller.GenericController;
 import com.tyrael.commons.dto.PageInfo;
-import com.tyrael.laundry.security.model.CustomerAccount;
-import com.tyrael.laundry.security.service.CustomerAccountService;
 import com.tyrael.laundry.service.CustomerService;
 import com.tyrael.web.dto.CustomerInfo;
-
-import static org.springframework.http.HttpStatus.OK;
-import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 @RestController
 @RequestMapping("/customer")
@@ -31,9 +30,6 @@ public class CustomerResource extends GenericController {
 
     @Autowired
     private CustomerService service;
-
-    @Autowired
-    private CustomerAccountService customerAccountService;
 
     @RequestMapping(method = GET)
     public ResponseEntity<PageInfo<CustomerInfo>> page(Principal principal,
@@ -48,11 +44,6 @@ public class CustomerResource extends GenericController {
     @RequestMapping(value = "/{id}", method = GET)
     public ResponseEntity<CustomerInfo> findOne(Principal principal, @PathVariable Long id) {
         return new ResponseEntity<>(service.findOneInfo(id), OK);
-    }
-
-    @RequestMapping(value = "/current")
-    public ResponseEntity<CustomerInfo> getCurrentlyLoggedIn(Principal principal) {
-        return new ResponseEntity<>(customerAccountService.findCustomerByUsernameInfo(principal.getName()), OK);
     }
 
     @RequestMapping(method = POST)

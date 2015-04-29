@@ -3,7 +3,7 @@ define(function () {
     $scope.controllerName = 'CustomerRootController';
     
     auth.then(function (authentication) {
-      $scope.customer = CustomerService.findByUsername({username: authentication.name});
+      $scope.customerAccountc = CustomerService.findByUsername({username: authentication.name});
     });
   }];
 });
