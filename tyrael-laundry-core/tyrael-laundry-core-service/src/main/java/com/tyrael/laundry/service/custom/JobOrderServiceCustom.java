@@ -26,6 +26,8 @@ public interface JobOrderServiceCustom extends TyraelJpaServiceCustom<JobOrder, 
             .put("id", jobOrder.id)
             .put("deleted", jobOrder.deleted)
             .put("dateReceived", jobOrder.dateReceived)
+            .put("customerId", jobOrder.customer.id)
+            .put("status", jobOrder.status)
             .build();
 
     PageInfo<JobOrderInfo> pageInfo(String term, Map<String, Object> params, String status, PageRequest pageRequest);

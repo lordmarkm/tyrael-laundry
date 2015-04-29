@@ -12,6 +12,7 @@ public interface CustomerAccountService extends TyraelJpaService<CustomerAccount
 
     CustomerAccount findByCustomer(Customer customer);
     CustomerAccount findByCustomerId(Long id);
+    CustomerAccount findByCustomerUsername(String username);
     CustomerAccount findByAccount(Account account);
 
 }

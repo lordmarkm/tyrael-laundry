@@ -27,6 +27,12 @@ define(function () {
       }
     });
 
+    function term(term) {
+      if (isAuthorized('ROLE_CUSTOMER')) {
+        term += ';customerId='
+      }
+    }
+
     $scope.reloadTable = function () {
       if ($scope.tableParams.page() == 1) {
         $scope.tableParams.reload();

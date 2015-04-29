@@ -1,5 +1,9 @@
 define(function () {
-  return ['$scope', function ($scope) {
+  return ['$scope', 'auth', 'CustomerService', function ($scope, auth, CustomerService) {
     $scope.controllerName = 'CustomerRootController';
+    
+    auth.then(function (authentication) {
+      $scope.customer = CustomerService.findByUsername({username: authentication.name});
+    });
   }];
 });
