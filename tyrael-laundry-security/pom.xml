@@ -38,6 +38,15 @@
       <groupId>baldy.commons</groupId>
       <artifactId>baldy-commons-web</artifactId>
     </dependency>
+    <dependency>
+      <groupId>baldy.commons</groupId>
+      <artifactId>baldy-commons-test</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>com.h2database</groupId>
+      <artifactId>h2</artifactId>
+    </dependency>
   </dependencies>
 
 

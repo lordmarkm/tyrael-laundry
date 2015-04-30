@@ -7,7 +7,7 @@ import com.tyrael.laundry.security.model.CustomerAccount;
 /**
  * @author mbmartinez
  */
-public interface CustomerAccountServiceCustom  extends TyraelJpaServiceCustom<CustomerAccount, CustomerAccountInfo> {
+public interface CustomerAccountServiceCustom extends TyraelJpaServiceCustom<CustomerAccount, CustomerAccountInfo> {
 
     CustomerAccountInfo findByAccountUsernameInfo(String username);
 

@@ -13,7 +13,7 @@ import com.tyrael.laundry.security.service.TyraelLaundrySecurityServicesMarker;
 @EnableJpaRepositories(basePackageClasses = {
     BaldyCommonsSecurityServicesMarker.class,
     TyraelLaundrySecurityServicesMarker.class
-})
+}, repositoryImplementationPostfix = "CustomImpl")
 @EnableTransactionManagement
 public class TyraelLaundrySecurityPersistenceConfig {
 

@@ -99,6 +99,11 @@
         <artifactId>baldy-commons-web</artifactId>
         <version>${baldy.version}</version>
       </dependency>
+      <dependency>
+        <groupId>baldy.commons</groupId>
+        <artifactId>baldy-commons-test</artifactId>
+        <version>${baldy.version}</version>
+      </dependency>
 
       <!-- Spring Framework -->
       <dependency>
@@ -141,6 +146,14 @@
         <groupId>org.slf4j</groupId>
         <artifactId>jcl-over-slf4j</artifactId>
         <version>${slf4j.version}</version>
+      </dependency>
+
+      <!-- Tests -->
+      <dependency>
+        <groupId>com.h2database</groupId>
+        <artifactId>h2</artifactId>
+        <version>1.4.187</version>
+        <scope>test</scope>
       </dependency>
     </dependencies>
   </dependencyManagement>
