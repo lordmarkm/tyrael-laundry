@@ -4,7 +4,7 @@ import com.tyrael.commons.data.service.TyraelJpaServiceCustomImpl;
 import com.tyrael.laundry.security.dto.CustomerAccountInfo;
 import com.tyrael.laundry.security.model.CustomerAccount;
 import com.tyrael.laundry.security.service.CustomerAccountService;
-import com.tyrael.laundry.security.service.CustomerAccountServiceCustom;
+import com.tyrael.laundry.security.service.custom.CustomerAccountServiceCustom;
 
 /**
  * @author mbmartinez
@@ -14,8 +14,9 @@ public class CustomerAccountServiceCustomImpl
     implements CustomerAccountServiceCustom {
 
     @Override
-    public CustomerAccountInfo findByCustomerUsernameInfo(String username) {
-        return toDto(repo.findByCustomerUsername(username));
+    public CustomerAccountInfo findByAccountUsernameInfo(String username) {
+//        return toDto(repo.findByAccount_Username(username));
+        return null;
     }
 
 }

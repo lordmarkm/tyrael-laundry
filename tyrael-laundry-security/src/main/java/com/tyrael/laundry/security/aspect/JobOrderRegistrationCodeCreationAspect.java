@@ -58,7 +58,7 @@ public class JobOrderRegistrationCodeCreationAspect {
         if (null == jobOrderToSave.getId()) {
 
             CustomerInfo customerInfo = jobOrderToSave.getCustomer();
-            CustomerAccount customerAccount = customerAccountService.findByCustomerId(customerInfo.getId());
+            CustomerAccount customerAccount = customerAccountService.findByCustomer_Id(customerInfo.getId());
 
             //Proceed only if unclaimed job order (owning customer has no registered account)
             if (null == customerAccount) {

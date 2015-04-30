@@ -1,4 +1,4 @@
-package com.tyrael.laundry.security.service;
+package com.tyrael.laundry.security.service.custom;
 
 import com.tyrael.commons.data.service.TyraelJpaServiceCustom;
 import com.tyrael.laundry.security.dto.CustomerAccountInfo;
@@ -9,6 +9,6 @@ import com.tyrael.laundry.security.model.CustomerAccount;
  */
 public interface CustomerAccountServiceCustom  extends TyraelJpaServiceCustom<CustomerAccount, CustomerAccountInfo> {
 
-    CustomerAccountInfo findByCustomerUsernameInfo(String username);
+    CustomerAccountInfo findByAccountUsernameInfo(String username);
 
 }

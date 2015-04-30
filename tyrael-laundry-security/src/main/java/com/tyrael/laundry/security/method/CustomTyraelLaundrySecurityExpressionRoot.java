@@ -30,7 +30,7 @@ public class CustomTyraelLaundrySecurityExpressionRoot extends BaseTyraelLaundry
         LOG.debug("Checking if owner. user={}, trackingNo={}", principal, trackingNo);
 
         Long customerId = jobOrderService.getCustomerId(trackingNo);
-        CustomerAccount owner = customerAccountService.findByCustomerId(customerId);
+        CustomerAccount owner = customerAccountService.findByCustomer_Id(customerId);
 
         return null == owner || 
                 (null != principal && owner.getAccount().getUsername().equals(principal.getName()));

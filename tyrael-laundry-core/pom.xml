@@ -6,6 +6,7 @@
     <version>1.0</version>
   </parent>
   <artifactId>tyrael-laundry-core</artifactId>
+  <name>Tyrael Laundry :: Core</name>
   <packaging>pom</packaging>
   <modules>
     <module>tyrael-laundry-core-model</module>

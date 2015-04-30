@@ -1,6 +1,6 @@
 define(function () {
-  return ['$scope', '$modal', '$q', '$filter', 'toaster', 'ngTableParams', 'confirm', 'JobOrderService',
-          function ($scope, $modal, $q, $filter, toaster, ngTableParams, confirm, JobOrderService) {
+  return ['$scope', '$modal', '$q', '$filter', 'toaster', 'ngTableParams', 'confirm', 'JobOrderService', 'CustomerAccountService',
+          function ($scope, $modal, $q, $filter, toaster, ngTableParams, confirm, JobOrderService, CustomerAccountService) {
 
     //Filter
     $scope.filter = {
@@ -27,10 +27,22 @@ define(function () {
       }
     });
 
+    if (isAuthorized('ROLE_CUSTOMER')) {
+      $scope.customerAccount = CustomerAccountService.getCurrent();
+    }
     function term(term) {
-      if (isAuthorized('ROLE_CUSTOMER')) {
-        term += ';customerId='
+      var rql = '';
+      if (term) {
+        rql = 'trackingNo==' + term + ';customerFamilyName==' + term;
       }
+      //If customer, show only the job orders for the currently logged in customer
+      if ($scope.customerAccount) {
+        if (rql.length) {
+          rql += ';';
+        }
+        rql += 'customerId=' + $scope.customerAccount.customer.id;
+      }
+      return rql;
     }
 
     $scope.reloadTable = function () {
