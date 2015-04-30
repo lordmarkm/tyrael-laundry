@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<dataset>
+
+  <accounts id="1" username="markm" password="123qwe" authorities="ROLE_CUSTOMER" />
+  <CUSTOMER ID="1" DELETED="0"/>
+  <CUSTOMER_ACCT ID="1" CUSTOMER_ID="1" ACCT_ID="1" DELETED="0" />
+
+</dataset>
