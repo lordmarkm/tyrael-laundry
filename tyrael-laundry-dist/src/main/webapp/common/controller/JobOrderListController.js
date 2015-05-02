@@ -1,6 +1,6 @@
 define(function () {
-  return ['$scope', '$modal', '$q', '$filter', 'toaster', 'ngTableParams', 'confirm', 'JobOrderService', 'CustomerAccountService',
-          function ($scope, $modal, $q, $filter, toaster, ngTableParams, confirm, JobOrderService, CustomerAccountService) {
+  return ['$scope', '$modal', '$q', '$filter', 'toaster', 'ngTableParams', 'confirm', 'customerAccount', 'JobOrderService', 'CustomerAccountService',
+          function ($scope, $modal, $q, $filter, toaster, ngTableParams, confirm, customerAccount, JobOrderService, CustomerAccountService) {
 
     //Filter
     $scope.filter = {
@@ -27,20 +27,20 @@ define(function () {
       }
     });
 
-    if (isAuthorized('ROLE_CUSTOMER')) {
-      $scope.customerAccount = CustomerAccountService.getCurrent();
-    }
     function term(term) {
       var rql = '';
       if (term) {
-        rql = 'trackingNo==' + term + ';customerFamilyName==' + term;
+        rql = 'trackingNo==' + term + ',customerFamilyName==' + term;
       }
       //If customer, show only the job orders for the currently logged in customer
-      if ($scope.customerAccount) {
+      if (customerAccount.customer) {
         if (rql.length) {
           rql += ';';
         }
-        rql += 'customerId=' + $scope.customerAccount.customer.id;
+        console.debug('Appending customer id filter. account=' + JSON.stringify(customerAccount));
+        rql += 'customerId==' + customerAccount.customer.id;
+      } else {
+        console.debug('No customer. ' + JSON.stringify(customerAccount));
       }
       return rql;
     }

@@ -10,30 +10,31 @@ import com.tyrael.web.dto.CustomerInfo;
  */
 public class CustomerAccountInfo extends BaseTyraelDto {
 
-    private CustomerInfo customerInfo;
-    private AccountInfo accountInfo;
+    private CustomerInfo customer;
+    private AccountInfo account;
 
     @Override
     protected ToStringCreator toStringCreator() {
         return super.toStringCreator()
-            .append("customerInfo", customerInfo)
-            .append("accountInfo", accountInfo);
+            .append("customerInfo", customer)
+            .append("accountInfo", account);
     }
 
-    public CustomerInfo getCustomerInfo() {
-        return customerInfo;
+    public CustomerInfo getCustomer() {
+        return customer;
     }
 
-    public void setCustomerInfo(CustomerInfo customerInfo) {
-        this.customerInfo = customerInfo;
+    public void setCustomer(CustomerInfo customer) {
+        this.customer = customer;
     }
 
-    public AccountInfo getAccountInfo() {
-        return accountInfo;
+    public AccountInfo getAccount() {
+        return account;
     }
 
-    public void setAccountInfo(AccountInfo accountInfo) {
-        this.accountInfo = accountInfo;
+    public void setAccount(AccountInfo account) {
+        this.account = account;
     }
+
 
 }
