@@ -1,11 +1,10 @@
 package com.tyrael.laundry.service.rql;
 
-import org.slf4j.Logger;
-
 import com.google.common.collect.ImmutableMap;
 import com.mysema.query.types.Path;
 import com.mysema.query.types.expr.BooleanExpression;
 import com.mysema.query.types.path.NumberPath;
+import com.mysema.query.types.path.StringPath;
 
 import cz.jirutka.rsql.parser.ast.AndNode;
 import cz.jirutka.rsql.parser.ast.ComparisonNode;
@@ -19,6 +18,7 @@ import cz.jirutka.rsql.parser.ast.RSQLVisitor;
 public class RsqlParserVisitor implements RSQLVisitor<BooleanExpression, ImmutableMap<String, Path<?>>> {
 
     private NumberPathExpressionEvaluator numPathEvaluator = new NumberPathExpressionEvaluator();
+    private StringPathExpressionEvaluator stringPathEvaluator = new StringPathExpressionEvaluator();
     private DefaultExpressionEvaluator defaultEvaluator = new DefaultExpressionEvaluator();
 
     @Override
@@ -49,7 +49,6 @@ public class RsqlParserVisitor implements RSQLVisitor<BooleanExpression, Immutab
         return b;
     }
 
-    @SuppressWarnings({ "rawtypes", "unchecked" })
     @Override
     public BooleanExpression visit(ComparisonNode node, ImmutableMap<String, Path<?>> param) {
         Path<?> path = param.get(node.getSelector());
@@ -59,6 +58,8 @@ public class RsqlParserVisitor implements RSQLVisitor<BooleanExpression, Immutab
 
         if (path.getClass().isAssignableFrom(NumberPath.class)) {
             return numPathEvaluator.evaluate(path, node.getOperator(), node.getArguments());
+        } else if (path.getClass().isAssignableFrom(StringPath.class)) {
+            return stringPathEvaluator.evaluate(path, node.getOperator(), node.getArguments());
         } else {
             return defaultEvaluator.evaluate(path, node.getOperator(), node.getArguments());
         }

@@ -15,8 +15,7 @@ public class CustomerAccountServiceCustomImpl
 
     @Override
     public CustomerAccountInfo findByAccountUsernameInfo(String username) {
-//        return toDto(repo.findByAccount_Username(username));
-        return null;
+        return toDto(repo.findByAccount_Username(username));
     }
 
 }

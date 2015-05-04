@@ -1,6 +1,8 @@
 define(function () {
-  return ['$scope', '$modal', '$q', '$filter', 'toaster', 'ngTableParams', 'confirm', 'JobOrderService', 'CustomerAccountService',
-          function ($scope, $modal, $q, $filter, toaster, ngTableParams, confirm, JobOrderService, CustomerAccountService) {
+  return ['$scope', '$modal', '$q', '$filter', 'toaster', 'ngTableParams', 'auth', 'confirm', 'JobOrderService', 'CustomerAccountService',
+          function ($scope, $modal, $q, $filter, toaster, ngTableParams, auth, confirm, JobOrderService, CustomerAccountService) {
+
+    var authResolved = $q.defer();
 
     //Filter
     $scope.filter = {
@@ -15,32 +17,46 @@ define(function () {
       total: 0,
       counts: [2, 5,10,25,50,100], //determines pager
       getData: function($defer, params) {
-
         //filter
-        params.$params.term = term($scope.filter.term) || '';
-        params.$params.status = $scope.filter.status;
-
-        JobOrderService.get(params.$params, function(response) {
-          params.total(response.total);
-          $defer.resolve(response.data);
+        authResolved.promise.then(function () {
+          params.$params.term = term($scope.filter.term);
+          JobOrderService.get(params.$params, function(response) {
+            params.total(response.total);
+            $defer.resolve(response.data);
+          });
         });
       }
     });
 
-    if (isAuthorized('ROLE_CUSTOMER')) {
-      $scope.customerAccount = CustomerAccountService.getCurrent();
-    }
+    auth.then(function () {
+      if ($scope.isAuthorized('ROLE_CUSTOMER')) {
+        $scope.customerAccount = CustomerAccountService.getCurrent(function () {
+          authResolved.resolve();
+        });
+      } else {
+        authResolved.resolve();
+      }
+    });
     function term(term) {
       var rql = '';
       if (term) {
         rql = 'trackingNo==' + term + ';customerFamilyName==' + term;
       }
+
       //If customer, show only the job orders for the currently logged in customer
-      if ($scope.customerAccount) {
+      if ($scope.customerAccount && $scope.customerAccount.customer) {
         if (rql.length) {
           rql += ';';
         }
-        rql += 'customerId=' + $scope.customerAccount.customer.id;
+        rql += ('customerId==' + $scope.customerAccount.customer.id);
+      }
+
+      //If status is not ALL, append it
+      if ($scope.filter.status) {
+        if (rql.length) {
+          rql += ';';
+        }
+        rql += ('status==' + $scope.filter.status);
       }
       return rql;
     }

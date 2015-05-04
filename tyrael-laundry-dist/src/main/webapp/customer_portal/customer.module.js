@@ -1,11 +1,13 @@
 define([
   'angular',
-  'customer_portal/service/CustomerAccountService',
+  'core/service/CustomerService',
+  'core/service/CustomerAccountService',
   'customer_portal/controller/CustomerRootController',
   'common/controller/JobOrderListController'
-], function (angular, CustomerAccountService, CustomerRootController, JobOrderListController) {
+], function (angular, CustomerService, CustomerAccountService, CustomerRootController, JobOrderListController) {
   console.debug('Configuring customer.module');
   angular.module('customer.module', [])
+    .service('CustomerService', CustomerService)
     .service('CustomerAccountService', CustomerAccountService)
     .config(['$stateProvider', function ($stateProvider) {
       $stateProvider.state('default.customer', {

@@ -15,9 +15,7 @@ define(function () {
         getData: function($defer, params) {
 
           //search
-          params.$params.term = '';
-          params.$params.status = '';
-          params.$params.customer = customer.id;
+          params.$params.term = 'customerId==' + customer.id;
           JobOrderService.get(params.$params, function(response) {
             params.total(response.total);
             $defer.resolve(response.data);

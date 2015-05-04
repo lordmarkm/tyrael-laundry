@@ -21,7 +21,7 @@ public class CustomerAccountResource {
 
     @RequestMapping(value = "/current")
     public ResponseEntity<CustomerAccountInfo> getCurrentlyLoggedIn(Principal principal) {
-        return new ResponseEntity<>(customerAccountService.findByCustomerUsernameInfo(principal.getName()), OK);
+        return new ResponseEntity<>(customerAccountService.findByAccountUsernameInfo(principal.getName()), OK);
     }
 
 }

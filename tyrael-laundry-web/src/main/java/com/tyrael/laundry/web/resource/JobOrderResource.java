@@ -6,7 +6,6 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 import java.security.Principal;
 import java.util.List;
-import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.google.common.collect.Maps;
 import com.tyrael.commons.dto.PageInfo;
 import com.tyrael.laundry.service.JobOrderService;
 import com.tyrael.web.dto.JobOrderInfo;
@@ -47,19 +45,12 @@ public class JobOrderResource {
     public ResponseEntity<PageInfo<JobOrderInfo>> page(Principal principal,
             @RequestParam int page,
             @RequestParam int count,
-            @RequestParam String term,
-            @RequestParam String status,
-            @RequestParam(required = false) Long customer) {
-        LOG.debug("JobOrder query. Principal={}, page={}, count={}, term={}, status={}", principal, page, count, term, status);
+            @RequestParam String term) {
+        LOG.debug("JobOrder query. Principal={}, page={}, count={}, term={}", principal, page, count, term);
         Sort sort = new Sort(Direction.DESC, "dateReceived");
         PageRequest pageRequest = new PageRequest(page - 1, count, sort);
 
-        Map<String, Object> params = Maps.newHashMap();
-        if (null != customer) {
-            params.put("customer", customer);
-        }
-
-        return new ResponseEntity<>(service.pageInfo(term, params, status, pageRequest), OK);
+        return new ResponseEntity<>(service.rqlSearch(term, pageRequest), OK);
     }
 
     @PreAuthorize("hasRole('ROLE_POS') or hasRole('ROLE_MANAGER') or canAccess(#principal, #trackingNo)")

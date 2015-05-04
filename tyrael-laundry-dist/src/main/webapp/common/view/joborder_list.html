@@ -1,7 +1,7 @@
 <h3 class="page-header">Job Orders</h3>
 
 <form class="form form-inline" ng-submit="reloadTable()">
-  <input type="text" ng-model="filter.term" onClick="this.select()" placeholder="Customer name or tracking number" class="form-control" />
+  <input type="text" ng-if="!isAuthorized('ROLE_CUSTOMER')" ng-model="filter.term" onClick="this.select()" placeholder="Customer name or tracking number" class="form-control" />
   <select ng-model="filter.status" class="form-control">
     <option value="">Any</option>
     <option value="NEW">New</option>
@@ -26,6 +26,7 @@
   <tbody>
     <tr ng-repeat="jobOrder in $data">
       <td>
+        <span ng-if="isAuthorized('ROLE_CUSTOMER')">{{jobOrder.trackingNo}}</span>
         <a ng-if="isAuthorized('ROLE_POS')" ui-sref="default.pos.joborder_view({trackingNo: jobOrder.trackingNo})">{{jobOrder.trackingNo}}</a>
         <a ng-if="isAuthorized('ROLE_MANAGER')" ui-sref="default.manager.joborder_view({trackingNo: jobOrder.trackingNo})">{{jobOrder.trackingNo}}</a>
       </td>

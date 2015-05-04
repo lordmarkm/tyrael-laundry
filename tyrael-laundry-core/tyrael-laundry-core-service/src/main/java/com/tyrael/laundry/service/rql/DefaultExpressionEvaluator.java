@@ -32,7 +32,7 @@ public class DefaultExpressionEvaluator extends AbstractExpressionEvaluator {
             return e.loe((Comparable) argsOfExpectedType.get(0));
         case "=in=":
             return e.in(argsOfExpectedType);
-        case "=nin=":
+        case "=out=":
             return e.notIn(argsOfExpectedType);
         default:
             throw new IllegalArgumentException("Operator not supported: " + operator);

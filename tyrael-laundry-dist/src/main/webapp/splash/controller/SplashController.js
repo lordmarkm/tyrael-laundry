@@ -1,5 +1,5 @@
 define(function () {
-  return ['$scope', '$state', 'toaster', 'auth', 'JobOrderService', function ($scope, $state, toaster, auth, JobOrderService) {
+  return ['$state', 'auth', function ($state, auth) {
 
     //Check user authorities and redirect where appropriate
     auth.then(function(authentication) {
