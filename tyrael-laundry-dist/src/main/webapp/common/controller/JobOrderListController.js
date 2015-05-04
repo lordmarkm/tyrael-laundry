@@ -1,12 +1,30 @@
 define(function () {
-  return ['$scope', '$modal', '$q', '$filter', 'toaster', 'ngTableParams', 'auth', 'confirm', 'JobOrderService', 'CustomerAccountService',
-          function ($scope, $modal, $q, $filter, toaster, ngTableParams, auth, confirm, JobOrderService, CustomerAccountService) {
+  return ['$scope', '$modal', '$q', '$filter', 'toaster', 'moment', 'ngTableParams', 'auth', 'confirm', 'JobOrderService', 'CustomerAccountService',
+          function ($scope, $modal, $q, $filter, toaster, moment, ngTableParams, auth, confirm, JobOrderService, CustomerAccountService) {
 
     var authResolved = $q.defer();
 
     //Filter
+    $scope.dateFormat = 'yyyy MMM-dd';
+    $scope.today = moment();
     $scope.filter = {
         status: ''
+    };
+    $scope.clearFilters = function () {
+      delete $scope.datefrom;
+      delete $scope.dateto;
+      delete $scope.filter.status;
+      delete $scope.filter.term;
+    };
+    $scope.open = function (picker, evt) {
+      evt.preventDefault();
+      evt.stopPropagation();
+      
+      if (picker === 'from') {
+        $scope.openDatefrom = true;
+      } else if (picker === 'to') {
+        $scope.openDateto = true;
+      }
     };
 
     //List
@@ -48,19 +66,29 @@ define(function () {
 
       //If customer, show only the job orders for the currently logged in customer
       if ($scope.customerAccount && $scope.customerAccount.customer) {
-        if (rql.length) {
-          rql += ';';
-        }
-        rql += ('customerId==' + $scope.customerAccount.customer.id);
+        and('customerId==', $scope.customerAccount.customer.id);
       }
 
       //If status is not ALL, append it
       if ($scope.filter.status) {
+        and('status==', $scope.filter.status);
+      }
+
+      //Filter by Date received range
+      if ($scope.filter.datefrom) {
+        and('dateReceived>=', moment($scope.filter.datefrom).format('YYYY-MM-DD'));
+      }
+      if ($scope.filter.dateto) {
+        and('dateReceived<=', moment($scope.filter.dateto).add(1, 'days').format('YYYY-MM-DD'));
+      }
+
+      function and(selector, arg) {
         if (rql.length) {
           rql += ';';
         }
-        rql += ('status==' + $scope.filter.status);
+        rql += (selector + arg);
       }
+
       return rql;
     }
 

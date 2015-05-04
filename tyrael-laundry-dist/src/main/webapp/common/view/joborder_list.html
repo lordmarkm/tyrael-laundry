@@ -8,7 +8,26 @@
     <option value="CLEANED">Cleaned</option>
     <option value="PAID_CLAIMED">Paid & Claimed</option>
   </select>
+  <span class="input-group">
+    <input type="text" datepicker-popup="{{dateFormat}}" placeholder="Received Date from"
+      ng-model="filter.datefrom" is-open="openDatefrom" ng-init="openDatefrom = false"
+      max-date="{{today}}"
+      class="form-control" />
+    <span class="input-group-btn">
+      <button type="button" class="btn btn-default" ng-click="open('from', $event)"><i class="glyphicon glyphicon-calendar"></i></button>
+    </span>
+  </span>
+  <span class="input-group">
+    <input type="text" datepicker-popup="{{dateFormat}}" placeholder="Received Date to"
+      ng-model="filter.dateto" is-open="openDateto" ng-init="openDateto = false"
+      max-date="{{today}}"
+      class="form-control" />
+    <span class="input-group-btn">
+      <button type="button" class="btn btn-default" ng-click="open('to', $event)"><i class="glyphicon glyphicon-calendar"></i></button>
+    </span>
+  </span>
   <input type="submit" value="Filter" class="form-control"/>
+  <span ng-click="clearFilters()" class="btn btn-default">Clear</span>
 </form>
 
 <table ng-table="tableParams" show-filter="true" class="table table-striped">

@@ -28,6 +28,12 @@ body {
     <td class="text-right" width="50%;"><strong>Tracking Number</strong></td>
     <td style="padding-left: 10px;">${jobOrder.trackingNo }</td>
   </tr>
+  <#if regCode??>
+  <tr>
+    <td class="text-right"><strong>Registration Code</strong></td>
+    <td style="padding-left: 10px;">${regCode.registrationCode }</td>
+  </tr>
+  </#if>
   <tr>
     <td class="text-right"><strong>Customer</strong></td>
     <#if jobOrder.customer??><td style="padding-left: 10px;">${jobOrder.customer.formattedName}</td>

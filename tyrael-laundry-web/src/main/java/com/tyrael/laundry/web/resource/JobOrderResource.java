@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.baldy.commons.web.controller.GenericController;
 import com.tyrael.commons.dto.PageInfo;
 import com.tyrael.laundry.service.JobOrderService;
 import com.tyrael.web.dto.JobOrderInfo;
@@ -29,7 +30,7 @@ import com.tyrael.web.dto.JobOrderInfo;
  */
 @RestController
 @RequestMapping("/joborder")
-public class JobOrderResource {
+public class JobOrderResource extends GenericController {
 
     private static final Logger LOG = LoggerFactory.getLogger(JobOrderResource.class);
 
@@ -46,7 +47,7 @@ public class JobOrderResource {
             @RequestParam int page,
             @RequestParam int count,
             @RequestParam String term) {
-        LOG.debug("JobOrder query. Principal={}, page={}, count={}, term={}", principal, page, count, term);
+        LOG.debug("JobOrder query. Principal={}, page={}, count={}, term={}", name(principal), page, count, term);
         Sort sort = new Sort(Direction.DESC, "dateReceived");
         PageRequest pageRequest = new PageRequest(page - 1, count, sort);
 

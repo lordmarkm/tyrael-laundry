@@ -43,7 +43,9 @@ public abstract class AbstractExpressionEvaluator {
         } else if (type.isAssignableFrom(Boolean.class)) {
             return Boolean.valueOf(string);
         } else if (type.isAssignableFrom(DateTime.class)) {
-            return DateTime.parse(string);
+            DateTime date = DateTime.parse(string);
+            LOG.debug("Parsed date/time. value={}", date);
+            return date;
         } else if (type.isEnum()) {
             return EnumUtils.getEnum((Class) type, string);
         }

@@ -11,7 +11,9 @@ require.config({
     'toaster': 'lib/angularjs-toaster/toaster',
     'bootstrap': 'lib/bootstrap/dist/js/bootstrap',
     'jquery': 'lib/jquery/dist/jquery.min',
-    'metisMenu': 'lib/metisMenu/dist/metisMenu.min'
+    'metisMenu': 'lib/metisMenu/dist/metisMenu.min',
+    'moment': 'lib/moment/min/moment.min',
+    'angular-moment': 'lib/angular-moment/angular-moment.min'
   },
   shim: {
     'angular': {
@@ -39,6 +41,9 @@ require.config({
     'angular-bootstrap': {
       deps: ['angular']
     },
+    'angular-moment': {
+      deps: ['angular', 'moment']
+    },
     'toaster': {
       deps: ['angular']
     },
@@ -64,6 +69,8 @@ require([
     'jquery',
     'bootstrap',
     'metisMenu',
+    'moment',
+    'angular-moment',
     'core/core.module.js',
     'common/common.module.js',
     'splash/splash.module.js',
@@ -82,6 +89,7 @@ require([
       'ngSanitize',
       'ui.bootstrap',
       'toaster',
+      'angularMoment',
       'core.module',
       'common.module',
       'splash.module',
