@@ -26,7 +26,6 @@
   <tbody>
     <tr ng-repeat="jobOrder in $data">
       <td>
-        <span ng-if="isAuthorized('ROLE_CUSTOMER')">{{jobOrder.trackingNo}}</span>
         <a ng-if="isAuthorized('ROLE_POS')" ui-sref="default.pos.joborder_view({trackingNo: jobOrder.trackingNo})">{{jobOrder.trackingNo}}</a>
         <a ng-if="isAuthorized('ROLE_MANAGER')" ui-sref="default.manager.joborder_view({trackingNo: jobOrder.trackingNo})">{{jobOrder.trackingNo}}</a>
         <a ng-if="isAuthorized('ROLE_CUSTOMER')" ui-sref="default.customer.joborder_view({trackingNo: jobOrder.trackingNo})">{{jobOrder.trackingNo}}</a>

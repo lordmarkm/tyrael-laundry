@@ -1,12 +1,12 @@
 define([
    'angular',
    'pos/controller/PosRootController',
-   'pos/controller/JobOrderViewController',
+   'common/controller/JobOrderViewController',
    'common/controller/JobOrderListController',
    'pos/controller/JobOrderCreateController',
    'pos/controller/CustomerViewController',
    'pos/controller/CustomerViewJobOrdersController',
-   'pos/resolve/JobOrderViewResolve',
+   'common/resolve/JobOrderViewResolve',
    'pos/resolve/JobOrderCreateResolve',
    'pos/resolve/CustomerViewResolve'
 ], function (angular,
@@ -26,7 +26,7 @@ define([
       })
       .state('default.pos.joborder_view', {
         url: '/joborder/view/{trackingNo}',
-        templateUrl: 'pos/view/joborder_view.html',
+        templateUrl: 'commob/view/joborder_view.html',
         controller: JobOrderViewController,
         resolve: JobOrderViewResolve
       })

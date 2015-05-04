@@ -40,7 +40,10 @@ define(function () {
     function term(term) {
       var rql = '';
       if (term) {
-        rql = 'trackingNo==' + term + ';customerFamilyName==' + term;
+        if (rql.length) {
+          rql += ';';
+        }
+        rql += '(trackingNo==' + term + ',customerSurname==' + term + '*,customerGivenName==' + term + '*)';
       }
 
       //If customer, show only the job orders for the currently logged in customer
