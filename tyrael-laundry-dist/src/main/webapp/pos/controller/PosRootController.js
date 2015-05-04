@@ -1,6 +1,5 @@
 define(function () {
   return ['$scope', '$state', '$stateParams', 'JobOrderService', function ($scope, $state, $stateParams, JobOrderService) {
-    $scope.controllerName = "POS Root Controller";
     $scope.params = $stateParams;
     $scope.recentData = {
       customer: {}

@@ -26,7 +26,7 @@ define([
       })
       .state('default.pos.joborder_view', {
         url: '/joborder/view/{trackingNo}',
-        templateUrl: 'commob/view/joborder_view.html',
+        templateUrl: 'common/view/joborder_view.html',
         controller: JobOrderViewController,
         resolve: JobOrderViewResolve
       })

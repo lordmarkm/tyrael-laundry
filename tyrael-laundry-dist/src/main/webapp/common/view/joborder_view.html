@@ -3,7 +3,8 @@
 
 <dl class="dl-horizontal">
   <dt>Customer
-  <dd><a ui-sref="default.pos.customer_view({id: jobOrder.customer.id})">{{jobOrder.customer.formattedName}}</a>
+  <dd ng-if="isAuthorized('ROLE_POS')"><a ui-sref="default.pos.customer_view({id: jobOrder.customer.id})">{{jobOrder.customer.formattedName}}</a></dd>
+  <dd ng-if="isAuthorized('ROLE_CUSTOMER')">{{jobOrder.customer.formattedName}}</dd>
   <dt>Date Received
   <dd>{{jobOrder.dateReceived | date}}
   <dt>Date Due
@@ -37,7 +38,7 @@
   <dt>Total Amount Paid
   <dd>{{jobOrder.totalAmountPaid | currency: 'Php '}}
   <dt>Status
-  <dd ng-if="!isClosedOrCancelled(jobOrder)">
+  <dd ng-if="isAuthorized('ROLE_POS') && !isClosedOrCancelled(jobOrder)">
     <div class="row">
     <div class="col-sm-4">
     <select ng-model="jobOrder.status" ng-change="onStatusChange(jobOrder, '{{jobOrder.status}}')" class="form-control input-sm">
@@ -48,7 +49,7 @@
     </div>
     </div>
   </dd>
-  <dd ng-if="isClosedOrCancelled(jobOrder)">
+  <dd ng-if="!isAuthorized('ROLE_POS') || isClosedOrCancelled(jobOrder)">
     {{jobOrder.status}}
   </dd>
 </dl>
@@ -65,6 +66,7 @@
       <div class="row">
         <div class="col-sm-4">
           <select ng-model="item.status" class="form-control input-sm" ng-change="onLostAndfoundStatusChange()">
+            <option value="LOST">Lost</option>
             <option value="FOUND">Found</option>
             <option value="NOT_FOUND">Not Found</option>
           </select>
@@ -103,6 +105,7 @@
       <label class="control-label col-sm-3">Status</label>
       <div class="col-sm-5">
         <select ng-model="lostAndFound.status" class="form-control">
+          <option ng-if="isAuthorized('ROLE_CUSTOMER')" value="LOST">Lost</option>
           <option value="FOUND">Found</option>
         </select>
       </div>

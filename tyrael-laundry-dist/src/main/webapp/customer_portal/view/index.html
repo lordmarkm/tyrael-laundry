@@ -1,1 +1,24 @@
-<ui-view></ui-view>
+<div id="wrapper">
+<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+  <div class="navbar-header">
+    <a class="navbar-brand" ui-sref="default.customer.joborder_list" title="Customer Portal">Customer Portal</a>
+  </div>
+  
+  <div class="navbar-default sidebar" role="navigation">
+    <div class="sidebar-nav navbar-collapse">
+      <ul class="nav" id="side-menu">
+        <li><a ui-sref="default.customer.joborder_list" ui-sref-active="active"><i class="fa fa-list fa-fw"></i> Job Orders</a></li>
+        <li ng-if="recentData.jobOrder">
+          <a ui-sref="default.customer.joborder_view({trackingNo: recentData.jobOrder.trackingNo})" ui-sref-active="active">
+            <i class="fa fa-file-text-o fa-fw"></i> Last Viewed <br>
+            <small style="margin-left: 20px;">{{recentData.jobOrder.trackingNo}}</small>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div id="page-wrapper" style="padding-top: 20px;">
+  <ui-view></ui-view>
+</div>
+</div>

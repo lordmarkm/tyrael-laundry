@@ -42,6 +42,7 @@ define(function () {
         templateUrl: 'modal-lostandfound',
         controller: ['$scope', '$modalInstance', 'lostAndFound', function($modalScope, $modalInstance, lostAndFound) {
           $modalScope.lostAndFound = lostAndFound;
+          $modalScope.isAuthorized = $scope.isAuthorized;
           $modalScope.proceed = function () {
             $modalInstance.dismiss();
             $scope.jobOrder.lostAndFoundItems.push($modalScope.lostAndFound);
@@ -59,7 +60,7 @@ define(function () {
         resolve: {
           lostAndFound: function () {
             return {
-              status: 'FOUND'
+              status: $scope.isAuthorized('ROLE_POS') ? 'FOUND' : 'LOST'
             };
           }
         }
