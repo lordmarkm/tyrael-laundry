@@ -29,6 +29,7 @@
         <span ng-if="isAuthorized('ROLE_CUSTOMER')">{{jobOrder.trackingNo}}</span>
         <a ng-if="isAuthorized('ROLE_POS')" ui-sref="default.pos.joborder_view({trackingNo: jobOrder.trackingNo})">{{jobOrder.trackingNo}}</a>
         <a ng-if="isAuthorized('ROLE_MANAGER')" ui-sref="default.manager.joborder_view({trackingNo: jobOrder.trackingNo})">{{jobOrder.trackingNo}}</a>
+        <a ng-if="isAuthorized('ROLE_CUSTOMER')" ui-sref="default.customer.joborder_view({trackingNo: jobOrder.trackingNo})">{{jobOrder.trackingNo}}</a>
       </td>
       <td>{{jobOrder.customer.formattedName}}
       <td>{{jobOrder.dateReceived | date:'MMM dd, yyyy h:mma'}}
