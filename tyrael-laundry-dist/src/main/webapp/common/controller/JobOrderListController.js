@@ -11,11 +11,13 @@ define(function () {
         status: ''
     };
     $scope.clearFilters = function () {
-      delete $scope.datefrom;
-      delete $scope.dateto;
+      delete $scope.filter.datefrom;
+      delete $scope.filter.dateto;
       delete $scope.filter.status;
       delete $scope.filter.term;
+      $scope.reloadTable();
     };
+
     $scope.open = function (picker, evt) {
       evt.preventDefault();
       evt.stopPropagation();

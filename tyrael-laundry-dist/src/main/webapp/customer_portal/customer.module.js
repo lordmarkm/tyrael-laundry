@@ -5,9 +5,11 @@ define([
   'customer_portal/controller/CustomerRootController',
   'common/controller/JobOrderListController',
   'common/controller/JobOrderViewController',
-  'common/resolve/JobOrderViewResolve'
-], function (angular, CustomerService, CustomerAccountService, CustomerRootController, JobOrderListController, JobOrderViewController,
-    JobOrderViewResolve) {
+  'common/controller/CustomerViewController',
+  'common/resolve/JobOrderViewResolve',
+  'common/resolve/CustomerViewResolve'
+], function (angular, CustomerService, CustomerAccountService, CustomerRootController, JobOrderListController, JobOrderViewController, CustomerViewController,
+    JobOrderViewResolve, CustomerViewResolve) {
   console.debug('Configuring customer.module');
   angular.module('customer.module', [])
     .service('CustomerService', CustomerService)
@@ -28,6 +30,12 @@ define([
         templateUrl: 'common/view/joborder_view.html',
         controller: JobOrderViewController,
         resolve: JobOrderViewResolve
+      })
+      .state('default.customer.profile', {
+        url: '/profile',
+        templateUrl: 'common/view/customer_view.html',
+        controller: CustomerViewController,
+        resolve: CustomerViewResolve
       });
   }]);
 });

@@ -1,34 +1,57 @@
 <h3 class="page-header">Job Orders</h3>
 
 <form class="form form-inline" ng-submit="reloadTable()">
-  <input type="text" ng-if="!isAuthorized('ROLE_CUSTOMER')" ng-model="filter.term" onClick="this.select()" placeholder="Customer name or tracking number" class="form-control" />
-  <select ng-model="filter.status" class="form-control">
-    <option value="">Any</option>
-    <option value="NEW">New</option>
-    <option value="CLEANED">Cleaned</option>
-    <option value="PAID_CLAIMED">Paid & Claimed</option>
-  </select>
-  <span class="input-group">
-    <input type="text" datepicker-popup="{{dateFormat}}" placeholder="Received Date from"
-      ng-model="filter.datefrom" is-open="openDatefrom" ng-init="openDatefrom = false"
-      max-date="{{today}}"
-      class="form-control" />
-    <span class="input-group-btn">
-      <button type="button" class="btn btn-default" ng-click="open('from', $event)"><i class="glyphicon glyphicon-calendar"></i></button>
-    </span>
-  </span>
-  <span class="input-group">
-    <input type="text" datepicker-popup="{{dateFormat}}" placeholder="Received Date to"
-      ng-model="filter.dateto" is-open="openDateto" ng-init="openDateto = false"
-      max-date="{{today}}"
-      class="form-control" />
-    <span class="input-group-btn">
-      <button type="button" class="btn btn-default" ng-click="open('to', $event)"><i class="glyphicon glyphicon-calendar"></i></button>
-    </span>
-  </span>
-  <input type="submit" value="Filter" class="form-control"/>
-  <span ng-click="clearFilters()" class="btn btn-default">Clear</span>
+  <div class="row">
+    <div class="col-sm-12">
+    <input style="width: 30%;" type="text" ng-if="!isAuthorized('ROLE_CUSTOMER')" ng-model="filter.term" onClick="this.select()" placeholder="Customer name or tracking number" class="form-control" />
+    <select ng-model="filter.status" class="form-control">
+      <option value="">Any</option>
+      <option value="NEW">New</option>
+      <option value="CLEANED">Cleaned</option>
+      <option value="PAID_CLAIMED">Paid & Claimed</option>
+    </select>
+    <input type="submit" value="Filter" class="form-control"/>
+    <span ng-click="clearFilters()" class="btn btn-default">Clear</span>
+    </div>
+  </div>
 </form>
+
+<div class="mt10">
+  <a data-toggle="collapse" href="#advancedFilters" ng-click="showAdvanced = !showAdvanced" ng-init="showAdvanced = false" aria-expanded="false" aria-controls="advancedFilters" style="font-family: monospace;">
+    <span ng-show="showAdvanced">[-]</span>
+    <span ng-show="!showAdvanced">[+]</span>
+    Advanced
+  </a>
+</div>
+<div class="collapse mt10" id="advancedFilters">
+<form class="form form-horizontal" ng-submit="reloadTable()">
+  <div class="form-group">
+    <label class="col-sm-2 control-label">Date filter</label>
+    <div class="col-sm-3">
+      <span class="input-group">
+        <input type="text" datepicker-popup="{{dateFormat}}" placeholder="Received Date from"
+          ng-model="filter.datefrom" is-open="openDatefrom" ng-init="openDatefrom = false"
+          max-date="{{today}}"
+          class="form-control" readonly />
+        <span class="input-group-btn">
+          <button type="button" class="btn btn-default" ng-click="open('from', $event)"><i class="glyphicon glyphicon-calendar"></i></button>
+        </span>
+      </span>
+    </div>
+    <div class="col-sm-3">
+      <span class="input-group">
+        <input type="text" datepicker-popup="{{dateFormat}}" placeholder="Received Date to"
+          ng-model="filter.dateto" is-open="openDateto" ng-init="openDateto = false"
+          max-date="{{today}}"
+          class="form-control" readonly />
+        <span class="input-group-btn">
+          <button type="button" class="btn btn-default" ng-click="open('to', $event)"><i class="glyphicon glyphicon-calendar"></i></button>
+        </span>
+      </span>
+    </div>
+  </div>
+</form>
+</div>
 
 <table ng-table="tableParams" show-filter="true" class="table table-striped">
   <thead>

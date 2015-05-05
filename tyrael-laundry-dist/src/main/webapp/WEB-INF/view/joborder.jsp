@@ -1,3 +1,5 @@
+<#import "/spring.ftl" as spring />
+
 <!DOCTYPE html>
 <html>
 
@@ -6,9 +8,9 @@
 <meta content="utf-8" http-equiv="encoding">
 <title>Tyrael Laundry</title>
 <link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
-<link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css" />
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css" />
-<link rel="stylesheet" href="/lib/app.css" />
+<link rel="stylesheet" href="<@spring.url '/lib/bootstrap/dist/css/bootstrap.min.css' />" />
+<link rel="stylesheet" href="<@spring.url '/lib/font-awesome/css/font-awesome.min.css' />" />
+<link rel="stylesheet" href="<@spring.url '/lib/app.css' />" />
 <style>
 body {
   font-size: 1.2em;
@@ -94,8 +96,8 @@ body {
 
 </body>
 
-<script type="text/javascript" src="/lib/jquery/dist/jquery.min.js"></script>
-<script type="text/javascript" src="/lib/jquery-barcode/jquery-barcode.min.js"></script>
+<script type="text/javascript" src="<@spring.url '/lib/jquery/dist/jquery.min.js' />"></script>
+<script type="text/javascript" src="<@spring.url '/lib/jquery-barcode/jquery-barcode.min.js' />"></script>
 <script type="text/javascript">
 $(function(){
   var $barcode = $('#barcode');

@@ -33,8 +33,6 @@ implements JobOrderServiceCustom  {
 
     private static final Logger LOG = LoggerFactory.getLogger(JobOrderServiceCustomImpl.class);
 
-    private static final String STATUS_OPEN = "OPEN";
-
     @Autowired
     private TyraelLaundryJobOrderSequenceService sequenceService;
 
@@ -61,9 +59,14 @@ implements JobOrderServiceCustom  {
 
         BooleanExpression predicate = null;
         if (!StringUtils.isBlank(term)) {
-            Node rootNode = new RSQLParser().parse(term);
-            RsqlParserVisitor visitor = new RsqlParserVisitor();
-            predicate = rootNode.accept(visitor, FIELD_MAPPING);
+            try {
+                Node rootNode = new RSQLParser().parse(term);
+                RsqlParserVisitor visitor = new RsqlParserVisitor();
+                predicate = rootNode.accept(visitor, FIELD_MAPPING);
+            } catch (Exception e) {
+                LOG.error("Error parsing or interpreting rql term. term={}, error={}", term, e.getMessage());
+                return PageInfo.blank();
+            }
         }
         return super.pageInfo(predicate, pageRequest);
     }
