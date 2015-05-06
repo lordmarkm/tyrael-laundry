@@ -4,6 +4,7 @@ import org.springframework.core.style.ToStringCreator;
 
 import com.tyrael.commons.dto.AddressInfo;
 import com.tyrael.commons.dto.BaseTyraelDto;
+import com.tyrael.commons.dto.ContactDetailsInfo;
 import com.tyrael.commons.dto.NameInfo;
 
 /**
@@ -13,12 +14,14 @@ public class CustomerInfo extends BaseTyraelDto {
 
     private NameInfo name;
     private AddressInfo address;
+    private ContactDetailsInfo contactDetails;
 
     @Override
     protected ToStringCreator toStringCreator() {
         return super.toStringCreator()
             .append("name", name)
-            .append("address", address);
+            .append("address", address)
+            .append("contact", contactDetails);
     }
 
     public String getFormattedAddress() {
@@ -79,6 +82,14 @@ public class CustomerInfo extends BaseTyraelDto {
 
     public void setAddress(AddressInfo address) {
         this.address = address;
+    }
+
+    public ContactDetailsInfo getContactDetails() {
+        return contactDetails;
+    }
+
+    public void setContactDetails(ContactDetailsInfo contactDetails) {
+        this.contactDetails = contactDetails;
     }
 
 }

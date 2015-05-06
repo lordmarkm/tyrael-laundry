@@ -1,1 +1,72 @@
-View customer here
+<div class="ng-cloak" ng-cloak>
+<div ng-if="customer.id">
+<h3 class="page-header">{{customer.formattedName}}</h3>
+
+<dl class="dl-horizontal">
+  <dt>Surname
+  <dd>{{customer.name.surname}}
+  <dt>Give Name
+  <dd>{{customer.name.givenName}}
+  <dt>Middle Name
+  <dd>{{customer.name.middleName}}
+</dl>
+
+<div class="text-right">
+  <button ng-click="editName()" class="btn btn-primary">Edit name</button>
+</div>
+
+<div ng-if="customer.address">
+  <dl class="dl-horizontal">
+    <dt>Address Line 1
+    <dd>{{customer.address.addressLine1}}
+    <dt ng-if="customer.address.addressLine2">Address Line 2
+    <dd ng-if="customer.address.addressLine2">{{customer.address.addressLine2}}
+    <dt ng-if="customer.address.city">City
+    <dd ng-if="customer.address.city">{{customer.address.city}}
+    <dt ng-if="customer.address.province">Province
+    <dd ng-if="customer.address.province">{{customer.address.province}}
+    <dt ng-if="customer.address.zip">Zip Code
+    <dd ng-if="customer.address.zip">{{customer.address.zip}}
+  </dl>
+  <div class="text-right">
+    <button ng-click="editAddress()" class="btn btn-primary">Edit address</button>
+  </div>
+</div>
+
+<div ng-if="!customer.address">
+  <div>Address not specified</div>
+  <div class="text-right">
+    <button ng-click="editAddress()" class="btn btn-primary">Add address</button>
+  </div>
+</div>
+
+<div ng-if="customer.contactDetails">
+  <dl class="dl-horizontal">
+    <dt ng-if="customer.contactDetails.cellphone">Cellphone
+    <dd ng-if="customer.contactDetails.cellphone">{{customer.contactDetails.cellphone}}
+    <dt ng-if="customer.contactDetails.landline">Address Line 2
+    <dd ng-if="customer.contactDetails.landline">{{customer.contactDetails.landline}}
+    <dt ng-if="customer.contactDetails.email">Email
+    <dd ng-if="customer.contactDetails.email">{{customer.contactDetails.email}}
+  </dl>
+  <div class="text-right">
+    <button ng-click="editContactDetails()" class="btn btn-primary">Edit contact details</button>
+  </div>
+</div>
+
+<div ng-if="!customer.contactDetails">
+  <div>Contact details not specified</div>
+  <div class="text-right">
+    <button ng-click="editContactDetails()" class="btn btn-primary">Add contact details</button>
+  </div>
+</div>
+
+
+
+
+</div>
+
+<div ng-if="!customer.id" ng-cloak>
+  <h3>Customer not found!</h3>
+</div>
+</div>

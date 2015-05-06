@@ -1,11 +1,11 @@
 package com.tyrael.laundry.model;
 
-import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 
 import com.baldy.commons.models.BaseEntity;
 import com.baldy.commons.models.proper.Address;
+import com.baldy.commons.models.proper.ContactDetails;
 import com.baldy.commons.models.proper.Name;
 
 /**
@@ -20,8 +20,8 @@ public class Customer extends BaseEntity {
     @Embedded
     private Address address;
 
-    @Column(name = "CONTACT_NO")
-    private String contactNumber;
+    @Embedded
+    private ContactDetails contactDetails;
 
     public Name getName() {
         return name;
@@ -39,12 +39,12 @@ public class Customer extends BaseEntity {
         this.address = address;
     }
 
-    public String getContactNumber() {
-        return contactNumber;
+    public ContactDetails getContactDetails() {
+        return contactDetails;
     }
 
-    public void setContactNumber(String contactNumber) {
-        this.contactNumber = contactNumber;
+    public void setContactDetails(ContactDetails contactDetails) {
+        this.contactDetails = contactDetails;
     }
 
 }

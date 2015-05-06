@@ -4,11 +4,11 @@ define([
    'common/controller/JobOrderViewController',
    'common/controller/JobOrderListController',
    'pos/controller/JobOrderCreateController',
-   'pos/controller/CustomerViewController',
+   'common/controller/CustomerViewController',
    'pos/controller/CustomerViewJobOrdersController',
    'common/resolve/JobOrderViewResolve',
    'pos/resolve/JobOrderCreateResolve',
-   'pos/resolve/CustomerViewResolve'
+   'common/resolve/CustomerViewResolve'
 ], function (angular,
     PosRootController, JobOrderViewController, JobOrderListController, JobOrderCreateController, CustomerViewController, CustomerViewJobOrdersController,
     JobOrderViewResolve, JobOrderCreateResolve, CustomerViewResolve) {
@@ -45,7 +45,7 @@ define([
       //Customer management
       .state('default.pos.customer_view', {
         url: '/customer/{id}',
-        templateUrl: 'pos/view/customer_view.html',
+        templateUrl: 'common/view/customer_view.html',
         controller: CustomerViewController,
         resolve: CustomerViewResolve
       })

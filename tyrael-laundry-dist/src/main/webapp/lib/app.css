@@ -34,3 +34,7 @@ html {
   font-size: 0.8em;
   max-height: 116px;
 }
+
+[ng\:cloak], [ng-cloak], .ng-cloak {
+  display: none !important;
+}

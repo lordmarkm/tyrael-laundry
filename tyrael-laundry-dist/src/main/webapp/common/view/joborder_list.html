@@ -86,10 +86,10 @@
           <option ng-if="isAuthorized('ROLE_MANAGER')" value="CANCELLED">Cancelled</option>
         </select>
       </td>
-      <td ng-if="isClosedOrCancelled(jobOrder) && !isAuthorized('ROLE_MANAGER')">
+      <td ng-if="isClosedOrCancelled(jobOrder) && isAuthorized('ROLE_POS')">
         {{jobOrder.status}}
       </td>
-      <td ng-if="!isAuthorized('ROLE_POS') && !isAuthorized('ROLE_MANAGER')">
+      <td ng-if="isAuthorized('ROLE_CUSTOMER')">
         {{jobOrder.status}}
       </td>
     </tr>

@@ -16,6 +16,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.joda.JodaModule;
 import com.tyrael.laundry.app.config.TyraelLaundryAppConfigMarker;
 import com.tyrael.laundry.audit.config.TyraelLaundryAuditConfigMarker;
+import com.tyrael.laundry.billing.config.TyraelLaundryBillingConfigMarker;
 import com.tyrael.laundry.security.config.TyraelLaundrySecurityConfigMarker;
 import com.tyrael.laundry.web.TyraelLaundryWebMarker;
 
@@ -26,6 +27,7 @@ import com.tyrael.laundry.web.TyraelLaundryWebMarker;
 }, basePackageClasses = {
     TyraelLaundryAppConfigMarker.class,
     TyraelLaundrySecurityConfigMarker.class,
+    TyraelLaundryBillingConfigMarker.class,
     TyraelLaundryAuditConfigMarker.class,
     TyraelLaundryWebMarker.class
 })

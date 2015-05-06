@@ -17,6 +17,7 @@
     <module>tyrael-laundry-commons</module>
     <module>tyrael-laundry-messaging</module>
     <module>tyrael-laundry-data</module>
+    <module>tyrael-laundry-billing</module>
   </modules>
 
   <properties>
@@ -48,6 +49,11 @@
       <dependency>
         <groupId>com.tyrael.laundry</groupId>
         <artifactId>tyrael-laundry-core-service</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.tyrael.laundry</groupId>
+        <artifactId>tyrael-laundry-security</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>

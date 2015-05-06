@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.baldy.commons.web.controller.GenericController;
 import com.tyrael.commons.dto.PageInfo;
+import com.tyrael.laundry.security.dto.CustomerAccountInfo;
+import com.tyrael.laundry.security.service.CustomerAccountService;
 import com.tyrael.laundry.service.CustomerService;
 import com.tyrael.web.dto.CustomerInfo;
 
@@ -31,7 +33,10 @@ public class CustomerResource extends GenericController {
     @Autowired
     private CustomerService service;
 
-    @RequestMapping(method = GET)
+    @Autowired
+    private CustomerAccountService customerAccountService;
+
+    @RequestMapping(method = GET, params = {"page", "count", "term"})
     public ResponseEntity<PageInfo<CustomerInfo>> page(Principal principal,
             @RequestParam int page,
             @RequestParam int count,
@@ -39,6 +44,13 @@ public class CustomerResource extends GenericController {
         LOG.debug("Customer query. Principal={}, page={}, count={}, term={}", principal, page, count, term);
         PageRequest pageRequest = new PageRequest(page - 1, count);
         return new ResponseEntity<>(service.pageInfo(term, pageRequest), OK);
+    }
+
+    @RequestMapping(method = GET)
+    public ResponseEntity<CustomerInfo> getCurrent(Principal principal) {
+        LOG.debug("Trying to find currently logged in customer. username={}", name(principal));
+        CustomerAccountInfo accountInfo = customerAccountService.findByAccountUsernameInfo(principal.getName());
+        return new ResponseEntity<>(null == accountInfo ? null : accountInfo.getCustomer(), OK);
     }
 
     @RequestMapping(value = "/{id}", method = GET)

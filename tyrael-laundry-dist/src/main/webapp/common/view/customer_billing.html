@@ -1,0 +1,22 @@
+<div ng-cloak>
+<div ng-if="billingInfo.customer.id">
+<h3 class="page-header">Billing Details <br> <small class="muted">{{billingInfo.customer.formattedName}}</small></h3>
+
+<dl class="dl-horizontal">
+  <dt>Open Job orders
+  <dd>{{billingInfo.openJobOrders}}
+  <dt>Closed Job orders
+  <dd>{{billingInfo.closedJobOrders}}
+  <dt>Balance
+  <dd>{{billingInfo.balance | currency: 'Php '}}
+  <dt>Credit
+  <dd>{{billingInfo.credit | currency: 'Php '}}
+</dl>
+
+
+</div>
+
+<div ng-if="!billingInfo.customer.id">
+  <h3>Customer not found!</h3>
+</div>
+</div>
