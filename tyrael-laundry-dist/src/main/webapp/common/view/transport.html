@@ -1,0 +1,17 @@
+Transport. customer={{customer}}
+
+<table ng-table="tableParams" show-filter="true" class="table table-striped">
+  <thead>
+    <tr>
+      <th>Id
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="transportRequest in $data">
+      <td>{{transportRequest.id}}</td>
+    </tr>
+    <tr ng-if="!$data.length">
+      <td colspan="1">No items available</td>
+    </tr>
+  </tbody>
+</table>

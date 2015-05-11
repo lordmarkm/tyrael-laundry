@@ -5,6 +5,9 @@ package com.tyrael.laundry.reference;
  */
 public enum TransportRequestStatus {
 
+    NEW("New"),
+    QUEUED("Queued"),
+    IN_TRANSIT("In transit"),
     COMPLETED("Completed"),
     CANCELLED("Cancelled"),
     ADDR_NOT_FOUND("Address not found"),

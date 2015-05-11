@@ -12,7 +12,9 @@ import org.springframework.context.annotation.Import;
 
 import com.tyrael.commons.mapper.config.MapperConfig;
 import com.tyrael.laundry.model.JobOrder;
+import com.tyrael.laundry.model.TransportRequest;
 import com.tyrael.web.dto.JobOrderInfo;
+import com.tyrael.web.dto.TransportRequestInfo;
 
 /**
  * Initialize the Dozer mapper for application-wide use.
@@ -35,6 +37,9 @@ public class TyraelLaundryAppSupportConfig {
                     .fields("dateDue", "dateDue", copyByReference())
                     .fields("dateCompleted", "dateCompleted", copyByReference())
                     .fields("dateClaimed", "dateClaimed", copyByReference());
+                mapping(TransportRequest.class, TransportRequestInfo.class)
+                    .fields("created", "created", copyByReference())
+                    .fields("completed", "completed", copyByReference());
             }
         });
     }

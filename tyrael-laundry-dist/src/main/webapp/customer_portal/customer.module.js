@@ -3,22 +3,28 @@ define([
   'core/service/CustomerService',
   'core/service/CustomerAccountService',
   'common/service/CustomerBillingInfoService',
+  'common/service/PickupService',
+  'common/service/DeliveryService',
   'customer_portal/controller/CustomerRootController',
   'common/controller/JobOrderListController',
   'common/controller/JobOrderViewController',
   'common/controller/CustomerViewController',
   'common/controller/CustomerBillingController',
+  'customer_portal/controller/CustomerTransportController',
   'common/resolve/JobOrderViewResolve',
   'common/resolve/CustomerViewResolve',
-  'common/resolve/CustomerBillingResolve'
-], function (angular, CustomerService, CustomerAccountService, CustomerBillingInfoService,
-    CustomerRootController, JobOrderListController, JobOrderViewController, CustomerViewController, CustomerBillingController,
-    JobOrderViewResolve, CustomerViewResolve, CustomerBillingResolve) {
+  'common/resolve/CustomerBillingResolve',
+  'customer_portal/resolve/CustomerTransportResolve'
+], function (angular, CustomerService, CustomerAccountService, CustomerBillingInfoService, PickupService, DeliveryService,
+    CustomerRootController, JobOrderListController, JobOrderViewController, CustomerViewController, CustomerBillingController, CustomerTransportController,
+    JobOrderViewResolve, CustomerViewResolve, CustomerBillingResolve, CustomerTransportResolve) {
   console.debug('Configuring customer.module');
   angular.module('customer.module', [])
     .service('CustomerService', CustomerService)
     .service('CustomerAccountService', CustomerAccountService)
     .service('CustomerBillingInfoService', CustomerBillingInfoService)
+    .service('PickupService', PickupService)
+    .service('DeliveryService', DeliveryService)
     .config(['$stateProvider', function ($stateProvider) {
       $stateProvider.state('default.customer', {
         url: 'portal',
@@ -47,6 +53,12 @@ define([
         templateUrl: 'common/view/customer_billing.html',
         controller: CustomerBillingController,
         resolve: CustomerBillingResolve
+      })
+      .state('default.customer.transport', {
+        url: '/pickup_delivery',
+        templateUrl: 'customer_portal/view/transport.html',
+        controller: CustomerTransportController,
+        resolve: CustomerTransportResolve
       });
   }]);
 });

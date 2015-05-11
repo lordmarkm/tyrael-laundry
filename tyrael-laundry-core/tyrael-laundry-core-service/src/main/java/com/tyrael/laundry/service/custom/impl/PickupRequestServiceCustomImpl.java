@@ -2,6 +2,8 @@ package com.tyrael.laundry.service.custom.impl;
 
 import static com.tyrael.laundry.model.QPickupRequest.pickupRequest;
 
+import org.joda.time.DateTime;
+
 import com.google.common.collect.ImmutableMap;
 import com.mysema.query.types.Path;
 import com.tyrael.laundry.model.PickupRequest;
@@ -27,4 +29,11 @@ public class PickupRequestServiceCustomImpl
             .build();
     }
 
+    @Override
+    public TransportRequestInfo saveInfo(TransportRequestInfo pickupRequest) {
+        if (null == pickupRequest.getCreated()) {
+            pickupRequest.setCreated(DateTime.now());
+        }
+        return super.saveInfo(pickupRequest);
+    }
 }
