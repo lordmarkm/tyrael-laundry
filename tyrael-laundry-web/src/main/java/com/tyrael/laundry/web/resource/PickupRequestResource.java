@@ -33,9 +33,11 @@ public class PickupRequestResource {
         LOG.debug("Finding pickup requests. term={}, page={}", term, pageable);
         return new ResponseEntity<>(service.searchRql(term, pageable), OK);
     }
+
     @RequestMapping(method = POST)
     public ResponseEntity<TransportRequestInfo> save(Principal principal, @RequestBody TransportRequestInfo pickupRequest) {
         LOG.debug("Pickup request received. request={}", pickupRequest);
         return new ResponseEntity<>(service.saveInfo(pickupRequest), OK);
     }
+
 }

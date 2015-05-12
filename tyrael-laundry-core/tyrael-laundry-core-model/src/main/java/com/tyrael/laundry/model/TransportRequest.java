@@ -31,7 +31,7 @@ public class TransportRequest extends BaseEntity {
      * Also, override line 1 as required otherwise we wouldn't know where to deliver to.
      */
     @Embedded
-    @AttributeOverride(name = "addressLine1", column = @Column(name = "LINE1", nullable = false))
+    @AttributeOverride(name = "addressLine1", column = @Column(name = "ADDR_LINE1", nullable = false))
     private Address address;
 
     @Column(name = "DATE_CREATED", nullable = false)

@@ -131,6 +131,46 @@ define(function () {
       });
     };
 
+    //Request delivery
+    $scope.requestDelivery = function (jobOrder) {
+      showDeliveryRequestModal().result.then(function (deliveryRequest) {
+        toaster.pop('success', 'Delivery request created');
+      });
+
+      function showDeliveryRequestModal() {
+        return $modal.open({
+          templateUrl: 'common/view/modal_delivery_request.html',
+          controller: ['$scope', '$state', '$modalInstance', 'deliveryRequest', function($scope, $state, $modalInstance, deliveryRequest) {
+            $scope.jobOrder = jobOrder;
+            $scope.deliveryRequest = deliveryRequest;
+            $scope.proceed = function () {
+              $modalInstance.close(deliveryRequest);
+            };
+            $scope.cancel = function () {
+              $modalInstance.dismiss();
+            };
+          }],
+          resolve: {
+            deliveryRequest: function () {
+              return {
+                  customer: $scope.customerAccount.customer,
+                  jobOrder: jobOrder,
+                  address: {
+                    addressLine1: $scope.customerAccount.customer.address ? $scope.customerAccount.customer.address.addressLine1 || '' : '',
+                    addressLine2: $scope.customerAccount.customer.address ? $scope.customerAccount.customer.address.addressLine2 || '' : ''
+                    //city: customer.address.city,
+                    //province: customer.address.province,
+                    //zip: customer.address.zip
+                  },
+                  status: 'NEW'
+              };
+              return jobOrder;
+            }
+          }
+        });
+      }
+    };
+
     //Some utility methods
     $scope.isClosedOrCancelled = function (jobOrder) {
       return jobOrder.status == 'CLOSED' || jobOrder.status == 'CANCELLED';

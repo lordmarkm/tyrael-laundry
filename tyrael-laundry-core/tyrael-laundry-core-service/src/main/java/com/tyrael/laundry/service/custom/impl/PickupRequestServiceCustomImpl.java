@@ -19,6 +19,7 @@ public class PickupRequestServiceCustomImpl
     protected ImmutableMap<String, Path<?>> fieldMapping() {
         return ImmutableMap.<String, Path<?>>builder()
             .put("id", pickupRequest.id)
+            .put("deleted", pickupRequest.deleted)
             .put("address", pickupRequest.address)
             .put("customerId", pickupRequest.customer.id)
             .put("customerSurname", pickupRequest.customer.name.surname)

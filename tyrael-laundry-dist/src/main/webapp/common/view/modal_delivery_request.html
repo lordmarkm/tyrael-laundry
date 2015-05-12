@@ -1,0 +1,36 @@
+<form name="pickupRequestForm" class="form form-horizontal" ng-submit="proceed()">
+  <div class="modal-header modal-primary">
+    <button type="button" class="close" ng-click="cancel()">&times;</button>
+    <h3 class="modal-title">Request delivery</h3>
+  </div>
+  <div class="modal-body">
+    <div class="form-group">
+      <label class="col-sm-3 control-label">Customer</label>
+      <div class="col-sm-4">
+        <p class="form-control-static">{{deliveryRequest.customer.formattedName}}
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-3 control-label">Job Order</label>
+      <div class="col-sm-4">
+        <p class="form-control-static">{{deliveryRequest.jobOrder.trackingNo}}
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-3 control-label req">Addr line 1</label>
+      <div class="col-sm-4">
+        <input type="text" ng-model="deliveryRequest.address.addressLine1" required class="form-control" />
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-3 control-label">Addr line 2</label>
+      <div class="col-sm-4">
+        <input type="text" ng-model="deliveryRequest.address.addressLine2" class="form-control" />
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button ng-click="proceed(pickupRequestForm.$valid)" class="btn btn-primary btn-s-xs">Proceed</button>
+    <button ng-click="cancel()" class="btn btn-primary btn-s-xs">Cancel</button>
+  </div>
+</form>

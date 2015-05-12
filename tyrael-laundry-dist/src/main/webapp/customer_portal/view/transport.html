@@ -1,38 +1,64 @@
-Customer transport.
+<div ng-if="customer">
+<h3 class="page-header">Pickup and Delivery <br> <small class="muted">{{customer.formattedName}}</small></h3>
+
+<dl ng-if="pickup" class="dl-horizontal">
+  <dt>Id
+  <dd>{{pickup.id}}
+  <dt>Address line 1
+  <dd>{{pickup.address.addressLine1}}
+  <dt ng-if="pickup.address.addressLine2">Address Line 2
+  <dd ng-if="pickup.address.addressLine2">{{pickup.address.addressLine2}}
+  <dt ng-if="pickup.address.city">City
+  <dd ng-if="pickup.address.city">{{pickup.address.city}}
+  <dt ng-if="pickup.address.province">Province
+  <dd ng-if="pickup.address.province">{{pickup.address.province}}
+  <dt ng-if="pickup.address.zip">Zip Code
+  <dd ng-if="pickup.address.zip">{{pickup.address.zip}}
+  <dt>Status
+  <dd>{{pickup.status}}
+</dl>
 <div>
-  <span ng-click="requestPickup()" ng-disabled="pickup" class="btn btn-default">Request pickup</span>
+  <span ng-if="!pickup" ng-click="requestPickup()" class="btn btn-default">Request pickup</span>
+  <span ng-if="pickup" ng-click="requestPickup(pickup)" class="btn btn-default">Edit pickup request</span>
+  <span ng-if="pickup" ng-click="cancelPickup(pickup)" class="btn btn-default">Cancel pickup request</span>
 </div>
-<div>customer={{customer}}</div>
-<div class="mt20">pickup={{pickup}}</div>
 <div class="mt20">deliveries={{deliveries}}</div>
 
+</div>
+
 <script type="text/ng-template" id="modal-request-pickup">
-  <form class="form form-horizontal" ng-submit="proceed()">
+  <form name="pickupRequestForm" class="form form-horizontal" ng-submit="proceed()">
   <div class="modal-header modal-primary">
     <button type="button" class="close" ng-click="cancel()">&times;</button>
-    <h3 class="modal-title">Create success</h3>
+    <h3 class="modal-title">Request pickup</h3>
   </div>
   <div class="modal-body">
-    <dl class="dl-horizontal">
-      <dt>Customer
-      <dd>{{pickupRequest.customer.formattedName}}
-    </dl>
     <div class="form-group">
-      <label class="col-sm-2 control-label req">Addr line 1</label>
+      <label class="col-sm-3 control-label">Customer</label>
       <div class="col-sm-4">
-        <input type="text" ng-model="pickupRequest.address.addressLine1" required />
+        <p class="form-control-static">{{pickupRequest.customer.formattedName}}
       </div>
     </div>
     <div class="form-group">
-      <label class="col-sm-2 control-label req">Addr line 2</label>
+      <label class="col-sm-3 control-label req">Addr line 1</label>
       <div class="col-sm-4">
-        <input type="text" ng-model="pickupRequest.address.addressLine2" required />
+        <input type="text" ng-model="pickupRequest.address.addressLine1" required class="form-control" />
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-3 control-label">Addr line 2</label>
+      <div class="col-sm-4">
+        <input type="text" ng-model="pickupRequest.address.addressLine2" class="form-control" />
       </div>
     </div>
   </div>
   <div class="modal-footer">
-    <button ng-click="proceed()" class="btn btn-primary btn-s-xs">Proceed</button>
+    <button ng-click="proceed(pickupRequestForm.$valid)" class="btn btn-primary btn-s-xs">Proceed</button>
     <button ng-click="cancel()" class="btn btn-primary btn-s-xs">Cancel</button>
   </div>
   </form>
 </script>
+
+<div ng-if="!customer">
+  <h3>Customer not found!</h3>
+</div>

@@ -6,6 +6,6 @@
   <p>{{msg}}
 </div>
 <div class="modal-footer">
-  <button class="btn btn-primary btn-s-xs" ng-click="ok()">OK</button>
-  <button class="btn btn-default btn-s-xs" ng-click="cancel()">Cancel</button>
+  <button class="btn btn-primary btn-s-xs" ng-click="ok()">{{okBtn || 'OK'}}</button>
+  <button class="btn btn-default btn-s-xs" ng-click="cancel()">{{cancelBtn || 'Cancel'}}</button>
 </div>

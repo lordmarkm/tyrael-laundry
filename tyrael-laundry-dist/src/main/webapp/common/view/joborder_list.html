@@ -91,6 +91,7 @@
       </td>
       <td ng-if="isAuthorized('ROLE_CUSTOMER')">
         {{jobOrder.status}}
+        <button ng-click="requestDelivery(jobOrder)" ng-if="jobOrder.status == 'CLEANED'" title="Request delivery" class="btn btn-primary btn-xs"><i class="fa fa-truck"></i></button>
       </td>
     </tr>
     <tr ng-if="!$data.length">
