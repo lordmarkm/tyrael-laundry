@@ -15,10 +15,6 @@
       <artifactId>tyrael-laundry-core-model</artifactId>
     </dependency>
     <dependency>
-      <groupId>com.tyrael.laundry</groupId>
-      <artifactId>tyrael-laundry-messaging</artifactId>
-    </dependency>
-    <dependency>
       <groupId>tyrael-commons</groupId>
       <artifactId>tyrael-commons-data</artifactId>
     </dependency>
