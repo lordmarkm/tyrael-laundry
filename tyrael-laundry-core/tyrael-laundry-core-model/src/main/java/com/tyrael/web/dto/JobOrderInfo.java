@@ -8,6 +8,7 @@ import org.springframework.core.style.ToStringCreator;
 
 import com.tyrael.commons.dto.BaseTyraelDto;
 import com.tyrael.laundry.reference.JobOrderStatus;
+import com.tyrael.laundry.reference.TransportRequestStatus;
 
 /**
  * @author mbmartinez
@@ -26,6 +27,7 @@ public class JobOrderInfo extends BaseTyraelDto {
     private BigDecimal totalAmount;
     private BigDecimal totalAmountPaid;
     private JobOrderStatus status;
+    private TransportRequestStatus deliveryStatus;
 
     @Override
     protected ToStringCreator toStringCreator() {
@@ -41,7 +43,8 @@ public class JobOrderInfo extends BaseTyraelDto {
             .append("lost n found", lostAndFoundItems)
             .append("total amt", totalAmount)
             .append("total amt paid", totalAmountPaid)
-            .append("status", status);
+            .append("status", status)
+            .append("deliveryStatus", deliveryStatus);
     }
 
     public CustomerInfo getCustomer() {
@@ -138,6 +141,14 @@ public class JobOrderInfo extends BaseTyraelDto {
 
     public void setLostAndFoundItems(List<LostAndFoundItemInfo> lostAndFoundItems) {
         this.lostAndFoundItems = lostAndFoundItems;
+    }
+
+    public TransportRequestStatus getDeliveryStatus() {
+        return deliveryStatus;
+    }
+
+    public void setDeliveryStatus(TransportRequestStatus deliveryStatus) {
+        this.deliveryStatus = deliveryStatus;
     }
 
 }

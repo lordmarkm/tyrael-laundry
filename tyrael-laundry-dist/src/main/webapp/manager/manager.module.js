@@ -4,11 +4,13 @@ define([
    'manager/controller/ManagerRootController',
    'manager/controller/JobOrderViewController',
    'common/controller/JobOrderListController',
-   'common/resolve/JobOrderViewResolve'
+   'manager/controller/PriceManagementController',
+   'common/resolve/JobOrderViewResolve',
+   'manager/resolve/PriceManagementResolve'
 ], function (angular,
     JobOrderAuditRecordService,
-    ManagerRootController, JobOrderViewController, JobOrderListController,
-    JobOrderViewResolve) {
+    ManagerRootController, JobOrderViewController, JobOrderListController, PriceManagementController,
+    JobOrderViewResolve, PriceManagementResolve) {
 
   console.debug('Configuring manager.module');
   angular.module('manager.module', ['ui.select', 'ngSanitize'])
@@ -33,6 +35,12 @@ define([
         url: '/joborder/list',
         templateUrl: 'common/view/joborder_list.html',
         controller: JobOrderListController
+      })
+      .state('default.manager.price_management', {
+        url: '/prices',
+        templateUrl: 'manager/view/price_management.html',
+        controller: PriceManagementController,
+        resolve: PriceManagementResolve
       });
 
     }]);

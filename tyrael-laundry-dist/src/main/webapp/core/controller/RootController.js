@@ -1,7 +1,6 @@
 define(function () {
   return ['$scope', 'auth', function ($scope, auth) {
-    $scope.controllerName = "Root Controller";
-
+    $scope.contextPath = 'laundry';
     $scope.isAuthorized = function (permission) {
       if (!$scope.principal) {
         return false;

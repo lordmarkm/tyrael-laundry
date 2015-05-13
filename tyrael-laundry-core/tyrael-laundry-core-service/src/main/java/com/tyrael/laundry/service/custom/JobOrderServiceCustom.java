@@ -29,6 +29,7 @@ public interface JobOrderServiceCustom extends TyraelJpaServiceCustom<JobOrder, 
             .put("customerSurname", jobOrder.customer.name.surname)
             .put("customerGivenName", jobOrder.customer.name.givenName)
             .put("status", jobOrder.status)
+            .put("deliveryStatus", jobOrder.deliveryStatus)
             .build();
 
     JobOrderInfo findByTrackinNoInfo(String trackingNo);

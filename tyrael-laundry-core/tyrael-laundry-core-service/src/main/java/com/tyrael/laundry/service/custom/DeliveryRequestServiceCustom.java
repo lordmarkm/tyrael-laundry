@@ -10,4 +10,6 @@ import com.tyrael.web.dto.DeliveryRequestInfo;
 public interface DeliveryRequestServiceCustom  extends TransportRequestCustom<DeliveryRequest, DeliveryRequestInfo>,
     TyraelJpaServiceCustom<DeliveryRequest, DeliveryRequestInfo> {
 
+    public void cancel(Long jobOrderId);
+
 }

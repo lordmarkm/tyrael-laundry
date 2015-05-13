@@ -1,6 +1,6 @@
 define(function () {
-  return ['$scope', '$modal', '$q', '$filter', 'toaster', 'moment', 'ngTableParams', 'auth', 'confirm', 'JobOrderService', 'CustomerAccountService',
-          function ($scope, $modal, $q, $filter, toaster, moment, ngTableParams, auth, confirm, JobOrderService, CustomerAccountService) {
+  return ['$scope', '$modal', '$q', '$filter', 'toaster', 'moment', 'ngTableParams', 'auth', 'confirm', 'JobOrderService', 'CustomerAccountService', 'DeliveryService',
+          function ($scope, $modal, $q, $filter, toaster, moment, ngTableParams, auth, confirm, JobOrderService, CustomerAccountService, DeliveryService) {
 
     var authResolved = $q.defer();
 
@@ -134,7 +134,10 @@ define(function () {
     //Request delivery
     $scope.requestDelivery = function (jobOrder) {
       showDeliveryRequestModal().result.then(function (deliveryRequest) {
-        toaster.pop('success', 'Delivery request created');
+        DeliveryService.save(deliveryRequest, function (savedDeliveryRequest) {
+          jobOrder.deliveryStatus = savedDeliveryRequest.status;
+          toaster.pop('success', 'Delivery request created');
+        });
       });
 
       function showDeliveryRequestModal() {

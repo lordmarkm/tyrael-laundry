@@ -4,6 +4,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Pageable;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.baldy.commons.models.BaseEntity;
 import com.google.common.collect.ImmutableMap;
@@ -22,6 +23,7 @@ import cz.jirutka.rsql.parser.ast.Node;
 /**
  * @author mbmartinez
  */
+@Transactional(readOnly = true)
 public abstract class RqlSearchingServiceImpl<E extends BaseEntity, D extends BaseTyraelDto, R extends TyraelJpaService<E>>
     extends TyraelJpaServiceCustomImpl<E, D, R>
     implements RqlSearchingService<E, D> {

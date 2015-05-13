@@ -22,7 +22,31 @@
   <span ng-if="pickup" ng-click="requestPickup(pickup)" class="btn btn-default">Edit pickup request</span>
   <span ng-if="pickup" ng-click="cancelPickup(pickup)" class="btn btn-default">Cancel pickup request</span>
 </div>
-<div class="mt20">deliveries={{deliveries}}</div>
+
+<hr>
+<h4>Deliveries</h4>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <td>Tracking No
+      <td>Job Order status
+      <td>Delivery Request status
+      <td>Actions
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="deliverable in deliverables">
+      <td>{{deliverable.trackingNo}}
+      <td>{{deliverable.status}}
+      <td>{{deliverable.deliveryStatus ? deliverable.deliveryStatus : 'No delivery request'}}
+      <td>
+        <button ng-if="!deliverable.deliveryStatus" ng-click="requestDelivery(deliverable)" title="Request Delivery" class="btn btn-primary btn-sm"><i class="fa fa-fw fa-truck"></i></button>
+        <button ng-if="deliverable.deliveryStatus == 'NEW'" ng-click="cancelDelivery(deliverable)" title="Cancel Delivery" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-close"></i></button>
+        <button ng-if="deliverable.deliveryStatus == 'NEW'" ng-click="viewDeliveryDetails(deliverable)" title="View Delivery Details" class="btn btn-default btn-sm"><i class="fa fa-fw fa-list"></i></button>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 </div>
 
@@ -54,9 +78,39 @@
   </div>
   <div class="modal-footer">
     <button ng-click="proceed(pickupRequestForm.$valid)" class="btn btn-primary btn-s-xs">Proceed</button>
-    <button ng-click="cancel()" class="btn btn-primary btn-s-xs">Cancel</button>
+    <button ng-click="cancel()" class="btn btn-default btn-s-xs">Cancel</button>
   </div>
   </form>
+</script>
+
+<script type="text/ng-template" id="modal-delivery-request-details">
+  <div class="modal-header modal-primary">
+    <button type="button" class="close" ng-click="ok()">&times;</button>
+    <h3 class="modal-title">Delivery request details</h3>
+  </div>
+  <div class="modal-body">
+    <dl ng-if="deliveryRequest" class="dl-horizontal">
+      <dt>Address line 1
+      <dd>{{deliveryRequest.address.addressLine1}}
+      <dt ng-if="deliveryRequest.address.addressLine2">Address Line 2
+      <dd ng-if="deliveryRequest.address.addressLine2">{{deliveryRequest.address.addressLine2}}
+      <dt ng-if="deliveryRequest.address.city">City
+      <dd ng-if="deliveryRequest.address.city">{{deliveryRequest.address.city}}
+      <dt ng-if="deliveryRequest.address.province">Province
+      <dd ng-if="deliveryRequest.address.province">{{deliveryRequest.address.province}}
+      <dt ng-if="deliveryRequest.address.zip">Zip Code
+      <dd ng-if="deliveryRequest.address.zip">{{deliveryRequest.address.zip}}
+      <dt>Date requested
+      <dd>{{deliveryRequest.created | date: 'MMM dd, yyyy'}}
+      <dt>Status
+      <dd>{{deliveryRequest.status}}
+    </dl>
+    <div ng-if="!deliveryRequest">Error retrieving delivery request details</div>
+  </div>
+  <div class="modal-footer">
+    <button ng-click="edit()" class="btn btn-primary btn-s-xs">Edit</button>
+    <button ng-click="ok()" class="btn btn-default btn-s-xs">Ok</button>
+  </div>
 </script>
 
 <div ng-if="!customer">

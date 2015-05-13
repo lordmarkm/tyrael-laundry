@@ -2,12 +2,12 @@ package com.tyrael.laundry.model;
 
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 
 @Entity(name = "DELIVERY_REQUEST")
 public class DeliveryRequest extends TransportRequest {
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "JOB_ORDER_ID", nullable = false)
     private JobOrder jobOrder;
 

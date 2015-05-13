@@ -29,7 +29,7 @@ import cz.jirutka.rsql.parser.ast.Node;
  * @author mbmartinez
  */
 public class JobOrderServiceCustomImpl extends TyraelJpaServiceCustomImpl<JobOrder, JobOrderInfo, JobOrderService>
-implements JobOrderServiceCustom  {
+    implements JobOrderServiceCustom  {
 
     private static final Logger LOG = LoggerFactory.getLogger(JobOrderServiceCustomImpl.class);
 

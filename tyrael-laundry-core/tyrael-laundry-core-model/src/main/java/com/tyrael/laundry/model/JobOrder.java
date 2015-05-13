@@ -17,6 +17,7 @@ import org.joda.time.DateTime;
 
 import com.baldy.commons.models.BaseEntity;
 import com.tyrael.laundry.reference.JobOrderStatus;
+import com.tyrael.laundry.reference.TransportRequestStatus;
 
 /**
  * @author mbmartinez
@@ -65,6 +66,9 @@ public class JobOrder extends BaseEntity {
     @Column(name = "STATUS", nullable = false)
     @Enumerated(EnumType.STRING)
     private JobOrderStatus status;
+
+    @Column(name = "DELIVERY_STATUS")
+    private TransportRequestStatus deliveryStatus;
 
     public Customer getCustomer() {
         return customer;
@@ -160,6 +164,14 @@ public class JobOrder extends BaseEntity {
 
     public void setLostAndFoundItems(List<LostAndFoundItem> lostAndFoundItems) {
         this.lostAndFoundItems = lostAndFoundItems;
+    }
+
+    public TransportRequestStatus getDeliveryStatus() {
+        return deliveryStatus;
+    }
+
+    public void setDeliveryStatus(TransportRequestStatus deliveryStatus) {
+        this.deliveryStatus = deliveryStatus;
     }
 
 }
