@@ -1,0 +1,146 @@
+<h3 class="page-header">Pickup and Delivery</h3>
+<tabset>
+  <div class="row">
+    <div class="col-sm-12">
+      <input type="checkbox" ng-change="reloadTables()" ng-model="statuses['NEW']" id="cb-new" /> <label for="cb-new" class="pointer">New</label>
+      &nbsp;&nbsp;
+      <input type="checkbox" ng-change="reloadTables()" ng-model="statuses['QUEUED']" id="cb-qd" /> <label for="cb-qd" class="pointer">Queued</label>
+      &nbsp;&nbsp;
+      <input type="checkbox" ng-change="reloadTables()" ng-model="statuses['IN_TRANSIT']" id="cb-trans"/> <label for="cb-trans" class="pointer">In transit</label>
+    </div>
+  </div>
+  <tab heading="Pickup">
+    <table ng-table="pickupTable" show-filter="true" class="table table-striped">
+      <thead>
+        <tr>
+          <th>Id
+          <th>Customer
+          <th>Address
+          <th>Date created
+          <th>Status
+          <th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="pickupRequest in $data">
+          <td>{{pickupRequest.id}}</td>
+          <td>{{pickupRequest.customer.formattedName}}</td>
+          <td>{{pickupRequest.address.formattedAddress}}</td>
+          <td>{{pickupRequest.created | date: 'MMM dd yyyy hh:mm a'}}
+          <td>{{pickupRequest.status}}</td>
+          <td>
+            <button ng-click="addToQueue(pickupRequest)" title="Add to pickup queue" class="btn btn-xs btn-primary" ><i class="fa fa-fw fa-plus"></i></button>
+            <button class="btn btn-xs btn-default" title="Edit"><i class="fa fa-fw fa-pencil"></i></button>
+          </td>
+        </tr>
+        <tr ng-if="!$data.length">
+          <td colspan="1">No items available</td>
+        </tr>
+      </tbody>
+    </table>
+  </tab>
+  <tab heading="Delivery">
+    <table ng-table="deliveryTable" show-filter="true" class="table table-striped">
+      <thead>
+        <tr>
+          <th>Tracking No.
+          <th>Customer
+          <th>Address
+          <th>Date created
+          <th>Status
+          <th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="deliveryRequest in $data">
+          <td><a ui-sref="default.manager.joborder_view({trackingNo: deliveryRequest.jobOrder.trackingNo})">{{deliveryRequest.jobOrder.trackingNo}}</a></td>
+          <td>{{deliveryRequest.customer.formattedName}}</td>
+          <td>{{deliveryRequest.address.formattedAddress}}</td>
+          <td>{{deliveryRequest.created | date: 'MMM dd yyyy hh:mm a'}}
+          <td>{{deliveryRequest.status}}</td>
+          <td>
+            <button ng-click="addToQueue(deliveryRequest)"  title="Add to delivery queue" class="btn btn-xs btn-primary"><i class="fa fa-fw fa-plus"></i></button>
+            <button class="btn btn-xs btn-default" title="Edit"><i class="fa fa-fw fa-pencil"></i></button>
+          </td>
+        </tr>
+        <tr ng-if="!$data.length">
+          <td colspan="1">No items available</td>
+        </tr>
+      </tbody>
+    </table>
+  </tab>
+  <tab heading="Transport Queue">
+    <div class="row">
+      <div class="col-sm-12">
+        <h4>Current queue</h4>
+        <div class="mt20"></div>
+        <dl class="dl-horizontal">
+          <dt>Created
+          <dd>{{queue.created | date: 'MMM dd, yyyy hh:mm a'}}
+          <dt>Delivery requests
+          <dd>{{queue.deliveryRequests.length}}
+          <dt>Pickup requests
+          <dd>{{queue.pickupRequests.length}}
+        </dl>
+
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Type
+              <th>Details
+              <th>Address
+              <th>Status
+              <th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="pickup in queue.pickupRequests">
+              <td>Pickup
+              <td>{{pickup.customer.formattedName}}
+              <td>{{pickup.address.formattedAddress}}
+              <td>{{pickup.status}}
+              <td><button ng-click="removeFromQueue(pickup)" title="Remove from queue" class="btn btn-xs btn-danger"><i class="fa fa-fw fa-close"></i></button>
+            </tr>
+            <tr ng-repeat="delivery in queue.deliveryRequests">
+              <td>Delivery
+              <td>{{delivery.jobOrder.trackingNo}} - {{delivery.customer.formattedName}}
+              <td>{{delivery.address.formattedAddress}}
+              <td>{{delivery.status}}
+              <td><button ng-click="removeFromQueue(delivery)" title="Remove from queue" class="btn btn-xs btn-danger"><i class="fa fa-fw fa-close"></i></button>
+            </tr>
+            <tr ng-if="!queue.deliveryRequests.length && !queue.pickupRequests.length">
+              <td colspan="5">No pickup or delivery requests queued
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="pull-right">
+          <button ng-disabled="!queue.pickupRequests.length && !queue.deliveryRequests.length" class="btn btn-primary"><i class="fa fa-print"></i> Print</button>
+          <button ng-click="newQueue()" ng-disabled="!currentQueue.pickupRequests.length && !currentQueue.deliveryRequests.length" class="btn btn-primary"><i class="fa fa-bars"></i> New queue</button>
+          <button ng-click="showQueue(currentQueue)" ng-if="currentQueue.id != queue.id" class="btn btn-default">Show current queue</button>
+        </div>
+      </div>
+    </div>
+
+    <h4>All queues</h4>
+    <table ng-table="transportQueueTable" show-filter="true" class="table table-striped">
+      <thead>
+        <tr>
+          <th>Created
+          <th>Delivery Requests
+          <th>Pickup Requests
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="tableQueue in $data" class="pointer" ng-click="showQueue(tableQueue)">
+          <td>{{tableQueue.created | date: 'MMM dd yyyy hh:mm a'}}</td>
+          <td>{{tableQueue.deliveryRequests.length}}
+          <td>{{tableQueue.pickupRequests.length}}
+        </tr>
+        <tr ng-if="!$data.length">
+          <td colspan="1">No items available</td>
+        </tr>
+      </tbody>
+    </table>
+  </tab>
+</tabset>

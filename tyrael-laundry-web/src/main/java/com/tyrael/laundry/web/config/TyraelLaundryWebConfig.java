@@ -50,6 +50,8 @@ public class TyraelLaundryWebConfig extends WebMvcConfigurationSupport {
         PageableHandlerMethodArgumentResolver resolver = new PageableHandlerMethodArgumentResolver();
         resolver.setMaxPageSize(100);
         resolver.setFallbackPageable(new PageRequest(0, 100));
+        resolver.setOneIndexedParameters(true);
+        resolver.setSizeParameterName("count");
         argumentResolvers.add(resolver);
     }
 

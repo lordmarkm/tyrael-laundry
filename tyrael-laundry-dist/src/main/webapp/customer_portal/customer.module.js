@@ -3,7 +3,6 @@ define([
   'core/service/CustomerService',
   'core/service/CustomerAccountService',
   'common/service/CustomerBillingInfoService',
-  'common/service/PickupService',
   'common/service/DeliveryService',
   'customer_portal/controller/CustomerRootController',
   'common/controller/JobOrderListController',
@@ -15,7 +14,7 @@ define([
   'common/resolve/CustomerViewResolve',
   'common/resolve/CustomerBillingResolve',
   'customer_portal/resolve/CustomerTransportResolve'
-], function (angular, CustomerService, CustomerAccountService, CustomerBillingInfoService, PickupService, DeliveryService,
+], function (angular, CustomerService, CustomerAccountService, CustomerBillingInfoService, DeliveryService,
     CustomerRootController, JobOrderListController, JobOrderViewController, CustomerViewController, CustomerBillingController, CustomerTransportController,
     JobOrderViewResolve, CustomerViewResolve, CustomerBillingResolve, CustomerTransportResolve) {
   console.debug('Configuring customer.module');
@@ -23,7 +22,6 @@ define([
     .service('CustomerService', CustomerService)
     .service('CustomerAccountService', CustomerAccountService)
     .service('CustomerBillingInfoService', CustomerBillingInfoService)
-    .service('PickupService', PickupService)
     .service('DeliveryService', DeliveryService)
     .config(['$stateProvider', function ($stateProvider) {
       $stateProvider.state('default.customer', {

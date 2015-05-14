@@ -5,11 +5,12 @@ define([
    'manager/controller/JobOrderViewController',
    'common/controller/JobOrderListController',
    'manager/controller/PriceManagementController',
+   'manager/controller/TransportController',
    'common/resolve/JobOrderViewResolve',
    'manager/resolve/PriceManagementResolve'
 ], function (angular,
     JobOrderAuditRecordService,
-    ManagerRootController, JobOrderViewController, JobOrderListController, PriceManagementController,
+    ManagerRootController, JobOrderViewController, JobOrderListController, PriceManagementController, TransportController,
     JobOrderViewResolve, PriceManagementResolve) {
 
   console.debug('Configuring manager.module');
@@ -35,6 +36,11 @@ define([
         url: '/joborder/list',
         templateUrl: 'common/view/joborder_list.html',
         controller: JobOrderListController
+      })
+      .state('default.manager.transport', {
+        url: '/transport',
+        templateUrl: 'manager/view/transport.html',
+        controller: TransportController
       })
       .state('default.manager.price_management', {
         url: '/prices',

@@ -6,6 +6,7 @@ import javax.persistence.Embedded;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToOne;
 
@@ -46,6 +47,10 @@ public class TransportRequest extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private TransportRequestStatus status;
 
+    @ManyToOne
+    @JoinColumn(name = "QUEUE")
+    private TransportQueue queue;
+
     public Customer getCustomer() {
         return customer;
     }
@@ -84,6 +89,14 @@ public class TransportRequest extends BaseEntity {
 
     public void setStatus(TransportRequestStatus status) {
         this.status = status;
+    }
+
+    public TransportQueue getQueue() {
+        return queue;
+    }
+
+    public void setQueue(TransportQueue queue) {
+        this.queue = queue;
     }
 
 }
