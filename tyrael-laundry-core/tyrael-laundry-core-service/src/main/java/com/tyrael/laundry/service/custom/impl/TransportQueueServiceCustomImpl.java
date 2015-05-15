@@ -1,5 +1,7 @@
 package com.tyrael.laundry.service.custom.impl;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +43,23 @@ public class TransportQueueServiceCustomImpl
         return ImmutableMap.<String, Path<?>>builder()
                 .put("id", transportRequest.id)
                 .build();
+    }
+
+    @Override
+    public TransportQueueInfo saveInfo(TransportQueueInfo queue) {
+        TransportQueue savedQueue = super.saveInfoAndGetEntity(queue);
+
+        List<PickupRequest> pickupRequests = pickupService.saveInfoAndGetEntity(queue.getPickupRequests());
+        for (PickupRequest pickupRequest : pickupRequests) {
+            pickupRequest.setQueue(savedQueue);
+        }
+
+        List<DeliveryRequest> deliveryRequests = deliveryService.saveInfoAndGetEntity(queue.getDeliveryRequests());
+        for (DeliveryRequest deliveryRequest : deliveryRequests) {
+            deliveryRequest.setQueue(savedQueue);
+        }
+
+        return toDto(savedQueue);
     }
 
     @Override

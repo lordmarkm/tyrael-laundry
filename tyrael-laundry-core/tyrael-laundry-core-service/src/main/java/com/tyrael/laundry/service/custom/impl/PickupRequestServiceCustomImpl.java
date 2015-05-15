@@ -35,6 +35,13 @@ public class PickupRequestServiceCustomImpl
         if (null == pickupRequest.getCreated()) {
             pickupRequest.setCreated(DateTime.now());
         }
-        return super.saveInfo(pickupRequest);
+        PickupRequest entity = mapper.map(pickupRequest, PickupRequest.class);
+
+        PickupRequest existing = repo.findOne(pickupRequest.getId());
+        if (null != existing.getQueue()) {
+            entity.setQueue(existing.getQueue());
+        }
+
+        return toDto(repo.save(entity));
     }
 }

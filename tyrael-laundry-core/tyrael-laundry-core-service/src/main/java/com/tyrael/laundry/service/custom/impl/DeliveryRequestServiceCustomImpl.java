@@ -12,6 +12,7 @@ import com.google.common.collect.ImmutableMap;
 import com.mysema.query.types.Path;
 import com.tyrael.laundry.model.DeliveryRequest;
 import com.tyrael.laundry.model.JobOrder;
+import com.tyrael.laundry.model.PickupRequest;
 import com.tyrael.laundry.service.DeliveryRequestService;
 import com.tyrael.laundry.service.JobOrderService;
 import com.tyrael.laundry.service.custom.DeliveryRequestServiceCustom;
@@ -55,8 +56,14 @@ public class DeliveryRequestServiceCustomImpl
         if (null == deliveryRequest.getCreated()) {
             deliveryRequest.setCreated(DateTime.now());
         }
+        DeliveryRequest entity = mapper.map(deliveryRequest, DeliveryRequest.class);
+        DeliveryRequest existing = repo.findOne(deliveryRequest.getId());
+        if (null != existing.getQueue()) {
+            entity.setQueue(existing.getQueue());
+        }
 
-        DeliveryRequestInfo saved = super.saveInfo(deliveryRequest);
+        DeliveryRequestInfo saved = toDto(repo.save(entity));
+
         JobOrder jobOrder = jobOrderService.findOne(saved.getJobOrder().getId());
 
         switch (saved.getStatus()) {

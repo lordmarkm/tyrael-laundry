@@ -30,7 +30,6 @@
           <td>{{pickupRequest.status}}</td>
           <td>
             <button ng-click="addToQueue(pickupRequest)" title="Add to pickup queue" class="btn btn-xs btn-primary" ><i class="fa fa-fw fa-plus"></i></button>
-            <button class="btn btn-xs btn-default" title="Edit"><i class="fa fa-fw fa-pencil"></i></button>
           </td>
         </tr>
         <tr ng-if="!$data.length">
@@ -60,7 +59,6 @@
           <td>{{deliveryRequest.status}}</td>
           <td>
             <button ng-click="addToQueue(deliveryRequest)"  title="Add to delivery queue" class="btn btn-xs btn-primary"><i class="fa fa-fw fa-plus"></i></button>
-            <button class="btn btn-xs btn-default" title="Edit"><i class="fa fa-fw fa-pencil"></i></button>
           </td>
         </tr>
         <tr ng-if="!$data.length">
@@ -72,7 +70,8 @@
   <tab heading="Transport Queue">
     <div class="row">
       <div class="col-sm-12">
-        <h4>Current queue</h4>
+        <h4 ng-if="queue.id == currentQueue.id">Current queue</h4>
+        <h4 ng-if="queue.id != currentQueue.id">Previous queue from {{queue.created | date: 'MMM dd, yyyy hh:mm a'}}</h4>
         <div class="mt20"></div>
         <dl class="dl-horizontal">
           <dt>Created
@@ -98,15 +97,36 @@
               <td>Pickup
               <td>{{pickup.customer.formattedName}}
               <td>{{pickup.address.formattedAddress}}
-              <td>{{pickup.status}}
-              <td><button ng-click="removeFromQueue(pickup)" title="Remove from queue" class="btn btn-xs btn-danger"><i class="fa fa-fw fa-close"></i></button>
+              <td ng-if="editableTransportRequestStatuses.indexOf(pickup.status) != -1">
+                <select class="form-control input-sm" ng-model="pickup.status" ng-change="savePickupRequest(pickup)">
+                  <option value="IN_TRANSIT">In transit</option>
+                  <option value="COMPLETED">Completed</option>
+                  <option value="ADDR_NOT_FOUND">Address not found</option>
+                  <option value="ADDR_INVALID">Address invalid/incomplete</option>
+                </select>
+              </td>
+              <td ng-if="editableTransportRequestStatuses.indexOf(pickup.status) == -1">
+                {{pickup.status}}
+              </td>
+              <td><button ng-click="removeFromQueue(pickup)" ng-if="pickup.status=='QUEUED'" title="Remove from queue" class="btn btn-xs btn-danger"><i class="fa fa-fw fa-close"></i></button>
             </tr>
             <tr ng-repeat="delivery in queue.deliveryRequests">
               <td>Delivery
               <td>{{delivery.jobOrder.trackingNo}} - {{delivery.customer.formattedName}}
               <td>{{delivery.address.formattedAddress}}
-              <td>{{delivery.status}}
-              <td><button ng-click="removeFromQueue(delivery)" title="Remove from queue" class="btn btn-xs btn-danger"><i class="fa fa-fw fa-close"></i></button>
+              <td ng-if="editableTransportRequestStatuses.indexOf(delivery.status) != -1">
+                <select class="form-control input-sm" ng-model="delivery.status" ng-change="saveDeliveryRequest(delivery)">
+                  <option value="IN_TRANSIT">In transit</option>
+                  <option value="COMPLETED">Completed</option>
+                  <option value="ADDR_NOT_FOUND">Address not found</option>
+                  <option value="ADDR_INVALID">Address invalid/incomplete</option>
+                  <option value="NO_ANSWER">No one available to receive delivery</option>
+                </select>
+              </td>
+              <td ng-if="editableTransportRequestStatuses.indexOf(delivery.status) == -1">
+                {{delivery.status}}
+              </td>
+              <td><button ng-click="removeFromQueue(delivery)" ng-if="delivery.status=='QUEUED'" title="Remove from queue" class="btn btn-xs btn-danger"><i class="fa fa-fw fa-close"></i></button>
             </tr>
             <tr ng-if="!queue.deliveryRequests.length && !queue.pickupRequests.length">
               <td colspan="5">No pickup or delivery requests queued
@@ -115,9 +135,10 @@
         </table>
 
         <div class="pull-right">
-          <button ng-disabled="!queue.pickupRequests.length && !queue.deliveryRequests.length" class="btn btn-primary"><i class="fa fa-print"></i> Print</button>
-          <button ng-click="newQueue()" ng-disabled="!currentQueue.pickupRequests.length && !currentQueue.deliveryRequests.length" class="btn btn-primary"><i class="fa fa-bars"></i> New queue</button>
           <button ng-click="showQueue(currentQueue)" ng-if="currentQueue.id != queue.id" class="btn btn-default">Show current queue</button>
+          <button ng-click="markAsInTransit(queue)" class="btn btn-primary">Mark as In Transit</button>
+          <a href="transport/print/{{queue.id}}" target="_blank" ng-disabled="!queue.pickupRequests.length && !queue.deliveryRequests.length" class="btn btn-primary"><i class="fa fa-print"></i> Print</a>
+          <button ng-click="newQueue()" ng-disabled="!currentQueue.pickupRequests.length && !currentQueue.deliveryRequests.length" class="btn btn-primary"><i class="fa fa-bars"></i> New queue</button>
         </div>
       </div>
     </div>

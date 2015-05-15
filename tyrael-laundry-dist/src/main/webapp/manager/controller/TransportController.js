@@ -114,20 +114,28 @@ define(function () {
     };
 
     $scope.newQueue = function () {
-      TransportQueueService.save({
-        created: new Date(),
-        deliveryRequests: [],
-        pickupRequests: []
-      }, function (newQ) {
-        $scope.currentQueue = newQ;
-        $scope.queue = newQ;
-        $scope.transportQueueTable.reload();
-        toaster.pop('success', 'New queue created');
+      confirm.confirm('Confirm new queue creation', 'This will create a new queue. Proceed?').result.then(function (proceed) {
+        if (proceed) {
+          TransportQueueService.save({
+            created: new Date(),
+            deliveryRequests: [],
+            pickupRequests: []
+          }, function (newQ) {
+            $scope.currentQueue = newQ;
+            $scope.queue = newQ;
+            $scope.transportQueueTable.reload();
+            toaster.pop('success', 'New queue created');
+          });
+        }
       });
     };
 
     $scope.showQueue = function (queue) {
-      $scope.queue = queue;
+      if (queue.id === $scope.currentQueue.id) {
+        $scope.queue = $scope.currentQueue;
+      } else {
+        $scope.queue = queue;
+      }
     };
 
     $scope.removeFromQueue = function (transportRequest) {
@@ -156,6 +164,48 @@ define(function () {
       });
     };
 
+    
+    //Transit states
+    $scope.editableTransportRequestStatuses = ['IN_TRANSIT', 'COMPLETED', 'ADDR_NOT_FOUND', 'ADDR_INVALID', 'NO_ANSWER'];
+    $scope.markAsInTransit = function (queue) {
+      confirm.confirm('Confirm In Transit status', 'Items in the selected queue with QUEUED status will be marked as \'In Transit\'. Other items ' +
+          'will be unaffected. Proceed?', 'Yes', 'No').result.then(function (proceed) {
+            if (proceed) {
+              for (var i in queue.pickupRequests) {
+                var pickup = queue.pickupRequests[i];
+                if (pickup.status === 'QUEUED') {
+                  pickup.status = 'IN_TRANSIT';
+                }
+              }
+              for (var j in queue.deliveryRequests) {
+                var delivery = queue.deliveryRequests[j];
+                if (delivery.status === 'QUEUED') {
+                  delivery.status = 'IN_TRANSIT';
+                }
+              }
+              TransportQueueService.save(queue, function (savedQueue) {
+                $scope.transportQueueTable.reload();
+                if ($scope.queue.id === savedQueue.id) {
+                  $scope.queue = savedQueue;
+                }
+                if ($scope.currentQueue.id === savedQueue.id) {
+                  $scope.currentQueue = savedQueue;
+                }
+              });
+            }
+          });
+    };
+
+    $scope.savePickupRequest = function (pickup) {
+      PickupService.save(pickup, function (saved) {
+        toaster.pop('success', 'Successfully updated pickup request.');
+      });
+    };
+    $scope.saveDeliveryRequest = function (delivery) {
+      DeliveryService.save(delivery, function (saved) {
+        toaster.pop('success', 'Successfully updated delivery request.');
+      });
+    };
 
   }];
 });

@@ -4,7 +4,6 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.Type;
@@ -19,8 +18,7 @@ public class TransportQueue extends BaseEntity {
     @Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
     private DateTime created;
 
-    @OneToMany
-    @JoinColumn(name = "QUEUE")
+    @OneToMany(mappedBy = "queue")
     private Set<PickupRequest> pickupRequests;
 
     @OneToMany(mappedBy = "queue")

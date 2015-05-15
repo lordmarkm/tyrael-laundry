@@ -5,7 +5,6 @@ import static com.tyrael.laundry.model.QCustomer.customer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.mysema.query.types.Predicate;
 import com.tyrael.commons.data.service.TyraelJpaServiceCustomImpl;
