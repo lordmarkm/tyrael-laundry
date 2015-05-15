@@ -1,6 +1,10 @@
 package com.tyrael.laundry.audit.advice;
 
-import java.security.Principal;
+import static com.tyrael.laundry.audit.reference.AuditRecordType.CREATE;
+import static com.tyrael.laundry.audit.reference.AuditRecordType.FINALIZE;
+import static com.tyrael.laundry.audit.reference.AuditRecordType.UPDATE;
+import static com.tyrael.laundry.reference.JobOrderStatus.CANCELLED;
+import static com.tyrael.laundry.reference.JobOrderStatus.CLOSED;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -17,8 +21,6 @@ import com.tyrael.laundry.audit.model.JobOrderAuditRecord;
 import com.tyrael.laundry.audit.service.JobOrderAuditRecordService;
 import com.tyrael.laundry.service.JobOrderService;
 import com.tyrael.web.dto.JobOrderInfo;
-import static com.tyrael.laundry.audit.reference.AuditRecordType.*;
-import static com.tyrael.laundry.reference.JobOrderStatus.*;
 
 @Component
 @Aspect

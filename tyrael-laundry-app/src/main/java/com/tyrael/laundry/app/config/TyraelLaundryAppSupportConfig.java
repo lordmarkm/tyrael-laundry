@@ -12,8 +12,10 @@ import org.springframework.context.annotation.Import;
 
 import com.tyrael.commons.mapper.config.MapperConfig;
 import com.tyrael.laundry.model.JobOrder;
+import com.tyrael.laundry.model.TransportQueue;
 import com.tyrael.laundry.model.TransportRequest;
 import com.tyrael.web.dto.JobOrderInfo;
+import com.tyrael.web.dto.TransportQueueInfo;
 import com.tyrael.web.dto.TransportRequestInfo;
 
 /**
@@ -40,6 +42,8 @@ public class TyraelLaundryAppSupportConfig {
                 mapping(TransportRequest.class, TransportRequestInfo.class)
                     .fields("created", "created", copyByReference())
                     .fields("completed", "completed", copyByReference());
+                mapping(TransportQueue.class, TransportQueueInfo.class)
+                    .fields("created", "created", copyByReference());
             }
         });
     }

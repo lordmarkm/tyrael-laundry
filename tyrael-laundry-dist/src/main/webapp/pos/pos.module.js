@@ -6,11 +6,12 @@ define([
    'pos/controller/JobOrderCreateController',
    'common/controller/CustomerViewController',
    'pos/controller/CustomerViewJobOrdersController',
+   'common/controller/TransportController',
    'common/resolve/JobOrderViewResolve',
    'pos/resolve/JobOrderCreateResolve',
    'common/resolve/CustomerViewResolve'
 ], function (angular,
-    PosRootController, JobOrderViewController, JobOrderListController, JobOrderCreateController, CustomerViewController, CustomerViewJobOrdersController,
+    PosRootController, JobOrderViewController, JobOrderListController, JobOrderCreateController, CustomerViewController, CustomerViewJobOrdersController, TransportController,
     JobOrderViewResolve, JobOrderCreateResolve, CustomerViewResolve) {
   console.debug('Configuring pos.module');
   angular.module('pos.module', ['ui.select', 'ngSanitize'])
@@ -54,8 +55,14 @@ define([
         templateUrl: 'pos/view/customer_view_joborders.html',
         controller: CustomerViewJobOrdersController,
         resolve: CustomerViewResolve
-      });
+      })
 
+      //Transport
+      .state('default.pos.transport', {
+        url: '/transport',
+        templateUrl: 'common/view/transport.html',
+        controller: TransportController
+      });
     }]);
 
 });

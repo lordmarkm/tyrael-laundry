@@ -5,7 +5,7 @@ define([
    'manager/controller/JobOrderViewController',
    'common/controller/JobOrderListController',
    'manager/controller/PriceManagementController',
-   'manager/controller/TransportController',
+   'common/controller/TransportController',
    'common/resolve/JobOrderViewResolve',
    'manager/resolve/PriceManagementResolve'
 ], function (angular,
@@ -39,7 +39,7 @@ define([
       })
       .state('default.manager.transport', {
         url: '/transport',
-        templateUrl: 'manager/view/transport.html',
+        templateUrl: 'common/view/transport.html',
         controller: TransportController
       })
       .state('default.manager.price_management', {
