@@ -6,11 +6,14 @@ import javax.annotation.PostConstruct;
 
 import org.dozer.DozerBeanMapper;
 import org.dozer.loader.api.BeanMappingBuilder;
+import org.dozer.loader.api.FieldsMappingOptions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
 import com.tyrael.commons.mapper.config.MapperConfig;
+import com.tyrael.laundry.app.converter.EnumInfoConverter;
+import com.tyrael.laundry.commons.dto.EnumInfo;
 import com.tyrael.laundry.model.JobOrder;
 import com.tyrael.laundry.model.TransportQueue;
 import com.tyrael.laundry.model.TransportRequest;
@@ -44,6 +47,8 @@ public class TyraelLaundryAppSupportConfig {
                     .fields("completed", "completed", copyByReference());
                 mapping(TransportQueue.class, TransportQueueInfo.class)
                     .fields("created", "created", copyByReference());
+                mapping(Enum.class, EnumInfo.class)
+                    .fields("this", "this", FieldsMappingOptions.customConverter(EnumInfoConverter.class));
             }
         });
     }

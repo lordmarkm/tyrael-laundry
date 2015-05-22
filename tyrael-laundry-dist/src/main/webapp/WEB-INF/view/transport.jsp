@@ -39,7 +39,12 @@ td {
     <td>Delivery
     <td>${delivery.jobOrder.trackingNo } - ${delivery.customer.formattedName }
     <td>${delivery.address.formattedAddress }
-    <td>${delivery.status }
+    <td>
+      <input type="checkbox" disabled>OK
+      <input type="checkbox" disabled>NA
+      <input type="checkbox" disabled>INV
+      <input type="checkbox" disabled>NF
+    </td>
   </tr>
   </#list>
   <#list queue.pickupRequests as pickup>
@@ -47,11 +52,17 @@ td {
     <td>Pickup
     <td>${pickup.customer.formattedName }
     <td>${pickup.address.formattedAddress }
-    <td>${pickup.status }
+    <td>
+      <input type="checkbox" disabled>OK
+      <input type="checkbox" disabled>NA
+      <input type="checkbox" disabled>INV
+      <input type="checkbox" disabled>NF
+    </td>
   </tr>
   </#list>
   </tbody>
 </table>
+<strong>NA</strong>-No Answer <strong>INV</strong>-Address Invalid <strong>NF</strong>-Address not found
 </#if>
 
 <#if !queue??>

@@ -29,6 +29,10 @@
       <groupId>tyrael-commons</groupId>
       <artifactId>tyrael-commons-data</artifactId>
     </dependency>
+    <dependency>
+      <groupId>com.tyrael.laundry</groupId>
+      <artifactId>tyrael-laundry-commons</artifactId>
+    </dependency>
   </dependencies>
 
   <build>
@@ -39,5 +43,21 @@
       </resource>
     </resources>
   </build>
+
+  <profiles>
+    <profile>
+      <id>qa</id>
+      <properties>
+        <db.username>tyrael_laundry</db.username>
+        <db.password>tyrael_laundry</db.password>
+      </properties>
+    </profile>
+    <profile>
+      <id>purge</id>
+      <properties>
+        <hibernate.hbm2ddl.auto>create</hibernate.hbm2ddl.auto>
+      </properties>
+    </profile>
+  </profiles>
 
 </project>

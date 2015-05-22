@@ -10,6 +10,12 @@
   <packaging>war</packaging>
   <name>Tyrael Laundry :: Distribution</name>
 
+  <properties>
+    <!-- Default packaging exclude pattern (skinny war) -->
+    <packageExcludePattern>%regex[WEB-INF/lib/(?!(tyrael|baldy)).*\.jar]</packageExcludePattern>
+    <contextPath>/laundry</contextPath>
+  </properties>
+
   <dependencies>
     <dependency>
       <groupId>com.tyrael.laundry</groupId>
@@ -26,12 +32,37 @@
         <version>9.2.4.v20141103</version>
         <configuration>
           <webApp>
-            <contextPath>/laundry</contextPath>
+            <contextPath>${contextPath}</contextPath>
           </webApp>
           <jvmArgs>-Xmx2024m -Xms2024m</jvmArgs>
         </configuration>
       </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <configuration>
+          <packagingExcludes>${packageExcludePattern}</packagingExcludes>
+        </configuration>
+      </plugin>
     </plugins>
   </build>
+
+  <profiles>
+    <profile>
+      <id>fatwar</id>
+      <properties>
+        <packageExcludePattern></packageExcludePattern>
+      </properties>
+    </profile>
+    <profile>
+      <id>qa</id>
+      <properties>
+        <contextPath></contextPath>
+      </properties>
+      <build>
+        <finalName>laundry</finalName>
+      </build>
+    </profile>
+  </profiles>
 
 </project>
