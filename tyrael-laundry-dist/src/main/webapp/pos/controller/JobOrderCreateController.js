@@ -1,6 +1,8 @@
 define(function () {
-  return ['$scope', '$modal', 'toaster', 'serviceTypes', 'CustomerService', 'ServiceTypeService', 'JobOrderService',
-    function ($scope, $modal, toaster, serviceTypes, CustomerService, ServiceTypeService, JobOrderService) {
+  return ['$scope', '$modal', 'toaster', 'serviceTypes', 'jobItemTypes', 'CustomerService', 'ServiceTypeService', 'JobOrderService',
+    function ($scope, $modal, toaster, serviceTypes, jobItemTypes, CustomerService, ServiceTypeService, JobOrderService) {
+
+    $scope.jobItemTypes = jobItemTypes;
 
     function resetPage() {
       $scope.customerHolder = {};

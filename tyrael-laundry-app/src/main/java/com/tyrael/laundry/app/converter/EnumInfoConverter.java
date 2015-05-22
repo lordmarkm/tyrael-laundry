@@ -16,10 +16,6 @@ public class EnumInfoConverter implements CustomConverter {
             Object sourceFieldValue,
             Class<?> destinationClass,
             Class<?> sourceClass) {
-        LOG.debug("Converting. existingDestinationFieldValue={}", existingDestinationFieldValue);
-        LOG.debug("Converting. sourceFieldValue={}", sourceFieldValue);
-        LOG.debug("Converting. destinationClass={}", destinationClass);
-        LOG.debug("Converting. sourceClass={}", sourceClass);
 
         EnumInfo ei = (EnumInfo) existingDestinationFieldValue;
         JobItemType type = (JobItemType) sourceFieldValue;
