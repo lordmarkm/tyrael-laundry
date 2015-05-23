@@ -2,10 +2,13 @@ package com.tyrael.laundry.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import com.baldy.commons.models.BaseEntity;
+import com.tyrael.laundry.reference.JobItemType;
 
 /**
  * @author mbmartinez
@@ -13,23 +16,16 @@ import com.baldy.commons.models.BaseEntity;
 @Entity(name = "JOB_ITEM")
 public class JobItem extends BaseEntity {
 
-    @Column(name = "description", nullable = false)
-    private String description;
+    @Column(name = "ITEM_TYPE", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private JobItemType jobItemType;
 
-    @Column(name = "quantity", nullable = false)
+    @Column(name = "QTY", nullable = false)
     private int quantity;
 
     @ManyToOne
     @JoinColumn(name = "JOB_ID", nullable = false)
     private JobOrder jobOrder;
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
 
     public int getQuantity() {
         return quantity;
@@ -45,6 +41,14 @@ public class JobItem extends BaseEntity {
 
     public void setJobOrder(JobOrder jobOrder) {
         this.jobOrder = jobOrder;
+    }
+
+    public JobItemType getJobItemType() {
+        return jobItemType;
+    }
+
+    public void setJobItemType(JobItemType jobItemType) {
+        this.jobItemType = jobItemType;
     }
 
 }

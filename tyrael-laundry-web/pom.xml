@@ -18,7 +18,6 @@
     <dependency>
       <groupId>com.tyrael.laundry</groupId>
       <artifactId>tyrael-laundry-security</artifactId>
-      <version>${project.version}</version>
     </dependency>
     <dependency>
       <groupId>com.tyrael.laundry</groupId>

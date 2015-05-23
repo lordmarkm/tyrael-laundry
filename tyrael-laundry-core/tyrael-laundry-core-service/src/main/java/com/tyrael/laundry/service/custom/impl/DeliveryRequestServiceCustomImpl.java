@@ -1,6 +1,8 @@
 package com.tyrael.laundry.service.custom.impl;
 
 import static com.tyrael.laundry.model.QDeliveryRequest.deliveryRequest;
+import static com.tyrael.laundry.reference.TransportRequestStatus.CANCELLED;
+import static com.tyrael.laundry.reference.TransportRequestStatus.NEW;
 
 import java.util.List;
 
@@ -12,12 +14,10 @@ import com.google.common.collect.ImmutableMap;
 import com.mysema.query.types.Path;
 import com.tyrael.laundry.model.DeliveryRequest;
 import com.tyrael.laundry.model.JobOrder;
-import com.tyrael.laundry.model.PickupRequest;
 import com.tyrael.laundry.service.DeliveryRequestService;
 import com.tyrael.laundry.service.JobOrderService;
 import com.tyrael.laundry.service.custom.DeliveryRequestServiceCustom;
 import com.tyrael.web.dto.DeliveryRequestInfo;
-import static com.tyrael.laundry.reference.TransportRequestStatus.*;
 
 /**
  * 

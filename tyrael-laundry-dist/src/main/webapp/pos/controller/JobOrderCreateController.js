@@ -2,8 +2,6 @@ define(function () {
   return ['$scope', '$modal', 'toaster', 'serviceTypes', 'jobItemTypes', 'CustomerService', 'ServiceTypeService', 'JobOrderService',
     function ($scope, $modal, toaster, serviceTypes, jobItemTypes, CustomerService, ServiceTypeService, JobOrderService) {
 
-    $scope.jobItemTypes = jobItemTypes;
-
     function resetPage() {
       $scope.customerHolder = {};
       ServiceTypeService.query().$promise.then(function (serviceTypes) {
@@ -11,8 +9,14 @@ define(function () {
         $scope.serviceTypeHolder = {
             serviceType: $scope.serviceTypes[0]
         };
+        $scope.jobItemTypes = jobItemTypes;
+        $scope.jobItems = {};
       });
     }
+
+    //Init job items
+    $scope.jobItemTypes = jobItemTypes;
+    $scope.jobItems = {};
 
     //Search for existing customer
     $scope.customerHolder = {};
@@ -42,7 +46,11 @@ define(function () {
     };
 
     //Validate & Submit job order
-    $scope.createJobOrder = function () {
+    $scope.createJobOrder = function (valid) {
+      if (!valid) {
+        toaster.pop('error', 'Job Order form is invalid');
+        return;
+      }
       if (!validateJobOrder()) {
         return;
       }
@@ -115,6 +123,14 @@ define(function () {
                   pricePerKilo: serviceType.pricePerKilo,
                   amount: amount
                 });
+              }
+              for (var i in $scope.jobItems) {
+                if ($scope.jobItems[i]) {
+                  jobOrder.jobItems.push({
+                    jobItemType: i,
+                    quantity: $scope.jobItems[i]
+                  });
+                }
               }
               return jobOrder;
             }

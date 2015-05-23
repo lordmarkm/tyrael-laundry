@@ -1,5 +1,5 @@
 <h3 class="page-header">Create Job Order</h3>
-<form class="form-horizontal">
+<form class="form-horizontal" name="createJobOrderForm">
   <div class="panel panel-default">
   <div class="panel-heading">Customer</div>
   <div class="panel-body">
@@ -69,17 +69,19 @@
         <div class="form-group">
           <label class="control-label col-sm-6">{{jobItemType.label}}</label>
           <div class="col-sm-6">
-            <input type="number" class="form-control"/>
+            <input type="number" ng-model="jobItems[jobItemType.code]" min="0" class="form-control"/>
           </div>
         </div>
       </div>
     </accordion-group>
+    <!-- 
     <accordion-group heading="Dry Clean" is-open="false">
     </accordion-group>
+    -->
   </accordion>
   <div class="col-sm-12 text-right">
     <div class="row">
-      <span ng-click="createJobOrder()" class="btn btn-primary">Create Job Order</span>
+      <span ng-click="createJobOrder(createJobOrderForm.$valid)" class="btn btn-primary">Create Job Order</span>
     </div>
   </div>
 </form>

@@ -33,7 +33,7 @@ public abstract class AbstractExpressionEvaluator {
         return converted;
     }
 
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({ "unchecked", "rawtypes" })
     protected Object cast(Class<?> type, String string) {
 //        LOG.debug("Trying to determine selector class. type={}", type);
         if (type.isAssignableFrom(String.class)) {
