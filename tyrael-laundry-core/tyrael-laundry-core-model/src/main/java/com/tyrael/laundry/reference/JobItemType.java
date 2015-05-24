@@ -5,24 +5,29 @@ package com.tyrael.laundry.reference;
  */
 public enum JobItemType {
 
-    HANDKERCHIEF("Handkerchief"),
-    UNDERWEAR("Underwear"),
-    SOCKS("Socks"),
-    SHORTS("Shorts"),
-    PAJAMA("Pajama"),
-    BLOUSE("Blouse"),
-    JACKET("Jacket"),
-    DRESS("Dress"),
-    SHIRT_COLLAR("T-shirt w/ collar"),
-    SHIRT_SS("Shirt, short sleeves"),
-    SHIRT_LS("Shirt, long sleeves"),
-    SLACKS("Slacks, pants, trousers");
+    HANDKERCHIEF("Handkerchief", "singles/folded12.png"),
+    UNDERWEAR("Underwear", "shopping/png/black278.png"),
+    SOCKS("Socks", "singles/sock8.png"),
+    SHORTS("Shorts", "singles/football24.png"),
+    PAJAMA("Pajama", "shopping/png/long35.png"),
+    BLOUSE("Blouse", "shopping/png/female203.png"),
+    JACKET("Jacket", "shopping/png/black276.png"),
+    DRESS("Dress", "shopping/png/dress7.png"),
+    SHIRT_COLLAR("T-shirt w/ collar", "singles/tie8.png"),
+    SHIRT_SS("Shirt, short sleeves", "shopping/png/tshirt18.png"),
+    SHIRT_LS("Shirt, long sleeves", "singles/longshirts.png"),
+    SLACKS("Slacks, pants, trousers", "singles/jeans.png");
 
     private String label;
-    private JobItemType(String label) {
+    private String iconPath;
+    private JobItemType(String label, String iconPath) {
         this.label = label;
+        this.iconPath = iconPath;
     }
     public String getLabel() {
         return label;
+    }
+    public String getIconPath() {
+        return iconPath;
     }
 }

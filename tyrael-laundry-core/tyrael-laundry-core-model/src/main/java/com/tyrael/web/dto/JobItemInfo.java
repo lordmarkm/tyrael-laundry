@@ -22,5 +22,6 @@ public class JobItemInfo extends BaseTyraelDto {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
+
 }
 

@@ -23,6 +23,18 @@ html {
   width: 32px;
   height: 32px;
 }
+.img-twentyfour {
+  max-height: 24px;
+  max-width: 24px;
+  width: 24px;
+  height: 24px;
+}
+.img-sixteen {
+  max-height: 16px;
+  max-width: 16px;
+  width: 16px;
+  height: 16px;
+}
 
 .req:after {
     color: red;

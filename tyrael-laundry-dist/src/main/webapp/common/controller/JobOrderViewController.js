@@ -1,6 +1,6 @@
 define(function () {
-  return ['$scope', '$modal', '$q', '$filter', 'toaster', 'confirm', 'serviceTypes', 'jobOrder', 'CustomerService', 'ServiceTypeService', 'JobOrderService',
-    function ($scope, $modal, $q, $filter, toaster, confirm, serviceTypes, jobOrder, CustomerService, ServiceTypeService, JobOrderService) {
+  return ['$scope', '$modal', '$q', '$filter', 'toaster', 'confirm', 'serviceTypes', 'jobItemTypes', 'jobOrder', 'CustomerService', 'ServiceTypeService', 'JobOrderService',
+    function ($scope, $modal, $q, $filter, toaster, confirm, serviceTypes, jobItemTypes, jobOrder, CustomerService, ServiceTypeService, JobOrderService) {
 
     $scope.jobOrder = jobOrder;
     if ($scope.recentData) {
@@ -73,6 +73,14 @@ define(function () {
       }, function () {
         toaster.pop('error', 'Error saving Job Order');
       });
+    };
+
+    $scope.getJobItemType = function (jobItemTypeCode) {
+      for (var i in jobItemTypes) {
+        if (jobItemTypes[i].code === jobItemTypeCode) {
+          return jobItemTypes[i];
+        }
+      }
     };
 
     //Some utility methods

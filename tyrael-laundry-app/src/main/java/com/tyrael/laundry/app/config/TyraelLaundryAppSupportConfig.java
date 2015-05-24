@@ -13,10 +13,10 @@ import org.springframework.context.annotation.Import;
 
 import com.tyrael.commons.mapper.config.MapperConfig;
 import com.tyrael.laundry.app.converter.EnumInfoConverter;
-import com.tyrael.laundry.commons.dto.EnumInfo;
 import com.tyrael.laundry.model.JobOrder;
 import com.tyrael.laundry.model.TransportQueue;
 import com.tyrael.laundry.model.TransportRequest;
+import com.tyrael.web.dto.EnumInfo;
 import com.tyrael.web.dto.JobOrderInfo;
 import com.tyrael.web.dto.TransportQueueInfo;
 import com.tyrael.web.dto.TransportRequestInfo;

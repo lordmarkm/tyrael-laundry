@@ -33,6 +33,10 @@
     </div>
     </div>
   </dd>
+  <dt ng-if="jobOrder.jobItems.length">Items
+  <dd>
+    <span ng-repeat="jobItem in jobOrder.jobItems" ng-init="jt=getJobItemType(jobItem.jobItemType)" style="margin-right: 10px;">{{jobItem.quantity}} <img src="images/{{jt.iconPath}}" title="{{jt.label}}" class="img-sixteen"/></span>
+  </dd>
   <dt>Total Amount
   <dd>{{jobOrder.totalAmount | currency: 'Php '}}
   <dt>Total Amount Paid

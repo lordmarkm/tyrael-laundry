@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.google.common.collect.Lists;
-import com.tyrael.laundry.commons.dto.EnumInfo;
 import com.tyrael.laundry.reference.JobItemType;
+import com.tyrael.web.dto.EnumInfo;
 
 @RestController
 @RequestMapping("/jobitemtype")
