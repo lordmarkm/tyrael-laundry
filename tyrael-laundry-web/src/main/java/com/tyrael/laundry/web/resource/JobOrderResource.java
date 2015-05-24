@@ -49,7 +49,7 @@ public class JobOrderResource extends GenericController {
             @RequestParam String term) {
         LOG.debug("JobOrder query. Principal={}, page={}, count={}, term={}", name(principal), page, count, term);
         Sort sort = new Sort(Direction.DESC, "dateReceived");
-        PageRequest pageRequest = new PageRequest(page - 1, count, sort);
+        PageRequest pageRequest = new PageRequest(page, count, sort);
 
         return new ResponseEntity<>(service.rqlSearch(term, pageRequest), OK);
     }

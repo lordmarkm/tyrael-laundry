@@ -9,8 +9,9 @@ define([
    'common/service/DeliveryService',
    'common/service/TransportQueueService',
    'common/service/JobItemTypeService',
+   'common/service/BranchInfoService',
    'common/controller/JobOrderListController'
-], function (angular, GenericConfirmService, JobOrderService, CustomerService, CustomerAccountService, ServiceTypeService, PickupService, DeliveryService, TransportQueueService, JobItemTypeService,
+], function (angular, GenericConfirmService, JobOrderService, CustomerService, CustomerAccountService, ServiceTypeService, PickupService, DeliveryService, TransportQueueService, JobItemTypeService, BranchInfoService,
     JobOrderListController) {
   console.debug('Configuring common.module');
   angular.module('common.module', [])
@@ -23,6 +24,7 @@ define([
     .service('DeliveryService', DeliveryService)
     .service('TransportQueueService', TransportQueueService)
     .service('JobItemTypeService', JobItemTypeService)
+    .service('BranchInfoService', BranchInfoService)
     .config(['$stateProvider', function ($stateProvider) {
 
       $stateProvider.state('default.joborder_list', {

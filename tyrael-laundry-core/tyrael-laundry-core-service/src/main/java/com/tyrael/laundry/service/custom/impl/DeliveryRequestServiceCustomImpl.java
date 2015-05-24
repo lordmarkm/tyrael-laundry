@@ -56,10 +56,13 @@ public class DeliveryRequestServiceCustomImpl
         if (null == deliveryRequest.getCreated()) {
             deliveryRequest.setCreated(DateTime.now());
         }
+
         DeliveryRequest entity = mapper.map(deliveryRequest, DeliveryRequest.class);
-        DeliveryRequest existing = repo.findOne(deliveryRequest.getId());
-        if (null != existing.getQueue()) {
-            entity.setQueue(existing.getQueue());
+        if (null != deliveryRequest.getId()) {
+            DeliveryRequest existing = repo.findOne(deliveryRequest.getId());
+            if (null != existing.getQueue()) {
+                entity.setQueue(existing.getQueue());
+            }
         }
 
         DeliveryRequestInfo saved = toDto(repo.save(entity));
