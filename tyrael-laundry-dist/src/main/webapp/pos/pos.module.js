@@ -7,11 +7,12 @@ define([
    'common/controller/CustomerViewController',
    'pos/controller/CustomerViewJobOrdersController',
    'common/controller/TransportController',
+   'pos/controller/PosDashboardController',
    'common/resolve/JobOrderViewResolve',
    'pos/resolve/JobOrderCreateResolve',
    'common/resolve/CustomerViewResolve'
 ], function (angular,
-    PosRootController, JobOrderViewController, JobOrderListController, JobOrderCreateController, CustomerViewController, CustomerViewJobOrdersController, TransportController,
+    PosRootController, JobOrderViewController, JobOrderListController, JobOrderCreateController, CustomerViewController, CustomerViewJobOrdersController, TransportController, PosDashboardController,
     JobOrderViewResolve, JobOrderCreateResolve, CustomerViewResolve) {
   console.debug('Configuring pos.module');
   angular.module('pos.module', ['ui.select', 'ngSanitize'])
@@ -23,7 +24,8 @@ define([
       })
       .state('default.pos.splash', {
         url: '/dashboard',
-        templateUrl: 'pos/view/dashboard.html'
+        templateUrl: 'pos/view/dashboard.html',
+        controller: PosDashboardController
       })
       .state('default.pos.joborder_view', {
         url: '/joborder/view/{trackingNo}',

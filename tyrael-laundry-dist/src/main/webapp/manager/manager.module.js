@@ -4,14 +4,18 @@ define([
    'manager/controller/ManagerRootController',
    'manager/controller/JobOrderViewController',
    'common/controller/JobOrderListController',
+   'common/controller/CustomerViewController',
+   'pos/controller/CustomerViewJobOrdersController',
    'manager/controller/PriceManagementController',
    'common/controller/TransportController',
+   'manager/controller/ManagerDashboardController',
    'common/resolve/JobOrderViewResolve',
-   'manager/resolve/PriceManagementResolve'
+   'manager/resolve/PriceManagementResolve',
+   'common/resolve/CustomerViewResolve'
 ], function (angular,
     JobOrderAuditRecordService,
-    ManagerRootController, JobOrderViewController, JobOrderListController, PriceManagementController, TransportController,
-    JobOrderViewResolve, PriceManagementResolve) {
+    ManagerRootController, JobOrderViewController, JobOrderListController, CustomerViewController, CustomerViewJobOrdersController, PriceManagementController, TransportController, ManagerDashboardController,
+    JobOrderViewResolve, PriceManagementResolve, CustomerViewResolve) {
 
   console.debug('Configuring manager.module');
   angular.module('manager.module', ['ui.select', 'ngSanitize'])
@@ -24,7 +28,8 @@ define([
       })
       .state('default.manager.splash', {
         url: '/dashboard',
-        templateUrl: 'manager/view/dashboard.html'
+        templateUrl: 'manager/view/dashboard.html',
+        controller: ManagerDashboardController
       })
       .state('default.manager.joborder_view', {
         url: '/joborder/view/{trackingNo}',
@@ -37,11 +42,29 @@ define([
         templateUrl: 'common/view/joborder_list.html',
         controller: JobOrderListController
       })
+
+      //Customer management
+      .state('default.manager.customer_view', {
+        url: '/customer/{id}',
+        templateUrl: 'common/view/customer_view.html',
+        controller: CustomerViewController,
+        resolve: CustomerViewResolve
+      })
+      .state('default.manager.customer_view_joborders', {
+        url: '/customer/{id}/joborders',
+        templateUrl: 'manager/view/customer_view_joborders.html',
+        controller: CustomerViewJobOrdersController,
+        resolve: CustomerViewResolve
+      })
+
+      //Pickup/delivery
       .state('default.manager.transport', {
         url: '/transport',
         templateUrl: 'common/view/transport.html',
         controller: TransportController
       })
+
+      //Price management
       .state('default.manager.price_management', {
         url: '/prices',
         templateUrl: 'manager/view/price_management.html',

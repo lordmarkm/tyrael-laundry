@@ -29,7 +29,7 @@
           <i class="fa fa-list-alt fa-5x"></i>
         </div>
         <div class="col-sm-9 text-right">
-          <div class="huge">View</div>
+          <div class="huge">{{branchInfo.newJobOrders ? branchInfo.newJobOrders + ' New' : 'View'}}</div>
           <div>Job Orders</div>
         </div>
       </div>
@@ -50,7 +50,7 @@
           <i class="fa fa-truck fa-5x"></i>
         </div>
         <div class="col-sm-9 text-right">
-          <div class="huge">View</div>
+          <div class="huge">{{branchInfo.newTransportRequests ? branchInfo.newTransportRequests + ' New' : 'View'}}</div>
           <div>Pickup/Delivery Requests</div>
         </div>
       </div>
