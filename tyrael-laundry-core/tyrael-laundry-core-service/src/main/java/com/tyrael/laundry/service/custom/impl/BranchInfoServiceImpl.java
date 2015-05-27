@@ -2,6 +2,8 @@ package com.tyrael.laundry.service.custom.impl;
 
 import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 
 import com.tyrael.laundry.model.Branch;
@@ -20,6 +22,7 @@ import com.tyrael.laundry.service.custom.BranchInfoService;
 import com.tyrael.web.dto.BranchInfo;
 
 @Service
+@PropertySource("classpath:branchinfo.properties")
 public class BranchInfoServiceImpl implements BranchInfoService {
 
     @Autowired
@@ -34,6 +37,8 @@ public class BranchInfoServiceImpl implements BranchInfoService {
     private BrandService brandService;
     @Autowired
     private Mapper mapper;
+    @Autowired
+    private Environment env;
 
     @Override
     public BranchInfo getBranchInfo() {
@@ -54,11 +59,11 @@ public class BranchInfoServiceImpl implements BranchInfoService {
         Branch branch;
         if (branchService.count() < 1) {
             Brand brand = new Brand();
-            brand.setName("Tyrael Laundry");
+            brand.setName(env.getProperty("brand.name"));
             brand = brandService.save(brand);
             
             Branch tyrael = new Branch();
-            tyrael.setName("Tyrael Laundry Main - Sibulan");
+            tyrael.setName(env.getProperty("branch.name"));
             tyrael.setBrand(brand);
             branch = branchService.save(tyrael);
         } else {

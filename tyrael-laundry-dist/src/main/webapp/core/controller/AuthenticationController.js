@@ -1,5 +1,6 @@
 define(function () {
-  return ['$scope', function ($scope) {
+  return ['$scope', '$stateParams', function ($scope, $stateParams) {
     $scope.controllerName = "Authentication Root Controller";
+    $scope.params = $stateParams;
   }];
 });
