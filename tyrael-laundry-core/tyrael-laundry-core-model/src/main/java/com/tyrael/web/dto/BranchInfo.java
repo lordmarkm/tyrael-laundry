@@ -1,17 +1,26 @@
 package com.tyrael.web.dto;
 
+import java.math.BigDecimal;
+
 import org.springframework.core.style.ToStringCreator;
 
-public class BranchInfo {
+import com.tyrael.commons.dto.BaseTyraelNamedDto;
+
+/**
+ * @author mbmartinez
+ */
+public class BranchInfo extends BaseTyraelNamedDto {
 
     private int newTransportRequests;
     private int newJobOrders;
+    private BigDecimal minimumJobOrderAmount;
 
-    public String toString() {
-        return new ToStringCreator(this)
+    @Override
+    public ToStringCreator toStringCreator() {
+        return super.toStringCreator()
             .append("new transport rqs", newTransportRequests)
             .append("new job orders", newJobOrders)
-            .toString();
+            .append("minimumJobOrderAmount", minimumJobOrderAmount);
     }
 
     public int getNewTransportRequests() {
@@ -28,6 +37,14 @@ public class BranchInfo {
 
     public void setNewJobOrders(int newJobOrders) {
         this.newJobOrders = newJobOrders;
+    }
+
+    public BigDecimal getMinimumJobOrderAmount() {
+        return minimumJobOrderAmount;
+    }
+
+    public void setMinimumJobOrderAmount(BigDecimal minimumJobOrderAmount) {
+        this.minimumJobOrderAmount = minimumJobOrderAmount;
     }
     
 

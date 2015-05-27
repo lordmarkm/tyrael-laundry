@@ -7,15 +7,17 @@ define([
    'common/controller/CustomerViewController',
    'pos/controller/CustomerViewJobOrdersController',
    'manager/controller/PriceManagementController',
+   'manager/controller/BranchManagementController',
    'common/controller/TransportController',
    'manager/controller/ManagerDashboardController',
    'common/resolve/JobOrderViewResolve',
    'manager/resolve/PriceManagementResolve',
-   'common/resolve/CustomerViewResolve'
+   'common/resolve/CustomerViewResolve',
+   'manager/resolve/BranchManagementResolve'
 ], function (angular,
     JobOrderAuditRecordService,
-    ManagerRootController, JobOrderViewController, JobOrderListController, CustomerViewController, CustomerViewJobOrdersController, PriceManagementController, TransportController, ManagerDashboardController,
-    JobOrderViewResolve, PriceManagementResolve, CustomerViewResolve) {
+    ManagerRootController, JobOrderViewController, JobOrderListController, CustomerViewController, CustomerViewJobOrdersController, PriceManagementController, BranchManagementController, TransportController, ManagerDashboardController,
+    JobOrderViewResolve, PriceManagementResolve, CustomerViewResolve, BranchManagementResolve) {
 
   console.debug('Configuring manager.module');
   angular.module('manager.module', ['ui.select', 'ngSanitize'])
@@ -64,12 +66,18 @@ define([
         controller: TransportController
       })
 
-      //Price management
+      //More management options
       .state('default.manager.price_management', {
         url: '/prices',
         templateUrl: 'manager/view/price_management.html',
         controller: PriceManagementController,
         resolve: PriceManagementResolve
+      })
+      .state('default.manager.branch_management', {
+        url: '/branch',
+        templateUrl: 'manager/view/branch_management.html',
+        controller: BranchManagementController,
+        resolve: BranchManagementResolve
       });
 
     }]);
