@@ -8,5 +8,6 @@ import com.tyrael.web.dto.BranchInfo;
 public interface BranchInfoService {
 
     BranchInfo getBranchInfo();
+    BranchInfo saveBranchInfo(BranchInfo branchInfo);
 
 }

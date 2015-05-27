@@ -2,6 +2,7 @@ define(function () {
   return ['$modal', function ($modal) {
     this.confirm = function (title, msg, okBtn, cancelBtn) {
       return $modal.open({
+        backdrop: 'static',
         templateUrl: 'common/view/modal_generic_confirm.html',
         controller: ['$scope', '$modalInstance', function ($scope, $modalInstance) {
           $scope.title = title;

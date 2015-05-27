@@ -13,6 +13,7 @@ public class BranchInfo extends BaseTyraelNamedDto {
 
     private int newTransportRequests;
     private int newJobOrders;
+    private BaseTyraelNamedDto brand;
     private BigDecimal minimumJobOrderAmount;
 
     @Override
@@ -20,7 +21,8 @@ public class BranchInfo extends BaseTyraelNamedDto {
         return super.toStringCreator()
             .append("new transport rqs", newTransportRequests)
             .append("new job orders", newJobOrders)
-            .append("minimumJobOrderAmount", minimumJobOrderAmount);
+            .append("minimumJobOrderAmount", minimumJobOrderAmount)
+            .append("brand", brand);
     }
 
     public int getNewTransportRequests() {
@@ -45,6 +47,14 @@ public class BranchInfo extends BaseTyraelNamedDto {
 
     public void setMinimumJobOrderAmount(BigDecimal minimumJobOrderAmount) {
         this.minimumJobOrderAmount = minimumJobOrderAmount;
+    }
+
+    public BaseTyraelNamedDto getBrand() {
+        return brand;
+    }
+
+    public void setBrand(BaseTyraelNamedDto brand) {
+        this.brand = brand;
     }
     
 

@@ -71,4 +71,11 @@ public class BranchInfoServiceImpl implements BranchInfoService {
         }
         mapper.map(branch, branchInfo);
     }
+
+    @Override
+    public BranchInfo saveBranchInfo(BranchInfo branchInfo) {
+        Branch branch = mapper.map(branchInfo, Branch.class);
+        branchService.saveAndFlush(branch);
+        return getBranchInfo();
+    }
 }

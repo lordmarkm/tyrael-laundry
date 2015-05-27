@@ -21,7 +21,7 @@ public class Branch extends BaseNamedEntity {
      * amount.
      */
     @Column(name = "JO_MINIMUM")
-    private BigDecimal minimumJobOrderAmount;
+    private BigDecimal minimumJobOrderAmount = BigDecimal.ZERO;
 
     public BigDecimal getMinimumJobOrderAmount() {
         return minimumJobOrderAmount;
