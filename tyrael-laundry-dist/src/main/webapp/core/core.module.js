@@ -23,7 +23,6 @@ define([
         templateUrl: 'core/view/login.html',
         controller: AuthenticationController
       });
-
     }])
 
     //Scroll to top on location change

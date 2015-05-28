@@ -2,6 +2,7 @@ package com.tyrael.laundry.web.resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,6 +25,7 @@ public class BranchInfoResource {
         return new ResponseEntity<>(service.getBranchInfo(), OK);
     }
 
+    @PreAuthorize("hasRole('ROLE_MANAGER')")
     @RequestMapping(method = POST)
     public ResponseEntity<BranchInfo> saveBranchInfo(@RequestBody BranchInfo branchInfo) {
         return new ResponseEntity<>(service.saveBranchInfo(branchInfo), OK);

@@ -26,23 +26,27 @@ define([
       $stateProvider.state('default.manager', {
         url: 'manage',
         templateUrl: 'manager/view/manager.html',
-        controller: ManagerRootController
+        controller: ManagerRootController,
+        access: 'ROLE_MANAGER'
       })
       .state('default.manager.splash', {
         url: '/dashboard',
         templateUrl: 'manager/view/dashboard.html',
-        controller: ManagerDashboardController
+        controller: ManagerDashboardController,
+        access: 'ROLE_MANAGER'
       })
       .state('default.manager.joborder_view', {
         url: '/joborder/view/{trackingNo}',
         templateUrl: 'manager/view/joborder_view.html',
         controller: JobOrderViewController,
-        resolve: JobOrderViewResolve
+        resolve: JobOrderViewResolve,
+        access: 'ROLE_MANAGER'
       })
       .state('default.manager.joborder_list', {
         url: '/joborder/list',
         templateUrl: 'common/view/joborder_list.html',
-        controller: JobOrderListController
+        controller: JobOrderListController,
+        access: 'ROLE_MANAGER'
       })
 
       //Customer management
@@ -50,20 +54,23 @@ define([
         url: '/customer/{id}',
         templateUrl: 'common/view/customer_view.html',
         controller: CustomerViewController,
-        resolve: CustomerViewResolve
+        resolve: CustomerViewResolve,
+        access: 'ROLE_MANAGER'
       })
       .state('default.manager.customer_view_joborders', {
         url: '/customer/{id}/joborders',
         templateUrl: 'manager/view/customer_view_joborders.html',
         controller: CustomerViewJobOrdersController,
-        resolve: CustomerViewResolve
+        resolve: CustomerViewResolve,
+        access: 'ROLE_MANAGER'
       })
 
       //Pickup/delivery
       .state('default.manager.transport', {
         url: '/transport',
         templateUrl: 'common/view/transport.html',
-        controller: TransportController
+        controller: TransportController,
+        access: 'ROLE_MANAGER'
       })
 
       //More management options
@@ -71,13 +78,15 @@ define([
         url: '/prices',
         templateUrl: 'manager/view/price_management.html',
         controller: PriceManagementController,
-        resolve: PriceManagementResolve
+        resolve: PriceManagementResolve,
+        access: 'ROLE_MANAGER'
       })
       .state('default.manager.branch_management', {
         url: '/branch',
         templateUrl: 'manager/view/branch_management.html',
         controller: BranchManagementController,
-        resolve: BranchManagementResolve
+        resolve: BranchManagementResolve,
+        access: 'ROLE_MANAGER'
       });
 
     }]);

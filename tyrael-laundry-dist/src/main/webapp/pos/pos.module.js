@@ -25,24 +25,28 @@ define([
       .state('default.pos.splash', {
         url: '/dashboard',
         templateUrl: 'pos/view/dashboard.html',
-        controller: PosDashboardController
+        controller: PosDashboardController,
+        access: 'ROLE_POS'
       })
       .state('default.pos.joborder_view', {
         url: '/joborder/view/{trackingNo}',
         templateUrl: 'common/view/joborder_view.html',
         controller: JobOrderViewController,
-        resolve: JobOrderViewResolve
+        resolve: JobOrderViewResolve,
+        access: 'ROLE_POS'
       })
       .state('default.pos.joborder_list', {
         url: '/joborder/list',
         templateUrl: 'common/view/joborder_list.html',
-        controller: JobOrderListController
+        controller: JobOrderListController,
+        access: 'ROLE_POS'
       })
       .state('default.pos.joborder_create', {
         url: '/joborder/new',
         templateUrl: 'pos/view/joborder_create.html',
         controller: JobOrderCreateController,
-        resolve: JobOrderCreateResolve
+        resolve: JobOrderCreateResolve,
+        access: 'ROLE_POS'
       })
 
       //Customer management
@@ -50,20 +54,23 @@ define([
         url: '/customer/{id}',
         templateUrl: 'common/view/customer_view.html',
         controller: CustomerViewController,
-        resolve: CustomerViewResolve
+        resolve: CustomerViewResolve,
+        access: 'ROLE_POS'
       })
       .state('default.pos.customer_view_joborders', {
         url: '/customer/{id}/joborders',
         templateUrl: 'pos/view/customer_view_joborders.html',
         controller: CustomerViewJobOrdersController,
-        resolve: CustomerViewResolve
+        resolve: CustomerViewResolve,
+        access: 'ROLE_POS'
       })
 
       //Transport
       .state('default.pos.transport', {
         url: '/transport',
         templateUrl: 'common/view/transport.html',
-        controller: TransportController
+        controller: TransportController,
+        access: 'ROLE_POS'
       });
     }]);
 
