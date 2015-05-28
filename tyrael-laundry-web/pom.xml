@@ -30,6 +30,11 @@
       <version>${project.version}</version>
     </dependency>
     <dependency>
+      <groupId>com.tyrael.laundry</groupId>
+      <artifactId>tyrael-laundry-reports</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
       <groupId>baldy.commons</groupId>
       <artifactId>baldy-commons-web</artifactId>
     </dependency>

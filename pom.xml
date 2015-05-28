@@ -18,6 +18,7 @@
     <module>tyrael-laundry-messaging</module>
     <module>tyrael-laundry-data</module>
     <module>tyrael-laundry-billing</module>
+    <module>tyrael-laundry-reports</module>
   </modules>
 
   <properties>
