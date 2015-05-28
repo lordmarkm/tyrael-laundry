@@ -17,7 +17,7 @@
         <div class="panel-heading">
           <div class="row">
             <div class="col-sm-3">
-              <img src="images/icons/{{service.serviceType.icon}}" class="img-thirtytwo" />
+              <img ng-attr-src="images/icons/{{service.serviceType.icon}}" class="img-thirtytwo" />
             </div>
             <div class="col-sm-9 text-right">
               <div class="large">{{service.serviceType.label}}</div>
@@ -35,7 +35,7 @@
   </dd>
   <dt ng-if="jobOrder.jobItems.length">Items
   <dd>
-    <span ng-repeat="jobItem in jobOrder.jobItems" ng-init="jt=getJobItemType(jobItem.jobItemType)" style="margin-right: 10px;">{{jobItem.quantity}} <img src="images/{{jt.iconPath}}" title="{{jt.label}}" class="img-sixteen"/></span>
+    <span ng-repeat="jobItem in jobOrder.jobItems" ng-init="jt=getJobItemType(jobItem.jobItemType)" style="margin-right: 10px;">{{jobItem.quantity}} <img ng-attr-src="images/{{jt.iconPath}}" title="{{jt.label}}" class="img-sixteen"/></span>
   </dd>
   <dt>Total Amount
   <dd>{{jobOrder.totalAmount | currency: 'Php '}}
