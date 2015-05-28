@@ -21,7 +21,8 @@ public class ReportsResource {
 
     @RequestMapping(method = RequestMethod.GET)
     public void getReport(HttpServletResponse response) throws IOException {
-        Workbook wb = composer.getReport();
+//        Workbook wb = composer.getReport();
+        Workbook wb = composer.getLineChart();
         response.setHeader("Content-disposition", "attachment; filename=test.xls");
         wb.write(response.getOutputStream());
     }

@@ -10,8 +10,14 @@ public class ReportDelegator {
     @Autowired
     private JobOrderReportBuilder jobOrderReportBuilder;
 
+    @Autowired
+    private LineChartTest lineChartTest;
+
     public Workbook getReport() {
         return jobOrderReportBuilder.buildReport();
     }
 
+    public Workbook getLineChart() {
+        return lineChartTest.buildReport();
+    }
 }
