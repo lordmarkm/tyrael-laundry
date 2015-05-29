@@ -1,9 +1,8 @@
 define(function () {
-  return ['$scope', '$state', '$stateParams', 'toaster', 'confirm',
-    function ($scope, $state, $stateParams, toaster, confirm) {
+  return ['$scope', '$state', 'reportParams', 'toaster', 'confirm',
+    function ($scope, $state, reportParams, toaster, confirm) {
 
-    console.debug('state access: ' + $state.access);
-    console.debug('$stateParams: ' + JSON.stringify($stateParams));
+    $scope.reportParams = reportParams;
 
   }];
 });

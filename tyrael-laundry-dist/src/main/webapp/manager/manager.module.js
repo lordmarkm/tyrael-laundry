@@ -14,11 +14,12 @@ define([
    'common/resolve/JobOrderViewResolve',
    'manager/resolve/PriceManagementResolve',
    'common/resolve/CustomerViewResolve',
-   'manager/resolve/BranchManagementResolve'
+   'manager/resolve/BranchManagementResolve',
+   'manager/resolve/SummaryReportResolve'
 ], function (angular,
     JobOrderAuditRecordService,
     ManagerRootController, JobOrderViewController, JobOrderListController, CustomerViewController, CustomerViewJobOrdersController, PriceManagementController, BranchManagementController, TransportController, ManagerDashboardController, ReportsController,
-    JobOrderViewResolve, PriceManagementResolve, CustomerViewResolve, BranchManagementResolve) {
+    JobOrderViewResolve, PriceManagementResolve, CustomerViewResolve, BranchManagementResolve, SummaryReportResolve) {
 
   console.debug('Configuring manager.module');
   angular.module('manager.module', ['ui.select', 'ngSanitize'])
@@ -77,13 +78,15 @@ define([
       //Reports
       .state('default.manager.reports', {
         url: '/reports',
-        templateUrl: 'manager/view/reports.html',
+        template: '<ui-view></ui-view>',
         abstract: true,
-        access: 'ROLE_MANAGER',
-        controller: ReportsController
+        access: 'ROLE_MANAGER'
       })
       .state('default.manager.reports.summary', {
         url: '/summary',
+        templateUrl: 'manager/view/reports.html',
+        controller: ReportsController,
+        resolve: SummaryReportResolve,
         access: 'ROLE_MANAGER'
       })
 
