@@ -10,13 +10,14 @@ define([
    'manager/controller/BranchManagementController',
    'common/controller/TransportController',
    'manager/controller/ManagerDashboardController',
+   'manager/controller/ReportsController',
    'common/resolve/JobOrderViewResolve',
    'manager/resolve/PriceManagementResolve',
    'common/resolve/CustomerViewResolve',
    'manager/resolve/BranchManagementResolve'
 ], function (angular,
     JobOrderAuditRecordService,
-    ManagerRootController, JobOrderViewController, JobOrderListController, CustomerViewController, CustomerViewJobOrdersController, PriceManagementController, BranchManagementController, TransportController, ManagerDashboardController,
+    ManagerRootController, JobOrderViewController, JobOrderListController, CustomerViewController, CustomerViewJobOrdersController, PriceManagementController, BranchManagementController, TransportController, ManagerDashboardController, ReportsController,
     JobOrderViewResolve, PriceManagementResolve, CustomerViewResolve, BranchManagementResolve) {
 
   console.debug('Configuring manager.module');
@@ -70,6 +71,19 @@ define([
         url: '/transport',
         templateUrl: 'common/view/transport.html',
         controller: TransportController,
+        access: 'ROLE_MANAGER'
+      })
+
+      //Reports
+      .state('default.manager.reports', {
+        url: '/reports',
+        templateUrl: 'manager/view/reports.html',
+        abstract: true,
+        access: 'ROLE_MANAGER',
+        controller: ReportsController
+      })
+      .state('default.manager.reports.summary', {
+        url: '/summary',
         access: 'ROLE_MANAGER'
       })
 
