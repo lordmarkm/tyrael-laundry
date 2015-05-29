@@ -1,4 +1,4 @@
-package com.tyrael.laundry.reports.composer;
+package com.tyrael.laundry.reports.builder;
 
 import java.util.List;
 

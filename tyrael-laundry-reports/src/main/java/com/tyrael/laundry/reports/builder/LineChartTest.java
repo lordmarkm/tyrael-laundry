@@ -1,4 +1,4 @@
-package com.tyrael.laundry.reports.composer;
+package com.tyrael.laundry.reports.builder;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Chart;

@@ -1,4 +1,4 @@
-package com.tyrael.laundry.reports.composer;
+package com.tyrael.laundry.reports.builder;
 
 import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,12 +12,14 @@ public class ReportDelegator {
 
     @Autowired
     private LineChartTest lineChartTest;
+    @Autowired
+    private SummaryReportBuilder summaryReportBuilder;
 
     public Workbook getReport() {
         return jobOrderReportBuilder.buildReport();
     }
 
     public Workbook getLineChart() {
-        return lineChartTest.buildReport();
+        return summaryReportBuilder.buildReport();
     }
 }

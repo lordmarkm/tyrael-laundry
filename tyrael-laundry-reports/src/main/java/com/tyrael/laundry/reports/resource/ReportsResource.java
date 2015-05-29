@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.tyrael.laundry.reports.composer.ReportDelegator;
+import com.tyrael.laundry.reports.builder.ReportDelegator;
 
 @RestController
 @RequestMapping("/reports")

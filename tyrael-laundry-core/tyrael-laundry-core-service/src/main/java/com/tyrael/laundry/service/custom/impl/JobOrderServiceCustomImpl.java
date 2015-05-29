@@ -1,6 +1,7 @@
 package com.tyrael.laundry.service.custom.impl;
 
 import java.util.List;
+import static com.tyrael.laundry.reference.JobOrderStatus.*;
 
 import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
@@ -16,6 +17,7 @@ import com.tyrael.laundry.model.JobItem;
 import com.tyrael.laundry.model.JobOrder;
 import com.tyrael.laundry.model.JobService;
 import com.tyrael.laundry.model.LostAndFoundItem;
+import com.tyrael.laundry.reference.JobOrderStatus;
 import com.tyrael.laundry.service.JobOrderService;
 import com.tyrael.laundry.service.TyraelLaundryJobOrderSequenceService;
 import com.tyrael.laundry.service.custom.JobOrderServiceCustom;
@@ -82,6 +84,14 @@ public class JobOrderServiceCustomImpl extends TyraelJpaServiceCustomImpl<JobOrd
             jobOrderInfo.setDateReceived(DateTime.now());
             jobOrderInfo.setDateDue(jobOrderInfo.getDateReceived().plusDays(3));
             jobOrderInfo.setTrackingNo(sequenceService.next());
+        }
+        if (null == jobOrderInfo.getDateCompleted() 
+                && (jobOrderInfo.getStatus() == CLOSED) || jobOrderInfo.getStatus() == CANCELLED) {
+            jobOrderInfo.setDateCompleted(DateTime.now());
+        }
+        if (null == jobOrderInfo.getDateClaimed()
+                && jobOrderInfo.getStatus() == PAID_CLAIMED) {
+            jobOrderInfo.setDateClaimed(DateTime.now());
         }
 
         JobOrder jobOrder = toEntity(jobOrderInfo);
