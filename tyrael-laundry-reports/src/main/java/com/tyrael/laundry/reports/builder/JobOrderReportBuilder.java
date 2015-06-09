@@ -8,6 +8,7 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.dozer.Mapper;
+import org.joda.time.DateMidnight;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -24,7 +25,7 @@ public class JobOrderReportBuilder implements ReportBuilder {
     @Autowired
     private Mapper mapper;
 
-    public Workbook buildReport() {
+    public Workbook buildReport(DateMidnight datefrom, DateMidnight dateto) {
         boolean xlsx = true;
         Workbook wb = xlsx ? new XSSFWorkbook() : new HSSFWorkbook();
         Sheet sheet = wb.createSheet("Job orders");

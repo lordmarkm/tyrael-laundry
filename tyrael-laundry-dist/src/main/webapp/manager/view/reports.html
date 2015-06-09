@@ -1,3 +1,39 @@
 <h3 class="page-header">Reports <br><small>{{reportParams.title}}</small></h3>
 
-raports. {{reportParams}}
+<p>{{reportParams.description}}
+
+<form class="form form-horizontal" ng-submit="generateReport()">
+<div class="row">
+  <div class="form-group">
+    <label class="control-label col-sm-2">Date from</label>
+    <div class="col-sm-4">
+      <span class="input-group">
+        <input type="text" datepicker-popup="{{dateFormat}}" placeholder="Start date"
+          ng-model="filter.datefrom" is-open="openDatefrom" ng-init="openDatefrom = false"
+          max-date="{{today}}"
+          class="form-control" readonly />
+        <span class="input-group-btn">
+          <button type="button" class="btn btn-default" ng-click="open('from', $event)"><i class="glyphicon glyphicon-calendar"></i></button>
+        </span>
+      </span>
+    </div>
+  </div>
+    <div class="form-group">
+    <label class="control-label col-sm-2">Date to</label>
+    <div class="col-sm-4">
+      <span class="input-group">
+        <input type="text" datepicker-popup="{{dateFormat}}" placeholder="Start date"
+          ng-model="filter.dateto" is-open="openDateto" ng-init="openDateto = false"
+          max-date="{{today}}"
+          class="form-control" readonly />
+        <span class="input-group-btn">
+          <button type="button" class="btn btn-default" ng-click="open('to', $event)"><i class="glyphicon glyphicon-calendar"></i></button>
+        </span>
+      </span>
+    </div>
+  </div>
+</div>
+<div class="pull-right">
+  <button class="btn btn-primary" ng-disabled="generateReportButtonDisabled">Generate Report</button>
+</div>
+</form>

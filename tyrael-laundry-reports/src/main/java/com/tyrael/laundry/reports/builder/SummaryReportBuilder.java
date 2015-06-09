@@ -26,6 +26,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.joda.time.DateMidnight;
 import org.joda.time.Days;
 import org.joda.time.DurationFieldType;
+import org.joda.time.MutableDateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,15 +43,22 @@ public class SummaryReportBuilder implements ReportBuilder {
     @Autowired
     private JobOrderService service;
 
+    private DateMidnight firstDayOfMonth() {
+        MutableDateTime mdt = MutableDateTime.now();
+        mdt.setDayOfMonth(1);
+        return new DateMidnight(mdt);
+    }
+
     @Override
-    public Workbook buildReport() {
-        DateMidnight start = DateMidnight.now().minusMonths(1);
-        DateMidnight end = DateMidnight.now();
+    public Workbook buildReport(DateMidnight datefrom, DateMidnight dateto) {
+
+        DateMidnight start = datefrom != null ? datefrom : firstDayOfMonth();
+        DateMidnight end = dateto != null ? dateto : DateMidnight.now();
         List<DateMidnight> dates = getDays(start, end);
         LOG.debug("start={}, end={}, days={}", start, end, dates.size());
 
         Workbook wb = new XSSFWorkbook();
-        Sheet sheet = wb.createSheet("Summary");
+        Sheet sheet = wb.createSheet("Job orders");
 
         Row row;
         Cell cell;
@@ -58,8 +66,8 @@ public class SummaryReportBuilder implements ReportBuilder {
         //Titles row
         row = sheet.createRow(0);
         row.createCell(0).setCellValue("Date");
-        row.createCell(1).setCellValue("Job orders received");
-        row.createCell(2).setCellValue("Job orders completed");
+        row.createCell(1).setCellValue("Received");
+        row.createCell(2).setCellValue("Completed");
 
         for (int rowIndex = 0; rowIndex < dates.size(); rowIndex++) {
             DateMidnight date = dates.get(rowIndex);
@@ -74,7 +82,7 @@ public class SummaryReportBuilder implements ReportBuilder {
                     );
             
             cell = row.createCell(0);
-            cell.setCellValue(date.toString(DATE_FORMAT_NO_YEAR));
+            cell.setCellValue(date.toString(DATE_FORMAT));
             cell = row.createCell(1);
             cell.setCellValue(received);
             cell = row.createCell(2);
@@ -82,7 +90,7 @@ public class SummaryReportBuilder implements ReportBuilder {
         }
 
         Drawing drawing = sheet.createDrawingPatriarch();
-        ClientAnchor anchor = drawing.createAnchor(0, 0, 0, 0, 4, 0, 14, 10);
+        ClientAnchor anchor = drawing.createAnchor(0, 0, 0, 0, 4, 0, 14, 15);
 
         Chart chart = drawing.createChart(anchor);
         ChartLegend legend = chart.getOrCreateLegend();
@@ -106,6 +114,10 @@ public class SummaryReportBuilder implements ReportBuilder {
         completed.setTitle("Job orders completed.");
 
         chart.plot(data, bottomAxis, leftAxis);
+
+        sheet.autoSizeColumn(0);
+        sheet.autoSizeColumn(1);
+        sheet.autoSizeColumn(2);
         return wb;
     }
 

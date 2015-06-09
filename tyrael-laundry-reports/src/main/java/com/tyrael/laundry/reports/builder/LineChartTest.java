@@ -18,13 +18,14 @@ import org.apache.poi.ss.usermodel.charts.LineChartData;
 import org.apache.poi.ss.usermodel.charts.ValueAxis;
 import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.joda.time.DateMidnight;
 import org.springframework.stereotype.Component;
 
 @Component
 public class LineChartTest implements ReportBuilder {
 
     @Override
-    public Workbook buildReport() {
+    public Workbook buildReport(DateMidnight datefrom, DateMidnight dateto) {
         Workbook wb = new XSSFWorkbook();
         Sheet sheet = wb.createSheet("linechart");
         final int NUM_OF_ROWS = 3;
