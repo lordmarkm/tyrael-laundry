@@ -1,6 +1,6 @@
 define(function () {
-  return ['$scope', '$modal', 'toaster', 'serviceTypes', 'jobItemTypes', 'CustomerService', 'ServiceTypeService', 'JobOrderService',
-    function ($scope, $modal, toaster, serviceTypes, jobItemTypes, CustomerService, ServiceTypeService, JobOrderService) {
+  return ['$scope', '$modal', '$filter', 'confirm', 'toaster', 'serviceTypes', 'jobItemTypes', 'CustomerService', 'ServiceTypeService', 'JobOrderService',
+    function ($scope, $modal, $filter, confirm, toaster, serviceTypes, jobItemTypes, CustomerService, ServiceTypeService, JobOrderService) {
 
     function resetPage() {
       $scope.customerHolder = {};
@@ -89,12 +89,24 @@ define(function () {
         return $modal.open({
           templateUrl: 'modal-confirm-joborder',
           background: 'static',
-          controller: ['$scope', '$modalInstance', 'jobOrder', function($scope, $modalInstance, jobOrder) {
-            $scope.jobOrder = jobOrder;
-            $scope.proceed = function () {
+          controller: ['$scope', '$modalInstance', 'jobOrder', function($modalScope, $modalInstance, jobOrder) {
+
+            if (jobOrder.totalAmount < $scope.branchInfo.minimumJobOrderAmount) {
+              confirm.confirm('Confirm minimum amount', 'This job order does not exceed the minimum job order amount of ' + $filter('currency')($scope.branchInfo.minimumJobOrderAmount, 'Php ') + '. The minimum amount will be charged.')
+                .result.then(function (ok) {
+                  if (ok) {
+                    jobOrder.totalAmount = $scope.branchInfo.minimumJobOrderAmount;
+                  } else {
+                    $modalInstance.close(false);
+                  }
+                });
+            }
+
+            $modalScope.jobOrder = jobOrder;
+            $modalScope.proceed = function () {
               $modalInstance.close(jobOrder);
             };
-            $scope.cancel = function () {
+            $modalScope.cancel = function () {
               $modalInstance.close(false);
             };
           }],

@@ -17,10 +17,15 @@ public class ReportDelegator {
     @Autowired
     private SummaryReportBuilder summaryReportBuilder;
 
+    @Autowired
+    private IncomeReportBuilder incomeReportBuilder;
+
     public Workbook compseReport(String reportName, DateMidnight datefrom, DateMidnight dateto) {
         switch (reportName) {
         case "Summary":
             return summaryReportBuilder.buildReport(datefrom, dateto);
+        case "Income Report":
+            return incomeReportBuilder.buildReport(datefrom, dateto);
         default:
             throw new IllegalArgumentException("Unrecognized report name: " + reportName);
         }

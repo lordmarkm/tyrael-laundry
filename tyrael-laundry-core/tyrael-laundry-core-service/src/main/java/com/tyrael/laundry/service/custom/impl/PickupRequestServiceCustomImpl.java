@@ -37,9 +37,11 @@ public class PickupRequestServiceCustomImpl
         }
         PickupRequest entity = mapper.map(pickupRequest, PickupRequest.class);
 
-        PickupRequest existing = repo.findOne(pickupRequest.getId());
-        if (null != existing.getQueue()) {
-            entity.setQueue(existing.getQueue());
+        if (null != pickupRequest.getId()) {
+            PickupRequest existing = repo.findOne(pickupRequest.getId());
+            if (null != existing.getQueue()) {
+                entity.setQueue(existing.getQueue());
+            }
         }
 
         return toDto(repo.save(entity));

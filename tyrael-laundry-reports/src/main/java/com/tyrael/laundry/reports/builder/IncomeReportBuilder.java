@@ -1,7 +1,6 @@
 package com.tyrael.laundry.reports.builder;
 
-import static com.tyrael.laundry.model.QJobOrder.jobOrder;
-
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.apache.poi.ss.usermodel.Cell;
@@ -24,6 +23,7 @@ import org.apache.poi.ss.usermodel.charts.ValueAxis;
 import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.joda.time.DateMidnight;
+import org.joda.time.DateTime;
 import org.joda.time.Days;
 import org.joda.time.DurationFieldType;
 import org.joda.time.MutableDateTime;
@@ -36,9 +36,9 @@ import com.google.common.collect.Lists;
 import com.tyrael.laundry.service.JobOrderService;
 
 @Component
-public class SummaryReportBuilder implements ReportBuilder {
+public class IncomeReportBuilder implements ReportBuilder {
 
-    private static Logger LOG = LoggerFactory.getLogger(SummaryReportBuilder.class);
+    private static Logger LOG = LoggerFactory.getLogger(IncomeReportBuilder.class);
 
     @Autowired
     private JobOrderService service;
@@ -66,27 +66,18 @@ public class SummaryReportBuilder implements ReportBuilder {
         //Titles row
         row = sheet.createRow(0);
         row.createCell(0).setCellValue("Date");
-        row.createCell(1).setCellValue("Received");
-        row.createCell(2).setCellValue("Completed");
+        row.createCell(1).setCellValue("Income");
 
         for (int rowIndex = 0; rowIndex < dates.size(); rowIndex++) {
             DateMidnight date = dates.get(rowIndex);
+            DateTime datetime = new DateTime(date);
             row = sheet.createRow(rowIndex + 1);
-            long received = service.count(
-                        jobOrder.dateReceived.dayOfYear().eq(date.getDayOfYear())
-                            .and(jobOrder.dateReceived.year().eq(date.getYear()))
-                    );
-            long completed = service.count(
-                        jobOrder.dateCompleted.dayOfYear().eq(date.getDayOfYear())
-                            .and(jobOrder.dateCompleted.year().eq(date.getYear()))
-                    );
-            
+            BigDecimal income = service.getIncomeTotal(datetime, datetime.plusDays(1));
+
             cell = row.createCell(0);
             cell.setCellValue(date.toString(DATE_FORMAT));
             cell = row.createCell(1);
-            cell.setCellValue(received);
-            cell = row.createCell(2);
-            cell.setCellValue(completed);
+            cell.setCellValue(null != income ? income.doubleValue() : 0d);
         }
 
         Drawing drawing = sheet.createDrawingPatriarch();
@@ -105,19 +96,14 @@ public class SummaryReportBuilder implements ReportBuilder {
 
         ChartDataSource<Number> xs = DataSources.fromNumericCellRange(sheet, new CellRangeAddress(0, dates.size(), 0, 0));
         ChartDataSource<Number> ys1 = DataSources.fromNumericCellRange(sheet, new CellRangeAddress(0, dates.size(), 1, 1));
-        ChartDataSource<Number> ys2 = DataSources.fromNumericCellRange(sheet, new CellRangeAddress(0, dates.size(), 2, 2));
-
 
         LineChartSeries received = data.addSeries(xs, ys1);
-        received.setTitle("Job orders received.");
-        LineChartSeries completed = data.addSeries(xs, ys2);
-        completed.setTitle("Job orders completed.");
+        received.setTitle("Daily Income");
 
         chart.plot(data, bottomAxis, leftAxis);
 
         sheet.autoSizeColumn(0);
         sheet.autoSizeColumn(1);
-        sheet.autoSizeColumn(2);
         return wb;
     }
 
@@ -130,4 +116,5 @@ public class SummaryReportBuilder implements ReportBuilder {
         }
         return dates;
     }
+
 }

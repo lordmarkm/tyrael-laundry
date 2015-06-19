@@ -1,5 +1,10 @@
 define(function () {
-  return ['$scope', '$state', '$stateParams', 'JobOrderService', function ($scope, $state, $stateParams, JobOrderService) {
+  return ['$scope', '$state', '$stateParams', 'JobOrderService', 'BranchInfoService', function ($scope, $state, $stateParams, JobOrderService, BranchInfoService) {
+
+    //Moved here from dashboard controller so that create jo controller can
+    //use minimum amount
+    $scope.branchInfo = BranchInfoService.get();
+
     $scope.params = $stateParams;
     $scope.recentData = {
       customer: {}
