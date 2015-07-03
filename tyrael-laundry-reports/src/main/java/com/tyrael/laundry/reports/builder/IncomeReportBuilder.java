@@ -67,7 +67,6 @@ public class IncomeReportBuilder implements ReportBuilder {
         row = sheet.createRow(0);
         row.createCell(0).setCellValue("Date");
         row.createCell(1).setCellValue("Income");
-
         for (int rowIndex = 0; rowIndex < dates.size(); rowIndex++) {
             DateMidnight date = dates.get(rowIndex);
             DateTime datetime = new DateTime(date);

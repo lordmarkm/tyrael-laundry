@@ -26,6 +26,8 @@ public class ReportDelegator {
             return summaryReportBuilder.buildReport(datefrom, dateto);
         case "Income Report":
             return incomeReportBuilder.buildReport(datefrom, dateto);
+        case "Job Order Report":
+            return jobOrderReportBuilder.buildReport(datefrom, dateto);
         default:
             throw new IllegalArgumentException("Unrecognized report name: " + reportName);
         }
