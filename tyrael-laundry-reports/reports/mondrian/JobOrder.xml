@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<Schema name="TyraelLaundrySchema">
+	<Cube name="JobOrder">
+		<Table name="JOB_ORDER_FACT"/>
+		<Dimension name="Date Received" foreignKey="DATE_RECEIVED_DIM_ID">
+			<Hierarchy hasAll="true" allMemberName="All Dates" primaryKey="id">
+				<Table name="date_dimension"/>
+				<Level name="Year" column="year" uniqueMembers="false"/>
+				<Level name="Month" column="month_name" uniqueMembers="false"/>
+			</Hierarchy>
+		</Dimension>
+		<Measure name="Amount Paid" column="TOTAL_AMT_PAID" aggregator="sum" formatString="Standard"/>
+		<Measure name="Amount Due" column="TOTAL_AMT" aggregator="sum" formatString="Standard"/>
+		<Attribute name="Tracking Number">
+			<Key>
+				<Column name="TRACKING_NO" />
+			</Key>
+		</Attribute>
+	</Cube>
+</Schema>
