@@ -6,7 +6,7 @@
 			<Hierarchy hasAll="true" allMemberName="All Dates" primaryKey="id">
 				<Table name="date_dimension"/>
 				<Level name="Year" column="year" uniqueMembers="false"/>
-				<Level name="Month" column="month_name" uniqueMembers="false"/>
+				<Level name="Month" ordinalColumn="month_num" column="month_name" uniqueMembers="false"/>
 			</Hierarchy>
 		</Dimension>
 		<Measure name="Amount Paid" column="TOTAL_AMT_PAID" aggregator="sum" formatString="Standard"/>
