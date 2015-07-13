@@ -5,16 +5,13 @@
 		<Dimension name="Date Received" foreignKey="DATE_RECEIVED_DIM_ID">
 			<Hierarchy hasAll="true" allMemberName="All Dates" primaryKey="id">
 				<Table name="date_dimension"/>
-				<Level name="Year" column="year" uniqueMembers="false"/>
-				<Level name="Month" ordinalColumn="month_num" column="month_name" uniqueMembers="false"/>
+				<Level name="Year" column="year" uniqueMembers="false" />
+				<Level name="Month" ordinalColumn="month_num" column="month_name" uniqueMembers="false" />
+				<Level name="Day" column="day_num_in_month" uniqueMembers="true" />
 			</Hierarchy>
 		</Dimension>
 		<Measure name="Amount Paid" column="TOTAL_AMT_PAID" aggregator="sum" formatString="Standard"/>
-		<Measure name="Amount Due" column="TOTAL_AMT" aggregator="sum" formatString="Standard"/>
-		<Attribute name="Tracking Number">
-			<Key>
-				<Column name="TRACKING_NO" />
-			</Key>
-		</Attribute>
+		<Measure name="Amount Due" column="TOTAL_AMT" aggregator="sum" formatString="Standard"/>	
+		<Measure name="Job Order Count" aggregator="count" />
 	</Cube>
 </Schema>

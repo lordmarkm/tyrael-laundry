@@ -3,8 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
 
 <jp:mondrianQuery id="query01" jdbcDriver="com.mysql.jdbc.Driver" jdbcUrl="jdbc:mysql://localhost/tyrael_laundry?user=root&password=root" catalogUri="/WEB-INF/queries/JobOrder.xml">	
-	select {[Measures].[Amount Paid], [Measures].[Amount Due]} ON columns,
-	NON EMPTY {[Date Received].[All Dates].[2015].Children} ON ROWS
+	SELECT {[Measures].[Amount Paid], [Measures].[Amount Due], [Measures].[Job Order Count]} ON columns,
+	NON EMPTY {[Date Received].[All Dates].[2000]:[Date Received].[All Dates].[2027]} ON ROWS
 	FROM [JobOrder]
 </jp:mondrianQuery>
 
