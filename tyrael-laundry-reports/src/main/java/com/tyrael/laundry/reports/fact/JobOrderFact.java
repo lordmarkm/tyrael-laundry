@@ -19,13 +19,13 @@ public class JobOrderFact extends BaseMeta {
     protected Long dateReceivedDimId;
 
     @Column(name = "DATE_DUE_DIM_ID")
-    protected DateTime dateDueDimId;
+    protected Long dateDueDimId;
 
     @Column(name = "DATE_COMPLETED_DIM_ID")
-    protected DateTime dateCompletedDimId;
+    protected Long dateCompletedDimId;
 
     @Column(name = "DATE_CLAIMED_DIM_ID")
-    protected DateTime dateClaimedDimId;
+    protected Long dateClaimedDimId;
 
     @Column(name = "TRACKING_NO")
     protected String trackingNo;
