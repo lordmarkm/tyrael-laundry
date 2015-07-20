@@ -99,55 +99,40 @@
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
     </attributes>
   </connection>
+  <connection>
+    <name>tyrael_laundry_jndi</name>
+    <server/>
+    <type>MYSQL</type>
+    <access>JNDI</access>
+    <database>tyrael_laundry</database>
+    <port>1521</port>
+    <username/>
+    <password>Encrypted </password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>EXTRA_OPTION_MYSQL.defaultFetchSize</code><attribute>500</attribute></attribute>
+      <attribute><code>EXTRA_OPTION_MYSQL.useCursorFetch</code><attribute>true</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>1521</attribute></attribute>
+      <attribute><code>PRESERVE_RESERVED_WORD_CASE</code><attribute>N</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>STREAM_RESULTS</code><attribute>Y</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>SUPPORTS_TIMESTAMP_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
   <order>
   <hop> <from>Table input</from><to>lookup cust name</to><enabled>Y</enabled> </hop>
   <hop> <from>Select values</from><to>Update job_order_fact</to><enabled>Y</enabled> </hop>
-  <hop> <from>Select values</from><to>Text file output</to><enabled>Y</enabled> </hop>
+  <hop> <from>Select values</from><to>Text file output</to><enabled>N</enabled> </hop>
   <hop> <from>lookup cust name</from><to>lookup date_received as date_dimension</to><enabled>Y</enabled> </hop>
   <hop> <from>lookup date_received as date_dimension</from><to>Select values</to><enabled>Y</enabled> </hop>
   </order>
-  <step>
-    <name>lookup cust name</name>
-    <type>DBLookup</type>
-    <description/>
-    <distribute>N</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <connection>tyrael_laundry</connection>
-    <cache>N</cache>
-    <cache_load_all>N</cache_load_all>
-    <cache_size>0</cache_size>
-    <lookup>
-      <schema/>
-      <table>CUSTOMER</table>
-      <orderby/>
-      <fail_on_multiple>N</fail_on_multiple>
-      <eat_row_on_failure>N</eat_row_on_failure>
-      <key>
-        <name>customer_id</name>
-        <field>id</field>
-        <condition>&#x3d;</condition>
-        <name2/>
-      </key>
-      <value>
-        <name>surname</name>
-        <rename>customer_name</rename>
-        <default/>
-        <type>String</type>
-      </value>
-    </lookup>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>210</xloc>
-      <yloc>180</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
   <step>
     <name>Select values</name>
     <type>SelectValues</type>
@@ -211,7 +196,7 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <connection>tyrael_laundry</connection>
+    <connection>tyrael_laundry_jndi</connection>
     <sql>SELECT&#xa;	id,&#xa;	customer_id,&#xa;	delivery_status,&#xa;	status,&#xa;	total_amt,&#xa;	total_amt_paid,&#xa;	tracking_no,&#xa;	date&#x28;date_received&#x29; as date_received&#xa;FROM JOB_ORDER where deleted&#x3d;false</sql>
     <limit>0</limit>
     <lookup/>
@@ -291,7 +276,7 @@
            </partitioning>
       <schema/>
       <table>JOB_ORDER_FACT</table>
-      <connection>tyrael_laundry</connection>
+      <connection>tyrael_laundry_jndi</connection>
       <commit>100</commit>
       <update>Y</update>
       <fields>
@@ -359,6 +344,48 @@
     </step>
 
   <step>
+    <name>lookup cust name</name>
+    <type>DBLookup</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>tyrael_laundry_jndi</connection>
+    <cache>N</cache>
+    <cache_load_all>N</cache_load_all>
+    <cache_size>0</cache_size>
+    <lookup>
+      <schema/>
+      <table>CUSTOMER</table>
+      <orderby/>
+      <fail_on_multiple>N</fail_on_multiple>
+      <eat_row_on_failure>N</eat_row_on_failure>
+      <key>
+        <name>customer_id</name>
+        <field>id</field>
+        <condition>&#x3d;</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>surname</name>
+        <rename>customer_name</rename>
+        <default/>
+        <type>String</type>
+      </value>
+    </lookup>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>210</xloc>
+      <yloc>180</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
     <name>lookup date_received as date_dimension</name>
     <type>DBLookup</type>
     <description/>
@@ -369,7 +396,7 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <connection>tyrael_laundry</connection>
+    <connection>tyrael_laundry_jndi</connection>
     <cache>N</cache>
     <cache_load_all>N</cache_load_all>
     <cache_size>0</cache_size>

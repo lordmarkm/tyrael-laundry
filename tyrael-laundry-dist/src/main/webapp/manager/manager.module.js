@@ -11,6 +11,7 @@ define([
    'common/controller/TransportController',
    'manager/controller/ManagerDashboardController',
    'manager/controller/ReportsController',
+   'manager/controller/ReportsExtractionController',
    'common/resolve/JobOrderViewResolve',
    'manager/resolve/PriceManagementResolve',
    'common/resolve/CustomerViewResolve',
@@ -20,7 +21,7 @@ define([
    'manager/resolve/JobOrderReportResolve'
 ], function (angular,
     JobOrderAuditRecordService,
-    ManagerRootController, JobOrderViewController, JobOrderListController, CustomerViewController, CustomerViewJobOrdersController, PriceManagementController, BranchManagementController, TransportController, ManagerDashboardController, ReportsController,
+    ManagerRootController, JobOrderViewController, JobOrderListController, CustomerViewController, CustomerViewJobOrdersController, PriceManagementController, BranchManagementController, TransportController, ManagerDashboardController, ReportsController, ReportsExtractionController,
     JobOrderViewResolve, PriceManagementResolve, CustomerViewResolve, BranchManagementResolve, SummaryReportResolve, IncomeReportResolve, JobOrderReportResolve) {
 
   console.debug('Configuring manager.module');
@@ -104,6 +105,12 @@ define([
           controller: ReportsController,
           resolve: JobOrderReportResolve,
           access: 'ROLE_MANAGER'
+      })
+      .state('default.manager.reports.extraction', {
+        url: '/summary',
+        templateUrl: 'manager/view/reports_extraction.html',
+        controller: ReportsExtractionController,
+        access: 'ROLE_MANAGER'
       })
 
       //More management options

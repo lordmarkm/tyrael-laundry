@@ -131,7 +131,6 @@ Slicer:
 <wcf:render ref="chart01" xslUri="/WEB-INF/jpivot/chart/chart.xsl" xslCache="true"/>
 
 <p>
-<a href="index.jsp">back to index</a>
 
 </form>
 

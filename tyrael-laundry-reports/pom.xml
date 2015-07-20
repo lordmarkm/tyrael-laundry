@@ -19,6 +19,7 @@
   <properties>
     <kettle.version>5.1.0.0-751</kettle.version>
     <pentaho.libformula.version>5.1.0.0-752</pentaho.libformula.version>
+    <simple.jndi.version>0.11.4.1</simple.jndi.version>
   </properties>
 
   <dependencies>
@@ -71,6 +72,11 @@
       <groupId>pentaho-library</groupId>
       <artifactId>libformula</artifactId>
       <version>${pentaho.libformula.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>simple-jndi</groupId>
+      <artifactId>simple-jndi</artifactId>
+      <version>${simple.jndi.version}</version>
     </dependency>
   </dependencies>
 </project>
