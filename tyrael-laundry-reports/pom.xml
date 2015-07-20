@@ -8,6 +8,19 @@
   </parent>
   <artifactId>tyrael-laundry-reports</artifactId>
   <name>Tyrael Laundry :: Reports</name>
+
+  <repositories>
+    <repository>
+      <id>pentaho-releases</id>
+      <url>http://repository.pentaho.org/artifactory/repo/</url>
+    </repository>
+  </repositories>
+
+  <properties>
+    <kettle.version>5.1.0.0-751</kettle.version>
+    <pentaho.libformula.version>5.1.0.0-752</pentaho.libformula.version>
+  </properties>
+
   <dependencies>
     <dependency>
       <groupId>org.apache.poi</groupId>
@@ -36,6 +49,28 @@
       <artifactId>javax.servlet-api</artifactId>
       <version>3.1.0</version>
       <scope>provided</scope>
+    </dependency>
+
+    <!-- Kettle Dependencies -->
+    <dependency>
+      <groupId>pentaho-kettle</groupId>
+      <artifactId>kettle-core</artifactId>
+      <version>${kettle.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>pentaho-kettle</groupId>
+      <artifactId>kettle-engine</artifactId>
+      <version>${kettle.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>pentaho-library</groupId>
+      <artifactId>libbase</artifactId>
+      <version>${kettle.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>pentaho-library</groupId>
+      <artifactId>libformula</artifactId>
+      <version>${pentaho.libformula.version}</version>
     </dependency>
   </dependencies>
 </project>
