@@ -11,6 +11,7 @@
   <name>Tyrael Laundry :: Distribution</name>
 
   <properties>
+    <jndi.type>javax.sql.DataSource</jndi.type>
     <!-- Default packaging exclude pattern (skinny war) -->
     <packageExcludePattern>%regex[WEB-INF/lib/(?!(tyrael|baldy)).*\.jar]</packageExcludePattern>
     <contextPath>/laundry</contextPath>

@@ -43,7 +43,7 @@
 <%-- include query and title, so this jsp may be used with different queries --%>
 <wcf:include id="include01" httpParam="query" prefix="/WEB-INF/queries/" suffix=".jsp"/>
 <c:if test="${query01 == null}">
-  <jsp:forward page="/index.jsp"/>
+  <jsp:forward page="/report.jsp?query=tyrael_laundry"/>
 </c:if>
 
 <%-- define table, navigator and forms --%>
