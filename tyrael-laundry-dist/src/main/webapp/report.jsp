@@ -29,7 +29,7 @@
 
 <html>
 <head>
-  <title>Mondrian/JPivot Test Page</title>
+  <title>Tyrael Laundry Dynamic Reports</title>
   <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
   <link rel="stylesheet" type="text/css" href="jpivot/table/mdxtable.css">
   <link rel="stylesheet" type="text/css" href="jpivot/navi/mdxnavi.css">

@@ -78,5 +78,10 @@
       <artifactId>simple-jndi</artifactId>
       <version>${simple.jndi.version}</version>
     </dependency>
+    <dependency>
+      <groupId>rhino</groupId>
+      <artifactId>js</artifactId>
+      <version>1.7R2</version>
+    </dependency>
   </dependencies>
 </project>
