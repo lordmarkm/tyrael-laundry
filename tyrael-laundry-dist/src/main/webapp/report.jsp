@@ -59,7 +59,7 @@
 <wcf:form id="chartform01" xmlUri="/WEB-INF/jpivot/chart/chartpropertiesform.xml" model="#{chart01}" visible="false"/>
 <wcf:table id="query01.drillthroughtable" visible="false" selmode="none" editable="true"/>
 
-<h2><c:out value="${title01}"/></h2>
+<h2><c:out value="${title01}"/><c:out value="${msg }" /></h2>
 
 <%-- define a toolbar --%>
 <wcf:toolbar id="toolbar01" bundle="com.tonbeller.jpivot.toolbar.resources">

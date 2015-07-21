@@ -1,7 +1,9 @@
 package com.tyrael.laundry.web.config;
 
+import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
@@ -12,6 +14,7 @@ import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
@@ -23,6 +26,7 @@ import com.tyrael.laundry.billing.config.TyraelLaundryBillingConfigMarker;
 import com.tyrael.laundry.reports.config.TyraelLaundryReportsConfigMarker;
 import com.tyrael.laundry.security.config.TyraelLaundrySecurityConfigMarker;
 import com.tyrael.laundry.web.TyraelLaundryWebMarker;
+import com.tyrael.laundry.web.interceptor.TestInterceptor;
 
 @Configuration
 @ComponentScan(basePackages = {
@@ -40,10 +44,17 @@ import com.tyrael.laundry.web.TyraelLaundryWebMarker;
 @EnableAspectJAutoProxy
 public class TyraelLaundryWebConfig extends WebMvcConfigurationSupport {
 
+    @Autowired
+    private TestInterceptor testInterceptor;
+
     //Enable direct access to .html, .css, etc
     @Override
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
         configurer.enable(); 
+    }
+
+    protected void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(testInterceptor);
     }
 
     //Allows us to use Pageable as an argument for controller methods

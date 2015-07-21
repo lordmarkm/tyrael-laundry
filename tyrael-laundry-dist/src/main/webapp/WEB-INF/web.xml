@@ -59,6 +59,16 @@
     <url-pattern>/*</url-pattern>
   </filter-mapping>
 
+  <!-- Customer JPivot Filter -->
+  <filter>
+    <filter-name>TestFilter</filter-name>
+    <filter-class>com.tyrael.laundry.web.interceptor.TestFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>TestFilter</filter-name>
+    <url-pattern>*.jsp</url-pattern>
+  </filter-mapping>
+
   <!-- Reports (JPivot) Config -->
   <!--JPIVOT CONFIG -->
   <context-param>
@@ -71,7 +81,7 @@
     <filter-class>com.tonbeller.wcf.controller.RequestFilter</filter-class>
     <init-param>
       <param-name>indexJSP</param-name>
-      <param-value>/index.jsp</param-value>
+      <param-value>/report.jsp?query=tyrael_laundry</param-value>
       <description>forward to this page if session is new</description>
     </init-param>
   </filter>
