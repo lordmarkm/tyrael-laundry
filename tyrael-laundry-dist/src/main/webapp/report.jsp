@@ -38,7 +38,7 @@
   <link rel="stylesheet" type="text/css" href="wcf/tree/xtree.css">
 </head>
 <body bgcolor=white>
-<form action="report.jsp" method="post">
+<form action="/laundry/report.jsp" method="post">
 
 <%-- include query and title, so this jsp may be used with different queries --%>
 <wcf:include id="include01" httpParam="query" prefix="/WEB-INF/queries/" suffix=".jsp"/>
