@@ -21,6 +21,7 @@ public class JobOrderInfo extends BaseTyraelDto {
     private DateTime dateCompleted;
     private DateTime dateClaimed;
     private String trackingNo;
+    private String jobCode;
     private List<JobServiceInfo> jobServices;
     private List<JobItemInfo> jobItems;
     private List<LostAndFoundItemInfo> lostAndFoundItems;
@@ -28,11 +29,13 @@ public class JobOrderInfo extends BaseTyraelDto {
     private BigDecimal totalAmountPaid;
     private JobOrderStatus status;
     private TransportRequestStatus deliveryStatus;
+    private BranchInfo branchInfo;
 
     @Override
     protected ToStringCreator toStringCreator() {
         return super.toStringCreator()
             .append("tracking no.", trackingNo)
+            .append("job code", jobCode)
             .append("customer", customer)
             .append("date rcvd", dateReceived)
             .append("date due", dateDue)
@@ -44,7 +47,8 @@ public class JobOrderInfo extends BaseTyraelDto {
             .append("total amt", totalAmount)
             .append("total amt paid", totalAmountPaid)
             .append("status", status)
-            .append("deliveryStatus", deliveryStatus);
+            .append("deliveryStatus", deliveryStatus)
+            .append("branch", branchInfo);
     }
 
     public CustomerInfo getCustomer() {
@@ -149,6 +153,22 @@ public class JobOrderInfo extends BaseTyraelDto {
 
     public void setDeliveryStatus(TransportRequestStatus deliveryStatus) {
         this.deliveryStatus = deliveryStatus;
+    }
+
+    public String getJobCode() {
+        return jobCode;
+    }
+
+    public void setJobCode(String jobCode) {
+        this.jobCode = jobCode;
+    }
+
+    public BranchInfo getBranchInfo() {
+        return branchInfo;
+    }
+
+    public void setBranchInfo(BranchInfo branchInfo) {
+        this.branchInfo = branchInfo;
     }
 
 }

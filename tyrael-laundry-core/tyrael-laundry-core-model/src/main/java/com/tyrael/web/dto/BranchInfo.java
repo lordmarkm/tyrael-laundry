@@ -15,6 +15,7 @@ public class BranchInfo extends BaseTyraelNamedDto {
     private int newJobOrders;
     private BaseTyraelNamedDto brand;
     private BigDecimal minimumJobOrderAmount;
+    private String branchCode;
 
     @Override
     public ToStringCreator toStringCreator() {
@@ -22,6 +23,7 @@ public class BranchInfo extends BaseTyraelNamedDto {
             .append("new transport rqs", newTransportRequests)
             .append("new job orders", newJobOrders)
             .append("minimumJobOrderAmount", minimumJobOrderAmount)
+            .append("branch code", branchCode)
             .append("brand", brand);
     }
 
@@ -55,6 +57,14 @@ public class BranchInfo extends BaseTyraelNamedDto {
 
     public void setBrand(BaseTyraelNamedDto brand) {
         this.brand = brand;
+    }
+
+    public String getBranchCode() {
+        return branchCode;
+    }
+
+    public void setBranchCode(String branchCode) {
+        this.branchCode = branchCode;
     }
     
 

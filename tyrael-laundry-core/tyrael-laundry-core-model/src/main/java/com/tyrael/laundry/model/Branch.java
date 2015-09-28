@@ -23,6 +23,9 @@ public class Branch extends BaseNamedEntity {
     @Column(name = "JO_MINIMUM")
     private BigDecimal minimumJobOrderAmount = BigDecimal.ZERO;
 
+    @Column(name = "BRANCH_CODE", nullable = false)
+    private String branchCode;
+
     public BigDecimal getMinimumJobOrderAmount() {
         return minimumJobOrderAmount;
     }
@@ -37,6 +40,14 @@ public class Branch extends BaseNamedEntity {
 
     public void setBrand(Brand brand) {
         this.brand = brand;
+    }
+
+    public String getBranchCode() {
+        return branchCode;
+    }
+
+    public void setBranchCode(String branchCode) {
+        this.branchCode = branchCode;
     }
 
 }

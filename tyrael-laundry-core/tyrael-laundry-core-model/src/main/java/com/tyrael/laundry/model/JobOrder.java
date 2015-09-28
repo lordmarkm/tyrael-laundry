@@ -48,6 +48,12 @@ public class JobOrder extends BaseEntity {
     @Column(name = "TRACKING_NO", nullable = false, unique = true)
     private String trackingNo;
 
+    /**
+     * Distinct from tracking-no in that it is human readable and also identifies based on branch
+     */
+    @Column(name = "JOB_CODE", nullable = false, unique = true)
+    private String jobCode;
+
     @OneToMany(mappedBy = "jobOrder", cascade = CascadeType.ALL)
     private List<JobService> jobServices;
 
@@ -172,6 +178,14 @@ public class JobOrder extends BaseEntity {
 
     public void setDeliveryStatus(TransportRequestStatus deliveryStatus) {
         this.deliveryStatus = deliveryStatus;
+    }
+
+    public String getJobCode() {
+        return jobCode;
+    }
+
+    public void setJobCode(String jobCode) {
+        this.jobCode = jobCode;
     }
 
 }

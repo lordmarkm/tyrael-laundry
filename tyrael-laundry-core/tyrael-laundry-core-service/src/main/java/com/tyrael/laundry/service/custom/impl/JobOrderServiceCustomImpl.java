@@ -3,6 +3,7 @@ package com.tyrael.laundry.service.custom.impl;
 import java.util.List;
 import static com.tyrael.laundry.reference.JobOrderStatus.*;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
 import org.slf4j.Logger;
@@ -85,6 +86,9 @@ public class JobOrderServiceCustomImpl extends TyraelJpaServiceCustomImpl<JobOrd
             jobOrderInfo.setDateDue(jobOrderInfo.getDateReceived().plusDays(3));
             jobOrderInfo.setTrackingNo(sequenceService.next());
         }
+        if (null == jobOrderInfo.getJobCode()) {
+            jobOrderInfo.setJobCode(uniqueJobCode(jobOrderInfo));
+        }
         if (null == jobOrderInfo.getDateCompleted() 
                 && (jobOrderInfo.getStatus() == CLOSED) || jobOrderInfo.getStatus() == CANCELLED) {
             jobOrderInfo.setDateCompleted(DateTime.now());
@@ -106,6 +110,21 @@ public class JobOrderServiceCustomImpl extends TyraelJpaServiceCustomImpl<JobOrd
         }
 
         return toDto(repo.save(jobOrder));
+    }
+
+    private String uniqueJobCode(JobOrderInfo jobOrderInfo) {
+        String jobCode = null;
+        while (null == jobCode) {
+            StringBuilder jobCodeBuilder = new StringBuilder();
+            if (null != jobOrderInfo.getBranchInfo()) {
+                jobCodeBuilder.append(jobOrderInfo.getBranchInfo().getBranchCode());
+            }
+            jobCodeBuilder.append(RandomStringUtils.randomAlphabetic(5).toLowerCase());
+            if (null == repo.findByJobCode(jobCodeBuilder.toString())) {
+                jobCode = jobCodeBuilder.toString();
+            }
+        }
+        return jobCode;
     }
 
 }
