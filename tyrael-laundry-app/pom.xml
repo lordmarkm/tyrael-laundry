@@ -53,6 +53,14 @@
       </properties>
     </profile>
     <profile>
+      <id>aws</id>
+      <properties>
+        <db.username>root</db.username>
+        <db.password>123qwe321ewq</db.password>
+        <db.url>jdbc:mysql://tyrael.cwsdrmvlsryc.ap-southeast-1.rds.amazonaws.com:3306/tyrael_laundry</db.url>
+      </properties>
+    </profile>
+    <profile>
       <id>purge</id>
       <properties>
         <hibernate.hbm2ddl.auto>create</hibernate.hbm2ddl.auto>
