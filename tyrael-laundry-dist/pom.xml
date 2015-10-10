@@ -15,6 +15,7 @@
     <!-- Default packaging exclude pattern (skinny war) -->
     <packageExcludePattern>%regex[WEB-INF/lib/(?!(tyrael|baldy)).*\.jar]</packageExcludePattern>
     <contextPath>/laundry</contextPath>
+    <jetty.http.port>8080</jetty.http.port>
   </properties>
 
   <repositories>
@@ -212,6 +213,12 @@
       <build>
         <finalName>laundry</finalName>
       </build>
+    </profile>
+    <profile>
+      <id>aws</id>
+      <properties>
+        <jetty.http.port>80</jetty.http.port>
+      </properties>
     </profile>
   </profiles>
 
