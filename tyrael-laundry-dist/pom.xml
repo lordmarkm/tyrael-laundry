@@ -204,15 +204,6 @@
         <packageExcludePattern></packageExcludePattern>
       </properties>
     </profile>
-    <profile>
-      <id>qa</id>
-      <properties>
-        <contextPath></contextPath>
-      </properties>
-      <build>
-        <finalName>laundry</finalName>
-      </build>
-    </profile>
   </profiles>
 
 </project>
