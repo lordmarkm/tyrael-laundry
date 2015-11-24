@@ -18,6 +18,7 @@
     <hibernate.hbm2ddl.auto>update</hibernate.hbm2ddl.auto>
     <hibernate.hbm2ddl.import_files></hibernate.hbm2ddl.import_files>
     <reload.csv>false</reload.csv>
+    <kettle.jndi.root>./reports-kettle/jndi-dev</kettle.jndi.root>
   </properties>
 
   <dependencies>
@@ -46,18 +47,12 @@
 
   <profiles>
     <profile>
-      <id>qa</id>
-      <properties>
-        <db.username>tyrael_laundry</db.username>
-        <db.password>tyrael_laundry</db.password>
-      </properties>
-    </profile>
-    <profile>
       <id>aws</id>
       <properties>
         <db.username>root</db.username>
         <db.password>123qwe321ewq</db.password>
         <db.url>jdbc:mysql://tyrael.cwsdrmvlsryc.ap-southeast-1.rds.amazonaws.com:3306/tyrael_laundry</db.url>
+        <kettle.jndi.root>./reports-kettle/jndi-aws</kettle.jndi.root>
       </properties>
     </profile>
     <profile>

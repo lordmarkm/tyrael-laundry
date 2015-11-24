@@ -27,7 +27,7 @@ public class ExtractionService {
 
     public void runKettle() {
         try {
-            System.setProperty("KETTLE_JNDI_ROOT", "./reports-kettle/jndi");
+            System.setProperty("KETTLE_JNDI_ROOT", env.getProperty("kettle.jndi.root"));
             System.setProperty("reports_root", "./reports-kettle");
             System.setProperty("default.effectiveDateTime.MMddyyyyHHmmss", "01011900000000");
             System.setProperty("default.effectiveDateTime.dbmask", "MMddyyyyHH24MIss");
