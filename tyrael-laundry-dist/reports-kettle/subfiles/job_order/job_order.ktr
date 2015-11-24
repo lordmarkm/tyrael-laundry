@@ -176,6 +176,10 @@
         <rename/>
         <length>-2</length>
         <precision>-2</precision>
+      </field>      <field>        <name>wt_kg</name>
+        <rename/>
+        <length>-2</length>
+        <precision>-2</precision>
       </field>        <select_unspecified>N</select_unspecified>
     </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
@@ -197,7 +201,7 @@
            <schema_name/>
            </partitioning>
     <connection>tyrael_laundry_jndi</connection>
-    <sql>SELECT&#xa;	id,&#xa;	customer_id,&#xa;	delivery_status,&#xa;	status,&#xa;	total_amt,&#xa;	total_amt_paid,&#xa;	tracking_no,&#xa;	date&#x28;date_received&#x29; as date_received&#xa;FROM JOB_ORDER where deleted&#x3d;false</sql>
+    <sql>SELECT&#xa;	job_order.id as id,&#xa;	job_order.customer_id as customer_id,&#xa;	job_order.delivery_status as delivery_status,&#xa;	job_order.status as status,&#xa;	job_order.total_amt as total_amt,&#xa;	job_order.total_amt_paid as total_amt_paid,&#xa;	job_order.tracking_no as tracking_no,&#xa;	date&#x28;job_order.date_received&#x29; as date_received,&#xa;    sum&#x28;job_service.wt_kg&#x29; as wt_kg&#xa;FROM JOB_ORDER job_order join JOB_SERVICE job_service on job_service.job_id &#x3d; job_order.id&#xa;WHERE job_order.deleted&#x3d;false&#xa;GROUP BY job_order.id</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -312,6 +316,11 @@
         <field>
           <name>customer_name</name>
           <lookup>CUSTOMER_NAME</lookup>
+          <update>Update</update>
+        </field>
+        <field>
+          <name>wt_kg</name>
+          <lookup>WT_KG</lookup>
           <update>Update</update>
         </field>
         <field>

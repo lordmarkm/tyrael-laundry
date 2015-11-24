@@ -42,4 +42,7 @@ public class JobOrderFact extends BaseMeta {
     @Column(name = "DELIVERY_STATUS")
     protected String deliveryStatus;
 
+    @Column(name = "WT_KG")
+    protected BigDecimal weightInKilos;
+
 }
