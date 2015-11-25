@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.tyrael.laundry.service.BranchService;
 import com.tyrael.web.dto.BranchInfo;
+import static org.springframework.http.HttpStatus.*;
 
 @RestController
 @RequestMapping("/branches")
@@ -18,7 +19,7 @@ public class BranchesResource {
     private BranchService service;
 
     public ResponseEntity<List<BranchInfo>> getAllBranches() {
-        return new ResponseEntity<>(service.findAllInfo());
+        return new ResponseEntity<>(service.findAllInfo(), OK);
     }
 
 }
