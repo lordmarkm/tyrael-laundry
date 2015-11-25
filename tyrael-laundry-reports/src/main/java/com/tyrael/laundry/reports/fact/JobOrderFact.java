@@ -5,8 +5,6 @@ import java.math.BigDecimal;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
-import org.joda.time.DateTime;
-
 import com.tyrael.laundry.reports.base.BaseMeta;
 
 @Entity(name = "JOB_ORDER_FACT")
